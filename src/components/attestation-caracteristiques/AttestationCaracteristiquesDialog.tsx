@@ -8,7 +8,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { SIGLE_HIERARCHIQUE } from '@/lib/constants/document';
 import { dateCompleteEnLettres } from '@/lib/utils/nombre-en-lettres';
-import { useSignataireBudget } from '@/hooks/useReferentiels';
+import { useMarques, useSignataireBudget } from '@/hooks/useReferentiels';
 import type { AttestationCaracteristique } from '@/lib/api/attestationCaracteristique';
 
 export interface AttestationCaracteristiquesDialogProps {
@@ -30,11 +30,14 @@ export function AttestationCaracteristiquesDialog({
   const tCommon = useTranslations('common');
   const t = useTranslations('processus.attestationCaracteristiques');
   const signataireBudget = useSignataireBudget();
+  const { data: marques = [] } = useMarques();
 
   const today = dateCompleteEnLettres(new Date());
+  // `attestation.marque` stocke l'identifiant de tsi_vehicule_marque : on affiche son nom, comme le PDF Jasper (§9.14).
+  const marque = marques.find((m) => m.marqueCode === attestation.marque)?.libelle ?? attestation.marque;
 
   const caracteristiques: Array<[string, string | number | undefined]> = [
-    [t('fields.marque'), attestation.marque],
+    [t('fields.marque'), marque],
     [t('fields.genre'), attestation.genre],
     [t('fields.carrosserie'), attestation.carrosserie],
     [t('fields.type'), attestation.typeVeh],

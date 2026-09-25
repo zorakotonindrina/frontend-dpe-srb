@@ -72,6 +72,11 @@ export type DossierStatut =
   | 'EN_TRAITEMENT_TECHNIQUE' | 'EN_VALIDATION' | 'VALIDE' | 'REFUSE'
   | 'LIVRABLE_GENERE' | 'CLOTURE';
 
+/** Dossier « en cours » (carte du tableau de bord, liste associée, résumé du traitement) : ni clos ni refusé. */
+export function estDossierEnCours(statut: DossierStatut): boolean {
+  return statut !== 'CLOTURE' && statut !== 'REFUSE';
+}
+
 export function deriveDossierStatut(etapeCode: EtapeCode | null, motifRejet?: string | null): DossierStatut {
   if (!etapeCode) return 'CLOTURE';
   const regressed = Boolean(motifRejet);

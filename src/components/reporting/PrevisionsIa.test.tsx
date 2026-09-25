@@ -5,10 +5,6 @@ import { renderWithProviders } from '@/tests/renderWithProviders';
 import type { AnomalieCarburant, ModeleIa, PrevisionStructure, PrevisionVehicule } from '@/lib/api/reportingIa';
 import { PrevisionsIa } from './PrevisionsIa';
 
-vi.mock('@/components/charts/BarChart', () => ({
-  BarChart: ({ title, data }: { title: string; data: unknown[] }) => <div data-testid="bar-chart">{title} ({data.length})</div>,
-}));
-
 const structure = (soaCode: string, soaLibelle: string, depensePrevue: number, reel: number): PrevisionStructure => ({
   id: soaCode, soaCode, soaLibelle, anneeCible: 2027, nbVehicules: 5, depensePrevue,
   borneBasse: depensePrevue * 0.8, borneHaute: depensePrevue * 1.3, detail: { carburant: depensePrevue * 0.7, reel_annee_precedente: reel },
@@ -75,10 +71,26 @@ describe('PrevisionsIa', () => {
     expect(screen.getByText('Budget prévu 2027')).toBeInTheDocument();
     expect(screen.getByText('100 M Ar')).toBeInTheDocument();
     expect(screen.getByText('1 / 2')).toBeInTheDocument();
-    expect(screen.getByText('Budget prévu 2027 par STRUCTURE (2)')).toBeInTheDocument();
     expect(screen.getByText('1234 TBA')).toBeInTheDocument();
     expect(screen.getByText('72 %')).toBeInTheDocument();
     expect(screen.getByTestId('reporting-ia-avertissement')).toHaveTextContent('jeu de données construit');
+  });
+
+  it('classe les STRUCTURES par budget prévu avec leur libellé complet, les montants et l’écart au réel', () => {
+    structures = [
+      structure('00-51-1-000-00002', 'CENTRE HOSPITALIER UNIVERSITAIRE JOSEPH RAVOAHANGY ANDRIANAVALONA', 40_000_000, 50_000_000),
+      structure('00-71-1-000-00001', 'SERVICE REGIONAL DES ETUDES ET DE LA PROGRAMMATION ANALAMANGA', 60_000_000, 60_000_000),
+    ];
+    renderWithProviders(<PrevisionsIa />);
+    const bloc = within(screen.getByTestId('budget-structures'));
+    expect(bloc.getByText('Budget prévu 2027 par STRUCTURE')).toBeInTheDocument();
+    const lignes = bloc.getAllByRole('listitem');
+    expect(lignes[0]).toHaveTextContent('SERVICE REGIONAL DES ETUDES ET DE LA PROGRAMMATION ANALAMANGA');
+    expect(lignes[0]).toHaveTextContent('60 M Ar');
+    expect(lignes[0]).toHaveTextContent('= réel');
+    expect(lignes[1]).toHaveTextContent('CENTRE HOSPITALIER UNIVERSITAIRE JOSEPH RAVOAHANGY ANDRIANAVALONA');
+    expect(lignes[1]).toHaveTextContent('00-51-1-000-00002');
+    expect(lignes[1]).toHaveTextContent('-20 % vs réel');
   });
 
   it('permet de marquer une anomalie nouvelle comme vérifiée, pas une anomalie déjà traitée', async () => {

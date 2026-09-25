@@ -234,7 +234,7 @@
     "subtitle": "Choose a process to create a new case",
     "newDossier": "New dossier",
     "detailTitle": "File {reference}",
-    "liste": { "title": "File list", "description": "View only: open a file to read it (information, documents, history) without processing it.", "retour": "Dashboard", "processusInconnu": "Unknown process." },
+    "liste": { "title": "File list", "description": "View only: open a file to read it (information, documents, history) without processing it.", "retour": "Dashboard", "processusInconnu": "Unknown process.", "titreEnCours": "Files in progress — all processes" },
     "consultation": { "bandeau": "View-only mode: this file cannot be processed from this screen." },
     "columns": {
       "reference": "Reference",
@@ -741,7 +741,7 @@
       "ia": "AI forecasts"
     },
     "ia": {
-      "avertissement": "Results computed by the machine-learning models (ia-siigpe module, manual retraining). Vehicle forecasts rely on a constructed dataset (2025-2026): they illustrate the method, not yet the real fleet. Processing time is learned from real files.",
+      "avertissement": "Results computed by the machine-learning models (ia-siigpe module, manual retraining). SIIGPE is still in its test phase: users will only run it in production from the 2027 financial year. No real vehicle operating data exists yet; vehicle forecasts therefore rely on a constructed dataset (2025-2026) that validates the whole pipeline, and the models will be retrained on the data actually entered from 2027. Processing time, on the other hand, is learned from real files.",
       "exportExcel": "Export budget forecast",
       "vide": "No forecast available: run the training (python modeles/entrainer_tout.py in ia-siigpe).",
       "kpi": {
@@ -758,6 +758,11 @@
       "graphiqueBudgetSousTitre": "Sum of the vehicle forecasts of each STRUCTURE, compared with actual {anneePrecedente} expenses",
       "prevu": "Forecast {annee}",
       "reel": "Actual {annee}",
+      "classement": {
+        "rang": "Rank {rang}",
+        "ecart": "{ecart} vs actual",
+        "identique": "= actual"
+      },
       "vehicules": {
         "titre": "Forecast per vehicle ({annee})",
         "description": "Total annual expense forecast (fuel, oil, maintenance, repairs, tyres), 80 % range and probability of a major repair."
@@ -831,8 +836,8 @@
           "rappelKmGonfles": "Recall “inflated km”"
         },
         "lecture": {
-          "DEPENSE_VEHICULE": "Repeated cross-validation (5 folds × 10). If no learned model beats carrying N forward, the baseline produces the forecasts: with a single pair of years per vehicle, the history is too short to learn each vehicle’s own “fragility”.",
-          "GROSSE_REPARATION": "Probability that a repair exceeds 2 M Ar next year. Few positive examples: the AUC stays modest.",
+          "DEPENSE_VEHICULE": "Repeated cross-validation (5 folds × 10). If no learned model beats carrying N forward, the baseline produces the forecasts: a single pair of years per vehicle is not enough to learn each vehicle’s own “fragility”. The model will be re-evaluated on the production data entered from 2027.",
+          "GROSSE_REPARATION": "Probability that a repair exceeds 2 M Ar next year. Few positive examples: the AUC stays modest; to be re-evaluated on production data (from 2027).",
           "ANOMALIE_CARBURANT": "Evaluated on anomalies injected into the constructed dataset. Unsupervised learning detects inflated mileage, invisible to the simple rule.",
           "DELAI_DOSSIER": "Learned from real closed files. Better than the baseline on a random test, but times drift from one year to the next: retrain regularly."
         }

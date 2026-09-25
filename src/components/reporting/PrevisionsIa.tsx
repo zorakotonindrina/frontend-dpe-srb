@@ -7,9 +7,9 @@ import { CheckCircle2, Download, FlaskConical, ShieldCheck } from 'lucide-react'
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart } from '@/components/charts/BarChart';
 import { DataTable } from '@/components/data-table/DataTable';
 import { DataTableColumnHeader } from '@/components/data-table/DataTableColumnHeader';
+import { BudgetStructuresClassement } from '@/components/reporting/BudgetStructuresClassement';
 import { KpiCard } from '@/components/reporting/KpiCard';
 import {
   useAnomaliesCarburant, useDelaisPrevus, useExporterPrevisionBudgetaire, useModelesIa, usePrevisionStructures,
@@ -64,8 +64,9 @@ export function PrevisionsIa() {
   const delaiMoyen = dossiersOuverts ? delais.reduce((s, d) => s + d.delaiPrevuMoyen * d.nbDossiersOuverts, 0) / dossiersOuverts : 0;
   const enRetard = delais.reduce((s, d) => s + d.nbEnRetard, 0);
 
-  const donneesGraphique = structures.map((s) => ({
-    structure: s.soaLibelle ?? s.soaCode,
+  const lignesBudget = structures.map((s) => ({
+    soaCode: s.soaCode,
+    libelle: s.soaLibelle ?? s.soaCode,
     prevu: s.depensePrevue,
     reel: Number(s.detail.reel_annee_precedente) || 0,
   }));
@@ -184,15 +185,7 @@ export function PrevisionsIa() {
             />
           </div>
 
-          <BarChart
-            title={t('graphiqueBudget', { annee })}
-            subtitle={t('graphiqueBudgetSousTitre', { anneePrecedente: annee - 1 })}
-            data={donneesGraphique}
-            bars={[{ key: 'prevu', label: t('prevu', { annee }) }, { key: 'reel', label: t('reel', { annee: annee - 1 }) }]}
-            xKey="structure"
-            layout="horizontal"
-            yFormatter={millions}
-          />
+          <BudgetStructuresClassement annee={annee} lignes={lignesBudget} formater={millions} />
 
           <Card>
             <CardHeader>

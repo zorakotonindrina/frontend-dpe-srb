@@ -24,6 +24,7 @@ import { useMinisteres } from '@/hooks/useReferentiels';
 import { ROUTES } from '@/lib/constants/routes';
 import type { DossiersParams, DossierStatut } from '@/lib/api/dossiers';
 import { PROCESSUS_CODE_NAV_LABEL_KEYS, PROCESSUS_CODE_NEW_ROUTES } from '@/lib/constants/processus';
+import { estDossierEnCours } from '@/lib/constants/workflow-etapes';
 import type { FacetedFilterDef } from '@/components/data-table/data-table.types';
 import { buildDossierColumns, DOSSIER_STATUTS } from '../columns';
 
@@ -68,7 +69,7 @@ export default function TraitementDossierPage() {
   // ── Résumé chiffré (RESUME §2) ───────────────────────────────────────
   const { data: vehicules = [] } = useVehicules();
   const { data: dossiersAll = [] } = useDossiers();
-  const dossiersEnCoursCount = dossiersAll.filter((d) => d.statut !== 'CLOTURE' && d.statut !== 'REFUSE').length;
+  const dossiersEnCoursCount = dossiersAll.filter((d) => estDossierEnCours(d.statut)).length;
   const dossiersTraitesCount = dossiersAll.filter((d) => d.statut === 'CLOTURE').length;
 
   // ── Recherche unique véhicule OU dossier (RESUME §1) ─────────────────

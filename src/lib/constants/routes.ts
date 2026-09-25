@@ -30,6 +30,8 @@ export const ROUTES = {
   DOSSIER_DETAIL:      (reference: string) => `/dossiers/detail?reference=${encodeURIComponent(reference)}`,
   /** Liste (consultation) des dossiers d'un processus — lancée depuis les cartes du tableau de bord. */
   DOSSIERS_LISTE:      (processusCode: string) => `/dossiers/liste?processus=${encodeURIComponent(processusCode)}`,
+  /** Même liste (consultation) pour tous les dossiers en cours, tous processus — carte « Dossiers en cours » du tableau de bord. */
+  DOSSIERS_EN_COURS:   '/dossiers/liste?vue=en-cours',
   /** Détail d'un dossier en lecture seule : aucun traitement (workflow, génération, pièces) n'y est proposé. */
   DOSSIER_CONSULTATION: (reference: string) => `/dossiers/detail?reference=${encodeURIComponent(reference)}&mode=consultation`,
 

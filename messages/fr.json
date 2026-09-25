@@ -235,7 +235,7 @@
     "subtitle": "Choisissez un processus pour créer un nouveau dossier",
     "newDossier": "Nouveau dossier",
     "detailTitle": "Dossier {reference}",
-    "liste": { "title": "Liste des dossiers", "description": "Consultation seule : ouvrez un dossier pour le lire (informations, pièces, historique, documents) sans le traiter.", "retour": "Tableau de bord", "processusInconnu": "Processus inconnu." },
+    "liste": { "title": "Liste des dossiers", "description": "Consultation seule : ouvrez un dossier pour le lire (informations, pièces, historique, documents) sans le traiter.", "retour": "Tableau de bord", "processusInconnu": "Processus inconnu.", "titreEnCours": "Dossiers en cours — tous processus" },
     "consultation": { "bandeau": "Mode consultation — lecture seule : ce dossier ne peut pas être traité depuis cet écran." },
     "columns": {
       "reference": "Référence",
@@ -748,7 +748,7 @@
       "ia": "Prévisions IA"
     },
     "ia": {
-      "avertissement": "Résultats calculés par les modèles d'apprentissage automatique (module ia-siigpe, réentraînement manuel). Les prévisions véhicules reposent sur un jeu de données construit (2025-2026) : elles illustrent la méthode, pas encore le parc réel. Le délai de traitement est appris sur les dossiers réels.",
+      "avertissement": "Résultats calculés par les modèles d'apprentissage automatique (module ia-siigpe, réentraînement manuel). SIIGPE est encore en phase de test : les utilisateurs ne l'exploiteront en production qu'à partir de l'exercice 2027. Aucune donnée réelle d'exploitation des véhicules n'existe donc encore ; les prévisions véhicules reposent sur un jeu de données construit (2025-2026) qui valide la chaîne complète, et les modèles seront réentraînés sur les données réellement saisies à partir de 2027. Le délai de traitement est, lui, appris sur les dossiers réels.",
       "exportExcel": "Exporter la prévision budgétaire",
       "vide": "Aucune prévision disponible : lancez l'entraînement (python modeles/entrainer_tout.py dans ia-siigpe).",
       "kpi": {
@@ -765,6 +765,11 @@
       "graphiqueBudgetSousTitre": "Somme des prévisions des véhicules de chaque STRUCTURE, comparée aux dépenses réelles {anneePrecedente}",
       "prevu": "Prévu {annee}",
       "reel": "Réel {annee}",
+      "classement": {
+        "rang": "Rang {rang}",
+        "ecart": "{ecart} vs réel",
+        "identique": "= réel"
+      },
       "vehicules": {
         "titre": "Prévision par véhicule ({annee})",
         "description": "Dépense annuelle totale prévue (carburant, huile, entretien, réparations, pneumatiques), fourchette à 80 % et probabilité de grosse réparation."
@@ -838,8 +843,8 @@
           "rappelKmGonfles": "Rappel « km gonflés »"
         },
         "lecture": {
-          "DEPENSE_VEHICULE": "Validation croisée répétée (5 plis × 10). Si aucun modèle appris ne bat la reconduction N+1 = N, c’est elle qui produit les prévisions : avec une seule paire d’années par véhicule, l’historique est trop court pour apprendre la « fragilité » propre à chaque véhicule.",
-          "GROSSE_REPARATION": "Probabilité qu’une réparation dépasse 2 M Ar l’année suivante. Peu d’exemples positifs : l’AUC reste modeste.",
+          "DEPENSE_VEHICULE": "Validation croisée répétée (5 plis × 10). Si aucun modèle appris ne bat la reconduction N+1 = N, c’est elle qui produit les prévisions : une seule paire d’années par véhicule ne suffit pas à apprendre la « fragilité » propre à chaque véhicule. Le modèle sera réévalué sur les données de production saisies à partir de 2027.",
+          "GROSSE_REPARATION": "Probabilité qu’une réparation dépasse 2 M Ar l’année suivante. Peu d’exemples positifs : l’AUC reste modeste ; à réévaluer sur les données de production (à partir de 2027).",
           "ANOMALIE_CARBURANT": "Évalué sur les anomalies injectées dans le jeu construit. L’apprentissage non supervisé détecte les kilomètres gonflés, invisibles pour la règle simple.",
           "DELAI_DOSSIER": "Appris sur les dossiers clos réels. Mieux que la référence sur un test aléatoire, mais les délais dérivent d’une année à l’autre : réentraîner régulièrement."
         }

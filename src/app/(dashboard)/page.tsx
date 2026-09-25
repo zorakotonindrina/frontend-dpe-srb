@@ -15,6 +15,7 @@ import { useDossiers } from '@/hooks/useDossiers';
 import { useWorkflowMesTaches } from '@/hooks/useWorkflow';
 import { useDocuments } from '@/hooks/useDocuments';
 import { PROCESSUS_CODE_NAV_LABEL_KEYS } from '@/lib/constants/processus';
+import { estDossierEnCours } from '@/lib/constants/workflow-etapes';
 
 export default function DashboardPage() {
   const t = useTranslations('dashboard');
@@ -27,7 +28,7 @@ export default function DashboardPage() {
   const { data: taches = [] } = useWorkflowMesTaches();
   const { data: documents = [] } = useDocuments();
 
-  const dossiersEnCours = dossiers.filter((d) => d.statut !== 'CLOTURE' && d.statut !== 'REFUSE');
+  const dossiersEnCours = dossiers.filter((d) => estDossierEnCours(d.statut));
 
   const vehiculesParEtat = Object.entries(
     vehicules.reduce<Record<string, number>>((acc, v) => {
@@ -62,7 +63,7 @@ export default function DashboardPage() {
           title={t('kpiDossiersEnCours')}
           value={dossiersEnCours.length}
           icon={<FolderOpen className="h-5 w-5" />}
-          href={ROUTES.DOSSIERS}
+          href={ROUTES.DOSSIERS_EN_COURS}
         />
         <StatCard
           slug="taches-en-attente"

@@ -229,7 +229,7 @@
     "subtitle": "Misafidiana processus iray hamoronana taratasy vaovao",
     "newDossier": "Nouveau dossier",
     "detailTitle": "Dossier {reference}",
-    "liste": { "title": "Liste des dossiers", "description": "Consultation seule : ouvrez un dossier pour le lire (informations, pièces, historique, documents) sans le traiter.", "retour": "Tableau de bord", "processusInconnu": "Processus inconnu." },
+    "liste": { "title": "Liste des dossiers", "description": "Consultation seule : ouvrez un dossier pour le lire (informations, pièces, historique, documents) sans le traiter.", "retour": "Tableau de bord", "processusInconnu": "Processus inconnu.", "titreEnCours": "Antontan-taratasy mbola karakaraina — dingana rehetra" },
     "consultation": { "bandeau": "Mode consultation — lecture seule : ce dossier ne peut pas être traité depuis cet écran." },
     "columns": {
       "reference": "Référence",
@@ -907,7 +907,7 @@
       "ia": "Vinavina IA"
     },
     "ia": {
-      "avertissement": "Valiny nokajian'ny modely fianarana milina (module ia-siigpe, averina ampianarina tanana). Ny vinavina momba ny fiara dia miankina amin'ny angona namboarina (2025-2026) : maneho ny fomba fiasa izy ireo fa tsy mbola ny fiara tena izy. Ny faharetan'ny fikarakarana kosa dia nianarana tamin'ny antontan-taratasy tena izy.",
+      "avertissement": "Valiny nokajian'ny modely fianarana milina (module ia-siigpe, averina ampianarina tanana). Mbola eo amin'ny dingana fitsapana ny SIIGPE : amin'ny taom-piasana 2027 vao hampiasain'ny mpampiasa amin'ny fomba ofisialy izy. Noho izany dia tsy mbola misy angona tena izy momba ny fampiasana ny fiara ; miankina amin'ny angona namboarina (2025-2026) ny vinavina, izay manamarina ny rojo manontolo, ary averina ampianarina amin'ny angona tena ampidirina manomboka amin'ny 2027 ny modely. Ny faharetan'ny fikarakarana kosa dia nianarana tamin'ny antontan-taratasy tena izy.",
       "exportExcel": "Avoaka ny vinavina tetibola",
       "vide": "Tsy misy vinavina : alefaso ny fampianarana (python modeles/entrainer_tout.py ao amin'ny ia-siigpe).",
       "kpi": {
@@ -924,6 +924,11 @@
       "graphiqueBudgetSousTitre": "Fitambaran'ny vinavina ho an'ny fiaran'ny STRUCTURE tsirairay, ampitahaina amin'ny fandaniana tena izy {anneePrecedente}",
       "prevu": "Vinavina {annee}",
       "reel": "Tena izy {annee}",
+      "classement": {
+        "rang": "Laharana {rang}",
+        "ecart": "{ecart} raha oharina amin’ny tena izy",
+        "identique": "= tena izy"
+      },
       "vehicules": {
         "titre": "Vinavina isaky ny fiara ({annee})",
         "description": "Fandaniana isan-taona vinavinaina (solika, menaka, fikojakojana, fanamboarana, kodiarana), elanelana 80 % ary mety hisian’ny fanamboarana lehibe."
@@ -997,8 +1002,8 @@
           "rappelKmGonfles": "Rappel « km nampitomboina »"
         },
         "lecture": {
-          "DEPENSE_VEHICULE": "Fanamarinana miverimberina (5 × 10). Raha tsy misy modely nianatra mihoatra ny N+1 = N, io no mamokatra ny vinavina : fohy loatra ny tantara (taona roa isaky ny fiara).",
-          "GROSSE_REPARATION": "Mety hihoatra ny 2 tapitrisa Ar ny fanamboarana amin’ny taona manaraka. Vitsy ny ohatra : AUC antonony.",
+          "DEPENSE_VEHICULE": "Fanamarinana miverimberina (5 × 10). Raha tsy misy modely nianatra mihoatra ny N+1 = N, io no mamokatra ny vinavina : tsy ampy ny taona roa isaky ny fiara. Hotombanana indray amin'ny angona tena izy ampidirina manomboka amin'ny 2027 ny modely.",
+          "GROSSE_REPARATION": "Mety hihoatra ny 2 tapitrisa Ar ny fanamboarana amin’ny taona manaraka. Vitsy ny ohatra : AUC antonony ; hotombanana indray amin'ny angona tena izy (manomboka amin'ny 2027).",
           "ANOMALIE_CARBURANT": "Tombanana tamin'ny tsy fetezana nampidirina. Hitan'ny fianarana tsy misy mpanara-maso ny km nampitomboina.",
           "DELAI_DOSSIER": "Nianarana tamin'ny antontan-taratasy tena izy. Tsara kokoa amin'ny fitsapana kisendrasendra, fa miova isan-taona : averina ampianarina matetika."
         }

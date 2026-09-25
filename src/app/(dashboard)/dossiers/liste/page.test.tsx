@@ -7,9 +7,10 @@ import ListeDossiersProcessusPage from './page';
 
 const push = vi.fn();
 let processus: string | null = 'VA_CONDAMN';
+let vue: string | null = null;
 vi.mock('next/navigation', () => ({
   useRouter: () => ({ push }),
-  useSearchParams: () => new URLSearchParams(processus ? { processus } : {}),
+  useSearchParams: () => new URLSearchParams({ ...(processus ? { processus } : {}), ...(vue ? { vue } : {}) }),
 }));
 
 const dossier = (referenceActe: string, processusCode: string, statut: Dossier['statut']): Dossier => ({
@@ -25,6 +26,7 @@ describe('ListeDossiersProcessusPage', () => {
     push.mockReset();
     useDossiers.mockReset();
     processus = 'VA_CONDAMN';
+    vue = null;
     useDossiers.mockReturnValue({ data: [dossier('CDN092026001', 'VA_CONDAMN', 'EN_VALIDATION')], isLoading: false });
   });
 
@@ -47,5 +49,28 @@ describe('ListeDossiersProcessusPage', () => {
     useDossiers.mockReturnValue({ data: [], isLoading: false });
     renderWithProviders(<ListeDossiersProcessusPage />);
     expect(screen.getByTestId('liste-dossiers-processus-inconnu')).toBeInTheDocument();
+  });
+
+  it('vue « en cours » : tous processus, sans les dossiers clos, en consultation', async () => {
+    processus = null;
+    vue = 'en-cours';
+    useDossiers.mockReturnValue({
+      data: [
+        dossier('CDN092026001', 'VA_CONDAMN', 'EN_VALIDATION'),
+        dossier('REC092026004', 'VA_RECENS', 'EN_CONTROLE'),
+        dossier('CST092026002', 'VA_CONSTAT', 'CLOTURE'),
+      ],
+      isLoading: false,
+    });
+    renderWithProviders(<ListeDossiersProcessusPage />);
+
+    expect(useDossiers).toHaveBeenCalledWith({});
+    expect(screen.getByText('Dossiers en cours — tous processus')).toBeInTheDocument();
+    expect(screen.getByText('CDN092026001')).toBeInTheDocument();
+    expect(screen.getByText('REC092026004')).toBeInTheDocument();
+    expect(screen.queryByText('CST092026002')).not.toBeInTheDocument();
+
+    await userEvent.setup().click(screen.getByText('REC092026004'));
+    expect(push).toHaveBeenCalledWith('/dossiers/detail?reference=REC092026004&mode=consultation');
   });
 });
