@@ -1,0 +1,884 @@
+{
+  "common": {
+    "requiredFields": "* Required fields",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saveChanges": "Save changes",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "new": "New",
+    "loading": "Loading…",
+    "noResults": "No results",
+    "noResultsDescription": "No data matches the current criteria.",
+    "search": "Search",
+    "actions": "Actions",
+    "status": "Status",
+    "createdSuccess": "Created successfully",
+    "updatedSuccess": "Updated successfully",
+    "back": "Back",
+    "close": "Close",
+    "submit": "Submit",
+    "comingSoon": "Coming soon",
+    "yes": "Yes",
+    "no": "No",
+    "previous": "Previous",
+    "next": "Next",
+    "confirmationTitle": "Confirmation",
+    "print": "Print"
+  },
+
+  "validation": {
+    "login":    { "required": "Login is required" },
+    "password": { "required": "Password is required" },
+    "required": "This field is required"
+  },
+
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "description": "Enter your credentials to access the platform",
+      "appSubtitle": "BSCVA Platform",
+      "email": "Registration No.",
+      "emailPlaceholder": "Registration No.",
+      "emailAriaLabel": "Registration No.",
+      "password": "Password",
+      "passwordPlaceholder": "Password",
+      "passwordAriaLabel": "Password",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign in",
+      "submitting": "Signing in…",
+      "errorCredentials": "Invalid credentials. Please check your login and password.",
+      "errorLoginDisabled": "Your account is disabled. Please contact your administrator."
+    },
+    "forgotPassword": {
+      "title": "Forgot password?",
+      "description": "BSCVA platform accounts are created by an administrator. Contact them to reset your password.",
+      "backToLogin": "Back to sign in"
+    }
+  },
+
+  "nav": {
+    "appSubtitle": "BSCVA Platform",
+    "mainNav": "Main navigation",
+    "mainMenu": "Main menu",
+    "dashboard": "Dashboard",
+    "vehicules": "Vehicles",
+    "dossiers": "Files",
+    "processusMetier": "Business processes",
+    "recensement": "Census",
+    "constatationTechnique": "Technical inspection",
+    "visaBonCommande": "Purchase order approval",
+    "receptionTechnique": "Technical acceptance",
+    "receptionVaNeuf": "New vehicle acceptance",
+    "arretageLivret": "Logbook closing",
+    "aptitudeLocation": "Fitness / Rental",
+    "attestationCaracteristiques": "Characteristics certificate",
+    "expertise": "Expertise / Counter-expertise",
+    "condamnation": "Assessment / Write-off",
+    "testChauffeur": "Driver test",
+    "suivi": "Tracking",
+    "traitementDossier": "Search",
+    "mesTaches": "My tasks",
+    "documents": "Documents",
+    "reporting": "Reporting",
+    "administration": "Administration",
+    "utilisateurs": "Users",
+    "roles": "Roles",
+    "referentiels": "Reference data",
+    "audit": "Audit log"
+  },
+
+  "navbar": {
+    "openMenu": "Open menu",
+    "notifications": "Notifications",
+    "notificationsUnread": "{count} unread notification(s)",
+    "notificationsTitle": "My pending tasks",
+    "notificationsEmpty": "No notifications for now.",
+    "notificationsViewAll": "View all tasks ({count})",
+    "userMenu": "User menu",
+    "userFallback": "User",
+    "administration": "Administration",
+    "profile": "Profile",
+    "contact": "Contact",
+    "settings": "Settings",
+    "logout": "Sign out",
+    "search": "Search or create a dossier"
+  },
+
+  "commandPalette": {
+    "placeholder": "Search a dossier, create a dossier…",
+    "createGroup": "Create a dossier",
+    "searchGroup": "Search a dossier",
+    "empty": "No results."
+  },
+
+  "sidebar": {
+    "expand": "Expand sidebar",
+    "collapse": "Collapse sidebar"
+  },
+
+  "layout": {
+    "skipToContent": "Skip to main content",
+    "footer": "© {year} BSCVA — Administrative vehicle management platform"
+  },
+
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview of the vehicle fleet and ongoing files",
+    "newDossierSectionTitle": "Create a new file",
+    "newDossierSectionSubtitle": "Choose a business process to start a new file",
+    "listeDossiersSectionTitle": "File list",
+    "listeDossiersSectionSubtitle": "Choose a process to view the list of its files",
+    "newDossierSectionUnavailable": "Your role does not allow creating a new file — check your pending tasks or existing files.",
+    "kpiVehicules": "Registered vehicles",
+    "kpiDossiersEnCours": "Files in progress",
+    "kpiDossiersTraites": "Processed files",
+    "kpiTachesEnAttente": "Pending tasks",
+    "kpiDocumentsGeneres": "Generated documents",
+    "chartDossiersParProcessus": "Files by process",
+    "chartDossiersParStatut": "Files by status",
+    "chartEvolutionMensuelle": "Monthly file trend",
+    "tachesRecentesTitle": "Recent tasks",
+    "voirTout": "View all"
+  },
+
+  "vehicules": {
+    "title": "Administrative vehicles",
+    "subtitle": "State vehicle fleet",
+    "newTitle": "New vehicle",
+    "editTitle": "Edit vehicle",
+    "detailTitle": "Vehicle record",
+    "columns": {
+      "immatriculation": "Registration",
+      "marque": "Make",
+      "genre": "Type",
+      "categorie": "Category",
+      "energie": "Energy",
+      "etat": "Condition",
+      "detenteur": "Current holder",
+      "region": "Region",
+      "structure": "STRUCTURE",
+      "anneeRecensement": "Census year"
+    },
+    "fields": {
+      "immatriculation": "Registration number",
+      "marque": "Make",
+      "serie": "Series",
+      "genre": "Type",
+      "carrosserie": "Body type",
+      "categorie": "Category",
+      "energie": "Energy source",
+      "etat": "Vehicle condition",
+      "numeroMoteur": "Engine number",
+      "vin": "Chassis number (VIN)",
+      "puissanceAdministrative": "Fiscal power",
+      "pls": "Seats (PLS)",
+      "pv": "Unladen weight (PV)",
+      "cu": "Payload (CU)",
+      "pt": "Gross weight (PT)",
+      "valeurEstimative": "Estimated value (Ar)",
+      "datePremierMiseCirculation": "First registration date",
+      "carteGrise": "Registration certificate available",
+      "livretsDisponibles": "Logbooks available",
+      "detenteurEffectif": "Current holder",
+      "region": "Region",
+      "district": "District",
+      "commune": "Municipality",
+      "ministere": "Ministry",
+      "soaDepositaire": "Custodian SOA"
+    },
+    "sections": {
+      "identification": "Identification",
+      "caracteristiques": "Technical characteristics",
+      "localisation": "Location and holding",
+      "documents": "Documents"
+    },
+    "tabs": {
+      "informations": "Information",
+      "historique": "History",
+      "dossiers": "Related files"
+    },
+    "historique": {
+      "types": {
+        "AFFECTATION": "Assignment",
+        "TRANSFERT": "Transfer",
+        "CHANGEMENT_DETENTEUR": "Holder change",
+        "CHANGEMENT_ETAT": "Condition change",
+        "REFORME": "Decommissioning",
+        "RECENSEMENT": "Census",
+        "CONDAMNATION": "Write-off"
+      }
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "filters": {
+      "etat": "Condition",
+      "categorie": "Category",
+      "structure": "STRUCTURE",
+      "anneeRecensement": "Census year"
+    },
+    "deleteConfirmTitle": "Delete this vehicle?",
+    "deleteConfirmDescription": "This action removes the vehicle from the active list. A reason is required and the history is kept.",
+    "deleteMotifLabel": "Deletion reason",
+    "deleteMotifPlaceholder": "Enter the reason for deletion…",
+    "emptyHistorique": "No movement recorded for this vehicle.",
+    "emptyDossiers": "No file linked to this vehicle."
+  },
+
+  "dossiers": {
+    "title": "Files",
+    "subtitle": "Choose a process to create a new case",
+    "newDossier": "New dossier",
+    "detailTitle": "File {reference}",
+    "liste": { "title": "File list", "description": "View only: open a file to read it (information, documents, history) without processing it.", "retour": "Dashboard", "processusInconnu": "Unknown process." },
+    "consultation": { "bandeau": "View-only mode: this file cannot be processed from this screen." },
+    "columns": {
+      "reference": "Reference",
+      "processus": "Process",
+      "dateDepot": "Filing date",
+      "statut": "Status",
+      "ministere": "Ministry"
+    },
+    "fields": {
+      "reference": "Act reference",
+      "processus": "Process",
+      "dateDepot": "Filing date",
+      "motif": "Reason",
+      "ministere": "Ministry"
+    },
+    "search": {
+      "toggleButton": "Advanced search",
+      "title": "Advanced search",
+      "dateFrom": "From",
+      "dateTo": "To",
+      "submit": "Search",
+      "reset": "Reset"
+    },
+    "tabs": {
+      "informations": "Information",
+      "pieces": "Attachments",
+      "historique": "History",
+      "documents": "Documents",
+      "vehicules": "Recorded vehicles",
+      "constatation": "Technical inspection",
+      "visaBc": "Purchase order approval",
+      "receptionTechnique": "Technical acceptance",
+      "receptionVaNeuf": "New vehicle acceptance",
+      "arretageLivret": "Logbook closing",
+      "aptitudeLocation": "Fitness / Rental",
+      "attestationCaracteristiques": "Characteristics certificate",
+      "expertise": "Expertise / Counter-expertise",
+      "condamnation": "Assessment / Write-off"
+    },
+    "statuts": {
+      "BROUILLON": "Draft",
+      "DEPOSE": "Filed",
+      "EN_CONTROLE": "Under review",
+      "A_COMPLETER": "To complete",
+      "EN_TRAITEMENT_TECHNIQUE": "In technical processing",
+      "EN_VALIDATION": "Pending approval",
+      "VALIDE": "Approved",
+      "REFUSE": "Rejected",
+      "LIVRABLE_GENERE": "Deliverable generated",
+      "CLOTURE": "Closed"
+    },
+    "etapes": {
+      "DEPOT_DOSSIER": "Filing",
+      "CONTROLE_PIECES": "Document review",
+      "TRAITEMENT_TECHNIQUE": "Technical processing",
+      "VISA_VALIDATION": "Approval",
+      "EDITION_LIVRABLE": "Deliverable generation",
+      "ARCHIVAGE": "Archiving",
+      "CIRCUIT_TERMINE": "Circuit closed"
+    },
+    "workflow": {
+      "title": "Workflow tracking",
+      "enCours": "in progress"
+    },
+    "processusFilter": {
+      "tous": "All"
+    },
+    "actions": {
+      "validerControle": "Validate control",
+      "retournerComplement": "Return for completion",
+      "resoumettre": "Resubmit",
+      "terminerTraitement": "Finish technical processing",
+      "viser": "Approve",
+      "refuser": "Reject",
+      "genererLivrable": "Generate deliverable",
+      "cloturerDossier": "Close dossier",
+      "referenceSortie": "Output number",
+      "dateSortie": "Output date",
+      "closedRefused": "This dossier has been rejected.",
+      "closedCloture": "This dossier is closed.",
+      "motifRetourLabel": "Return reason",
+      "motifRetourPlaceholder": "Specify missing pieces or elements…",
+      "motifRefusLabel": "Rejection reason",
+      "motifRefusPlaceholder": "Specify the rejection reason…",
+      "motifRejetLabel": "Rejection reason",
+      "confirmRetourTitle": "Return the dossier for completion",
+      "confirmRefusTitle": "Reject the dossier",
+      "etapeReserved": "This step is reserved to the roles: {roles}",
+      "livrableIndisponible": "The deliverable can only be generated once the workflow has reached the \"Deliverable generation\" step.",
+      "consultationSeule": "View only: this file cannot be processed from this screen."
+    },
+    "piecesStatuts": {
+      "ATTENDUE": "Expected",
+      "RECUE": "Received",
+      "ABSENTE": "Missing",
+      "NON_CONFORME": "Non-compliant",
+      "REMPLACEE": "Replaced",
+      "VALIDEE": "Approved"
+    },
+    "pieces": {
+      "libelle": "Label",
+      "libellePlaceholder": "E.g. Registration card photo",
+      "fichier": "File",
+      "ajouter": "Add",
+      "joindre": "Attach a file",
+      "remplacer": "Replace file",
+      "dossierClosed": "The dossier is closed: no more attachments can be added.",
+      "recue": "Received",
+      "observationPlaceholder": "Observation (e.g. handed over in person on 03/12)",
+      "supprimerFichier": "Delete file",
+      "supprimerFichierConfirmTitle": "Delete this file?",
+      "supprimerFichierConfirmDescription": "The file will be permanently deleted. The attachment stays in the dossier and can receive a new file."
+    }
+  },
+
+  "processus": {
+    "recensement": {
+      "title": "Census",
+      "subtitle": "Annual census of the administrative vehicle fleet",
+      "newTitle": "New census",
+      "columns": { "reference": "Reference", "ministere": "Ministry", "soa": "SOA", "dateSaisie": "Entry date", "statut": "Status" },
+      "fields": {
+        "ministere": "Ministry", "soa": "SOA", "niveauType": "Level", "niveauLibelle": "Census category",
+        "pointFocalNom": "Focal point — Name", "pointFocalFonction": "Focal point — Role",
+        "pointFocalTel": "Focal point — Phone", "pointFocalEmail": "Focal point — Email",
+        "vehicule": "Vehicle", "categorieUtilisation": "Usage category", "etatGeneral": "General condition",
+        "carteGriseDispo": "Registration card available", "livretsDispo": "Logbooks available", "type": "Type"
+      },
+      "niveauCentrale": "Central",
+      "niveauRegionale": "Regional",
+      "niveauLibellePlaceholder": "E.g. Antananarivo VI District",
+      "ajouterSoa": "Add a SOA",
+      "ajouterStd": "Add a STD",
+      "ajouterCtd": "Add a CTD",
+      "nouveauCode": "Code",
+      "nouveauLibelle": "Label",
+      "exporterPublipostage": "Export (mail merge)",
+      "lignesTitle": "Recorded vehicles",
+      "addLigne": "Add a vehicle",
+      "vehiculeIntrouvable": "Vehicle not found?",
+      "creerFicheVehicule": "Create its vehicle record",
+      "actualiserVehicules": "Refresh",
+      "vehiculeQuickAdd": {
+        "title": "Add a vehicle",
+        "titleEdit": "Edit vehicle",
+        "addButton": "Add vehicle",
+        "immatriculation": "Registration number",
+        "marque": "Make",
+        "genre": "Category",
+        "carrosserie": "Body type",
+        "puissanceAdministrative": "Administrative power",
+        "numeroMoteur": "Engine number",
+        "sourceEnergie": "Fuel type",
+        "dateMiseCirculation": "First registration date",
+        "soa": "STRUCTURE",
+        "stdCtd": "STD/CTD",
+        "detenteurEffectif": "Effective holder",
+        "vehiculeExistant": "Existing vehicle — review/correct the fields below.",
+        "nouveauVehicule": "New vehicle.",
+        "saveError": "Could not save this vehicle. Check the fields and try again.",
+        "doublonError": "This vehicle is already registered this year for this structure (SOA).",
+        "chargementEtat": "Looking up the last known state of this vehicle…"
+      },
+      "quitusTitle": "Census discharge certificate for administrative vehicles",
+      "genererQuitus": "Generate the discharge certificate",
+      "revoirQuitus": "View the discharge certificate"
+    },
+    "constatationTechnique": {
+      "title": "Technical inspection",
+      "subtitle": "Technical diagnosis prior to intervention",
+      "newTitle": "New technical inspection",
+      "columns": { "numeroConstat": "Report No.", "vehicule": "Vehicle", "dateConstat": "Date", "lieu": "Location", "statut": "Status" },
+      "fields": {
+        "vehicule": "Vehicle", "numeroConstat": "Report number", "dateConstat": "Inspection date",
+        "heureConstat": "Time", "lieu": "Location", "expertNom": "Expert", "soa": "STRUCTURE", "equipementVerif": "Inspection equipment",
+        "kilometrage": "Mileage", "nomChauffeur": "Responsible", "chauffeurContact": "Contact", "detenteur": "Holder", "etatGeneral": "General condition",
+        "constats": "Remarks", "ordrePriorite": "Priority order"
+      },
+      "ficheVehicule": {
+        "title": "Vehicle record (last census)",
+        "structure": "STRUCTURE", "detenteur": "Effective holder", "type": "Type",
+        "categorie": "Usage category", "etatGeneral": "General condition",
+        "marque": "Brand", "genre": "Type", "numeroMoteur": "Engine No.", "energie": "Energy source",
+        "chargement": "Looking up this vehicle's last census…",
+        "erreurNonRecense": "This vehicle has not been censused yet — the inspection cannot be saved.",
+        "erreurAnneeDifferente": "This vehicle was not censused for year {annee}.",
+        "erreurStructureDifferente": "The entered structure does not match the SOA of this vehicle's last census."
+      },
+      "elementsTitle": "Inspected components",
+      "piecesRemplacerTitle": "Parts to replace",
+      "reparationsTitle": "Repairs to schedule",
+      "conforme": "Compliant",
+      "nonConforme": "Non-compliant",
+      "addPiece": "Add a part",
+      "addReparation": "Add a repair",
+      "accessoiresTitle": "Essential accessories",
+      "addAccessoire": "Add an accessory",
+      "pvTitle": "Technical inspection report",
+      "pvGenerer": "Generate report",
+      "exporterPublipostage": "Export (mail merge)"
+    },
+    "visaBonCommande": {
+      "title": "Purchase order approval",
+      "subtitle": "Approval of repair purchase orders",
+      "newTitle": "New purchase order approval",
+      "columns": { "numeroBc": "PO No.", "vehicule": "Vehicle", "montant": "Amount", "decision": "Decision", "statut": "Status" },
+      "fields": {
+        "vehicule": "Vehicle", "numeroBc": "PO number", "dateBc": "PO date", "fournisseur": "Supplier",
+        "adresseFournisseur": "Supplier address",
+        "nif": "Tax ID (NIF)", "stat": "Statistical ID (STAT)", "anneeCarteFiscale": "Fiscal card year",
+        "montant": "Amount", "referencePvConstat": "Inspection report reference",
+        "grandsTravaux": "Major works", "decision": "Decision", "motifRefus": "Rejection reason",
+        "designation": "Description", "quantite": "Quantity", "prixUnitaire": "Unit price",
+        "numeroVisa": "Approval No.", "dateVisa": "Approval date"
+      },
+      "piecesTitle": "Order line items",
+      "addPiece": "Add a line",
+      "aucunePieceDisponible": "No parts available from the linked inspection report.",
+      "carteFiscaleNonAJour": "This fiscal card is not up to date.",
+      "bcTitle": "Purchase order",
+      "viserSansReserve": "Approve without reservation",
+      "viserSousReserve": "Approve subject to technical acceptance",
+      "selectionnerVehiculeDabord": "Select a vehicle first",
+      "refuser": "Reject",
+      "motifRefusLabel": "Rejection reason",
+      "revoirDocument": "Review document"
+    },
+    "receptionTechnique": {
+      "evaluationTitle": "Vehicle evaluation",
+      "title": "Technical acceptance",
+      "subtitle": "Technical acceptance after repair",
+      "newTitle": "New technical acceptance",
+      "columns": { "vehicule": "Vehicle", "dateReception": "Date", "avis": "Opinion", "statut": "Status" },
+      "fields": {
+        "vehicule": "Vehicle", "visaBc": "Linked purchase order approval", "dateReception": "Acceptance date",
+        "heureReception": "Time", "minSoa": "Ministry / SOA", "serviceFaitGac": "Service completed",
+        "expertNom": "Expert", "avis": "Opinion", "libelle": "Finding"
+      },
+      "constatsTitle": "Acceptance findings",
+      "addConstat": "Add a finding",
+      "avisFavorable": "Favorable opinion",
+      "avisDefavorable": "Unfavorable opinion",
+      "revoirDocument": "Review document",
+      "ficheTitle": "Technical acceptance report"
+    },
+    "receptionVaNeuf": {
+      "title": "New vehicle acceptance",
+      "subtitle": "Acceptance of new administrative vehicles",
+      "newTitle": "New vehicle acceptance record",
+      "columns": { "reference": "Reference", "fournisseur": "Supplier", "datePv": "Report date", "statut": "Status" },
+      "fields": {
+        "nomFinancement": "Funding name", "fournisseurAnneeCarteFiscale": "Fiscal card year", "commissionMembresEntite": "Committee members (entity)", "commissionMembresDpe": "Committee members (DPE)", "commissionPlaceholder": "One person per line: name, position", "soaCode": "Beneficiary structure", "heurePv": "Report time", "kilometrage": "Mileage", "valeur": "Value (AR)", "observation": "Remarks", "communePlaceholder": "Select a municipality…", "communeRecherche": "Search a municipality…",
+        "budgetCode": "Budget code", "chapitre": "Chapter", "article": "Article", "compte": "Account",
+        "financement": "Funding", "commune": "Municipality", "typeAcquisition": "Acquisition type",
+        "referenceMarche": "Contract reference",
+        "fournisseurNom": "Supplier", "fournisseurAdresse": "Supplier address",
+        "fournisseurStat": "Supplier STAT", "fournisseurNif": "Supplier NIF",
+        "depositaireNom": "Custodian", "datePv": "Report date",
+        "designation": "Designation", "immatriculation": "Registration", "genre": "Category",
+        "typeVeh": "Type", "marque": "Make", "numeroSerie": "Serial number", "carrosserie": "Body type",
+        "numeroMoteur": "Engine number", "puissance": "Power", "sourceEnergie": "Energy source",
+        "nombrePlace": "Seats", "datePremiereMise": "First registration date",
+        "quantiteFacturee": "Invoiced quantity", "quantiteReconnue": "Confirmed quantity", "decision": "Decision"
+      },
+      "typeAcquisitionOptions": {"DOTATION":"Endowment","TRANSFERT":"Transfer","ACHAT":"Purchase"},
+      "financementOptions": {"CONVENTION":"Agreement","MARCHE":"Contract"},
+      "decisionOptions": {
+        "SANS_CHANGEMENT": "No change", "REDUCTION": "Reduction", "REBUTEE": "Rejected"
+      },
+      "carteFiscaleNonAJour": "This fiscal card is not up to date.",
+      "evaluationTitle": "Vehicle evaluation",
+      "evaluationAucunVehicule": "First add at least one vehicle in the previous step to fill in its evaluation sheet.",
+      "evaluationHint": "Evaluation sheet of each vehicle (optional step: percentage per component, remarks).",
+      "lignesTitle": "Accepted vehicles",
+      "addLigne": "Add a vehicle",
+      "pvTitle": "Revenue order report",
+      "pvGenerer": "Generate the report"
+    },
+    "arretageLivret": {
+      "title": "Logbook closing",
+      "subtitle": "Annual approval for closing vehicle logbooks",
+      "newTitle": "New logbook closing",
+      "columns": { "vehicule": "Vehicle", "dateArretage": "Date", "vehiculeFonction": "In service", "statut": "Status" },
+      "fields": {
+        "vehicule": "Vehicle", "dateArretage": "Closing date", "dernierBc": "Last PO", "vehiculeFonction": "Vehicle in service",
+        "typeLivret": "Logbook type", "rubrique": "Item", "valeurArretee": "Closing value", "observation": "Remark",
+        "numeroArretage": "Approval No."
+      },
+      "typeLivretOptions": {
+        "SA": "Vehicle Service logbook", "GSS": "Garage Station Service logbook", "PARCOURS": "Mileage logbook"
+      },
+      "feuilles": {"neant":"Nil — no line (the sheet will be closed \"nil\")","carburants":"Fuel and lubricants — quantities delivered","pneumatiques":"Tyres and miscellaneous accessories delivered","entretien":"Routine maintenance","reparations":"Repairs","parcours":"Trips (service vehicle)","typeCarburant":"Fuel","dotationMensuelle":"Monthly allowance (litres)","dotationExceptionnelle":"Exceptional allowance (litres)","totalLitres":"Total fuel","totalPrix":"Total","totalDistance":"Total distance","apercuArretes":"Statements that will be printed on the endorsement","colonnes":{"date":"Date","natureLivraisons":"Nature of deliveries","quantiteLitres":"Quantity (litres)","huile":"Oil","prix":"Price","kilometrageCompteur":"Odometer mileage","lavage":"Washing","vidange":"Oil change","graissage":"Greasing and vehicle inspection","dateEntree":"Entry date","dateSortie":"Exit date","natureReparations":"Nature of repairs","dateSortieParcours":"Departure date","dateRentree":"Return date","motifParcours":"Trips made: purpose, places visited, names and titles of officials transported","distanceKm":"Distance (km)"}},
+      "consommation": {"titre":"Consumption for the year (information)","totalCarburant":"Total fuel","totalKm":"Total mileage","litresAux100":"Consumption","kmParLitre":"Efficiency","nonCalculable":"Cannot be calculated: fill in the fuel (Fuel sheet) and the distances (Trips logbook).","information":"Calculation given for information only: it is not printed on the endorsement."},
+      "detailsTitle": "Detail by logbook",
+      "addDetail": "Add a line",
+      "visaTitle": "Logbook closing approval",
+      "visaGenerer": "Generate the approval",
+      "selectionnerVehiculeDabord": "Select a vehicle first"
+    },
+    "aptitudeLocation": {
+      "title": "Fitness / Rental",
+      "subtitle": "Fitness inspection and rental authorization",
+      "newTitle": "New fitness inspection",
+      "columns": { "objetMission": "Mission subject", "dateDebut": "Start", "dateFin": "End", "avis": "Opinion", "statut": "Status" },
+      "fields": {
+        "vehicule": "Vehicle", "immatriculation": "Registration", "type": "Type", "marque": "Make",
+        "objetMission": "Mission subject", "itineraire": "Route", "dateDebut": "Start date",
+        "dateFin": "End date", "contratLocation": "Rental contract number", "fournisseurNifStat": "Supplier Tax ID",
+        "avisAptitude": "Fitness opinion",
+        "observation": "Observation",
+        "observationPlaceholder": "Add an observation (optional)…"
+      },
+      "avisFavorable": "Fit",
+      "avisDefavorable": "Unfit",
+      "attestationTitle": "Fitness certificate",
+      "autorisationTitle": "Rental authorization",
+      "genererAttestation": "Generate the certificate",
+      "genererAutorisation": "Generate the rental authorization",
+      "revoirAttestation": "View the certificate",
+      "revoirAutorisation": "View the authorization"
+    },
+    "attestationCaracteristiques": {
+      "title": "Characteristics certificate",
+      "subtitle": "Certificate in case of lost or damaged registration certificate",
+      "newTitle": "New characteristics certificate",
+      "columns": { "vehicule": "Vehicle", "motifPerte": "Reason", "statut": "Status" },
+      "fields": {
+        "vehicule": "Vehicle", "minCode": "Ministry", "soaLibelle": "SOA", "motifPerte": "Reason for loss / damage", "observation": "Observation (not printed on the certificate)",
+        "marque": "Make", "genre": "Type", "carrosserie": "Body type", "numeroSerie": "Serial/type number",
+        "numeroMoteur": "Engine number", "nombrePlace": "Number of seats", "sourceEnergie": "Energy source",
+        "puissanceAdministrative": "Fiscal power", "poidsVide": "Unladen weight", "chargeUtile": "Payload",
+        "poidsTotal": "Gross vehicle weight", "anneeMiseCirculation": "First registration year"
+      },
+      "attestationTitle": "Vehicle characteristics certificate",
+      "genererAttestation": "Generate the certificate",
+      "revoirAttestation": "View the certificate"
+    },
+    "expertise": {
+      "title": "Expertise / Counter-expertise",
+      "subtitle": "Expertise after an accident",
+      "newTitle": "New expertise",
+      "columns": { "vehicule": "Vehicle", "typeExpertise": "Type", "dateAccident": "Accident date", "statut": "Status" },
+      "fields": {
+        "vehicule": "Vehicle", "typeExpertise": "Expertise type", "dateAccident": "Accident date",
+        "lieuAccident": "Accident location", "vehiculePriveImmat": "Third-party vehicle registration",
+        "rapport": "Report", "montantEstime": "Estimated amount"
+      },
+      "typeExpertiseOptions": { "EXP": "Expertise", "CONTRE_EXP": "Counter-expertise" },
+      "dommagesTitle": "Damage found",
+      "addDommage": "Add damage",
+      "rapportTitle": "Expertise report",
+      "rapportContreExpertiseTitle": "Counter-expertise report",
+      "genererRapport": "Generate the report",
+      "revoirRapport": "View the report"
+    },
+    "condamnation": {
+      "evaluationTitle": "Vehicle evaluation",
+      "typesMisePrix": { "VEHICULE": "Vehicle", "MOTOCYCLE": "Motorcycle" },
+      "etats": { "BON_ETAT": "Good condition", "MOYEN_ETAT": "Fair condition", "MAUVAIS_ETAT": "Poor condition" },
+      "grille": { "title": "Pricing", "description": "Enter the price of each component: the estimated value is the sum of the prices, the value in AR accounts for depreciation.", "vide": "No pricing grid configured for this type (Administration > Referentials)." },
+      "misePrixTitle": "Reserve price of a vehicle / motorcycle",
+      "genererMisePrix": "Generate the reserve price sheet",
+      "revoirMisePrix": "View the reserve price sheet",
+      "title": "Assessment / Write-off",
+      "subtitle": "Assessment for vehicle write-off",
+      "newTitle": "New assessment",
+      "columns": { "vehicule": "Vehicle", "valeurEstimee": "Estimated value", "miseAPrix": "Starting price", "motifCondamnation": "Reason", "statut": "Status" },
+      "fields": {
+        "typeMiseAPrix": "Pricing type",
+        "typeVeh": "Type (e.g. WP81JP)",
+        "etatActuel": "Current condition",
+        "depreciationPct": "Depreciation (%)",
+        "valeurEnAr": "Value in AR (after depreciation)",
+        "soaCode": "Beneficiary body",
+        "ministereBeneficiaire": "Body's ministry",
+        "ministerePlaceholder": "Select a ministry",
+        "ministereRecherche": "Search a ministry…",
+        "datePv": "Report date",
+        "heurePv": "Report time",
+        "commissionMembresEntite": "Commission — body members",
+        "commissionMembresDpe": "Commission — DPE members",
+        "commissionPlaceholder": "One person per line (NAME First name, role)",
+        "vehicule": "Vehicle", "valeurEstimee": "Estimated value", "miseAPrix": "Reserve price",
+        "ficheTechnique": "Technical sheet", "motifCondamnation": "Write-off reason"
+      },
+      "pvTitle": "Vehicle assessment report",
+      "genererPv": "Generate the report",
+      "revoirPv": "View the report"
+    },
+    "testChauffeur": {
+      "title": "Driver test",
+      "subtitle": "Driver test results",
+      "newTitle": "New driver test",
+      "columns": { "chauffeur": "Driver", "dateTest": "Test date", "resultat": "Result", "statut": "Status" },
+      "fields": {
+        "chauffeur": "Driver", "vehicule": "Vehicle used", "dateTest": "Test date",
+        "examinateurNom": "Examiner", "observations": "Observations",
+        "observationPlaceholder": "Enter an observation…", "resultat": "Result",
+        "noteTheorique": "Theory score (/20)", "notePratique": "Practical score (/20)"
+      },
+      "resultatTitle": "Driver test result",
+      "resultatFavorable": "Fit",
+      "resultatDefavorable": "Not fit",
+      "genererResultat": "Generate the result",
+      "revoirResultat": "View the result"
+    }
+  },
+  "chauffeurs": {
+    "title": "Drivers",
+    "subtitle": "Driver registry",
+    "newTitle": "New driver",
+    "detailTitle": "Driver record",
+    "columns": { "nom": "Name", "matricule": "Registration No.", "permis": "License No.", "ministere": "Ministry" },
+    "fields": { "nom": "Name", "matricule": "Registration number", "cin": "National ID", "permis": "License number", "minCode": "Ministry", "soaCode": "SOA" },
+    "sections": { "identification": "Identification" },
+    "tabs": { "informations": "Information", "tests": "Test history" },
+    "emptyTests": "No test recorded for this driver."
+  },
+
+  "workflow": {
+    "title": "My tasks",
+    "subtitle": "Workflow tasks assigned to you",
+    "columns": { "reference": "Reference", "processus": "Process", "tache": "Task", "dateDebut": "Since" },
+    "actions": { "traiter": "Process", "valider": "Approve", "refuser": "Reject" },
+    "empty": "No pending tasks."
+  },
+
+  "traitementDossier": {
+    "title": "Search a vehicle or a case",
+    "subtitle": "Type a registration number or a case reference to view it or move it forward in the workflow",
+    "searchLabel": "Vehicle or case search",
+    "searchPlaceholder": "Registration number or case reference",
+    "searchButton": "Search",
+    "resultsTitle": "Search results",
+    "columns": {
+      "processus": "Process",
+      "activite": "Activity",
+      "tache": "Task to do",
+      "reference": "Case reference",
+      "typeActe": "Deed type",
+      "action": "Action"
+    },
+    "activiteLabel": "{processus} activity",
+    "traiter": "Process",
+    "notFound": "No vehicle or case found for this search.",
+    "circuitTermine": "This case has completed its workflow.",
+    "dossiersLies": "Cases linked to this vehicle",
+    "aucunDossierLie": "No case for this vehicle.",
+    "voirFiche": "View full record",
+    "listTitle": "Case list",
+    "listSubtitle": "Tracking of all BSCVA platform cases"
+  },
+
+  "documents": {
+    "title": "Generated documents",
+    "subtitle": "Deeds and documents produced by the platform",
+    "columns": { "numeroDocument": "Document No.", "modele": "Template", "reference": "File", "genereLe": "Generated on", "statut": "Status" },
+    "statuts": { "BROUILLON": "Draft", "VALIDE": "Approved", "ANNULE": "Cancelled", "REMPLACE": "Replaced" },
+    "actions": { "apercu": "Preview", "telecharger": "Download", "valider": "Approve", "annuler": "Cancel" },
+    "filters": { "typeActe": "Document type", "statut": "Status", "dateFrom": "From", "dateTo": "To" },
+    "modeles": {
+      "QUITUS_RECENSEMENT": "Census clearance",
+      "BC_VISE": "Approved purchase order",
+      "PV_CONSTATATION": "Technical inspection report",
+      "PV_ORDRE_RECETTE": "Revenue order report",
+      "PV_RECEPTION": "Technical reception report",
+      "ATTESTATION_APTITUDE": "Fitness certificate",
+      "AUTORISATION_LOCATION": "Rental authorization",
+      "ATTESTATION_CARACTERISTIQUE": "Characteristics certificate",
+      "RAPPORT_EXPERTISE": "Expert appraisal report",
+      "PV_CONDAMNATION": "Assessment report",
+      "MISE_A_PRIX": "Reserve price sheet",
+      "FICHE_EVALUATION": "Vehicle evaluation sheet",
+      "RESULTAT_TEST_CHAUFFEUR": "Driver test result",
+      "VISA_ARRETAGE_LIVRET": "Logbook closing visa"
+    },
+    "versions": {
+      "action": "View versions",
+      "title": "Version history",
+      "subtitle": "{count} versions of this document",
+      "current": "Current version",
+      "label": "Version {index}/{count}"
+    }
+  },
+
+  "reporting": {
+    "title": "Reporting",
+    "subtitle": "Statistics and dashboards",
+    "vehiculesParCategorie": "Vehicles by category",
+    "vehiculesParEtat": "Vehicles by condition",
+    "dossiersParProcessus": "Files by process",
+    "depensesTotales": "Total expenses",
+    "vehiculesAccidentes": "Accident vehicles",
+    "vehiculesACondamner": "Vehicles to write off",
+    "depensesParVehicule": "Expenses by vehicle",
+    "depensesParMinistere": "Expenses by ministry",
+    "depensesParSoa": "Expenses by SOA",
+    "frequenceReparations": "Repair frequency by vehicle",
+    "columns": { "total": "Total", "vehicule": "Vehicle", "montant": "Amount", "ministere": "Ministry", "soa": "SOA" },
+    "exportExcel": "Export to Excel",
+    "exportPdf": "Export to PDF",
+    "onglets": {
+      "indicateurs": "Indicators",
+      "ia": "AI forecasts"
+    },
+    "ia": {
+      "avertissement": "Results computed by the machine-learning models (ia-siigpe module, manual retraining). Vehicle forecasts rely on a constructed dataset (2025-2026): they illustrate the method, not yet the real fleet. Processing time is learned from real files.",
+      "exportExcel": "Export budget forecast",
+      "vide": "No forecast available: run the training (python modeles/entrainer_tout.py in ia-siigpe).",
+      "kpi": {
+        "budget": "Forecast budget {annee}",
+        "budgetDescription": "Range {bas} – {haut} · actual {anneePrecedente}: {reel}",
+        "aRisque": "Vehicles at risk of major repair",
+        "aRisqueDescription": "Probability ≥ {seuil} of a repair above 2 M Ar",
+        "anomalies": "Fuel anomalies to check",
+        "anomaliesDescription": "{total} flagged months in total",
+        "delai": "Average forecast time (open files)",
+        "delaiDescription": "{ouverts} open files · {retard} beyond the forecast range"
+      },
+      "graphiqueBudget": "Forecast budget {annee} by STRUCTURE",
+      "graphiqueBudgetSousTitre": "Sum of the vehicle forecasts of each STRUCTURE, compared with actual {anneePrecedente} expenses",
+      "prevu": "Forecast {annee}",
+      "reel": "Actual {annee}",
+      "vehicules": {
+        "titre": "Forecast per vehicle ({annee})",
+        "description": "Total annual expense forecast (fuel, oil, maintenance, repairs, tyres), 80 % range and probability of a major repair."
+      },
+      "anomalies": {
+        "titre": "Fuel anomalies",
+        "description": "Months whose declared consumption departs from the vehicle’s usual pattern (Isolation Forest). Mark them “Checked” (anomaly confirmed) or “Justified” (valid explanation); the status is kept across retraining."
+      },
+      "delais": {
+        "titre": "Forecast processing time by process",
+        "description": "Averages over open files; “beyond the range” = files already older than the forecast upper bound."
+      },
+      "colonnes": {
+        "immatriculation": "Registration",
+        "marque": "Make",
+        "structure": "STRUCTURE",
+        "depensePrevue": "Forecast expense",
+        "fourchette": "Range",
+        "reelPrecedent": "Actual {annee}",
+        "probaGrosseReparation": "Major repair risk",
+        "mois": "Month",
+        "motif": "Reason",
+        "statut": "Status",
+        "processus": "Process",
+        "dossiersOuverts": "Open files",
+        "delaiPrevu": "Average forecast time",
+        "ageMoyen": "Average age",
+        "enRetard": "Beyond the range"
+      },
+      "statuts": {
+        "NOUVELLE": "To check",
+        "VERIFIEE": "Checked",
+        "JUSTIFIEE": "Justified"
+      },
+      "actions": {
+        "verifiee": "Checked",
+        "justifiee": "Justified"
+      },
+      "qualite": {
+        "titre": "Model quality",
+        "description": "Each model is evaluated out of sample and compared with a naive baseline: it is only useful if it beats it. Bold green: best value. Full details in ia-siigpe/rapports/rapport_ia.md.",
+        "construites": "Constructed data",
+        "reelles": "Real data",
+        "batReference": "Beats the baseline",
+        "neBatPasReference": "Does not beat the baseline",
+        "methode": "Selected method: {methode}",
+        "donnees": "Data: {periode} ({n} examples)",
+        "entraine": "trained on {date}",
+        "indicateur": "Indicator",
+        "modele": "Model",
+        "modeles": {
+          "DEPENSE_VEHICULE": "Annual expense per vehicle",
+          "GROSSE_REPARATION": "Major repair next year",
+          "ANOMALIE_CARBURANT": "Fuel anomalies",
+          "DELAI_DOSSIER": "File processing time"
+        },
+        "references": {
+          "DEPENSE_VEHICULE": "Baseline: N+1 = N",
+          "GROSSE_REPARATION": "Baseline: major in N ⇒ in N+1",
+          "ANOMALIE_CARBURANT": "Baseline: rule 1.3 × usual",
+          "DELAI_DOSSIER": "Baseline: median per act type"
+        },
+        "indicateurs": {
+          "maeTemporel": "Mean error (test on the next year)",
+          "maeAleatoire": "Mean error (random test)",
+          "maeVehicule": "Mean error per vehicle (best learned model)",
+          "mapeStructures": "Relative error per STRUCTURE (back-test)",
+          "auc": "ROC AUC",
+          "rappel": "Recall",
+          "f1": "F1 (injected anomalies)",
+          "rappelKmGonfles": "Recall “inflated km”"
+        },
+        "lecture": {
+          "DEPENSE_VEHICULE": "Repeated cross-validation (5 folds × 10). If no learned model beats carrying N forward, the baseline produces the forecasts: with a single pair of years per vehicle, the history is too short to learn each vehicle’s own “fragility”.",
+          "GROSSE_REPARATION": "Probability that a repair exceeds 2 M Ar next year. Few positive examples: the AUC stays modest.",
+          "ANOMALIE_CARBURANT": "Evaluated on anomalies injected into the constructed dataset. Unsupervised learning detects inflated mileage, invisible to the simple rule.",
+          "DELAI_DOSSIER": "Learned from real closed files. Better than the baseline on a random test, but times drift from one year to the next: retrain regularly."
+        }
+      }
+    }
+  },
+
+  "administration": {
+    "title": "Administration",
+    "utilisateurs": {
+      "title": "Users",
+      "subtitle": "BSCVA platform accounts",
+      "newTitle": "New user",
+      "editTitle": "Edit user",
+      "columns": { "matricule": "Registration No.", "login": "Login", "nom": "Last name", "prenom": "First name", "role": "Role", "statut": "Status" },
+      "fields": {
+        "nom": "Last name", "prenom": "First name", "login": "Login (registration no.)", "password": "Password",
+        "role": "Role", "sigle": "Initials", "site": "Entity / Site"
+      },
+      "actions": { "modifier": "Edit", "activer": "Activate", "desactiver": "Deactivate" },
+      "actif": "Active",
+      "desactive": "Deactivated",
+      "activerConfirmTitle": "Activate this user account?",
+      "desactiverConfirmTitle": "Deactivate this user account?"
+    },
+    "roles": {
+      "title": "Roles",
+      "subtitle": "BSCVA workflow roles and responsibilities",
+      "columns": { "roleCode": "Code", "roleLibelle": "Label" },
+      "permissionsTitle": "Permissions",
+      "etapesAutoriseesTitle": "Authorized workflow steps"
+    },
+    "referentiels": {
+      "title": "Reference data",
+      "subtitle": "Base reference data for the vehicle domain",
+      "categoriesVehicule": "Vehicle categories",
+      "energies": "Energy sources",
+      "etatsVehicule": "Vehicle conditions",
+      "genres": "Types",
+      "carrosseries": "Body types",
+      "marques": "Makes"
+    },
+    "audit": {
+      "title": "Audit log",
+      "subtitle": "History of actions performed on the platform",
+      "columns": { "date": "Date", "utilisateur": "User", "action": "Action", "reference": "Reference", "detail": "Detail" }
+    }
+  }
+}

@@ -1,0 +1,1059 @@
+{
+  "common": {
+    "requiredFields": "* Ilaina daholo ny saha",
+    "confirm": "Hamafiso",
+    "cancel": "Aoka",
+    "save": "Tehirizo",
+    "saveChanges": "Tehirizo ny fanovana",
+    "edit": "Ovay",
+    "delete": "Fafao",
+    "view": "Jereo",
+    "new": "Vaovao",
+    "loading": "Mizotra…",
+    "noResults": "Tsy nisy valiny",
+    "noResultsDescription": "Tsy misy angona mifanaraka amin'ny fepetra.",
+    "search": "Karohy",
+    "actions": "Asa",
+    "status": "Sata",
+    "createdSuccess": "Voaforona soamantsara",
+    "updatedSuccess": "Voaova soamantsara",
+    "back": "Miverina",
+    "close": "Hidio",
+    "submit": "Alefaso",
+    "comingSoon": "Ho avy tsy ho ela",
+    "yes": "Eny",
+    "no": "Tsia",
+    "previous": "Teo aloha",
+    "next": "Manaraka",
+    "confirmationTitle": "Fanamafisana",
+    "print": "Alefaso pirinty"
+  },
+  "validation": {
+    "login": {
+      "required": "Ilaina ny login"
+    },
+    "password": {
+      "required": "Ilaina ny tenimiafina"
+    },
+    "required": "Ilaina ity saha ity"
+  },
+  "auth": {
+    "login": {
+      "title": "Hiditra",
+      "description": "Ampidiro ny fampahalalana anao mba hidirana amin'ny rindran-tserasera",
+      "appSubtitle": "Sehatra BSCVA",
+      "email": "Matricule",
+      "emailPlaceholder": "Matricule",
+      "emailAriaLabel": "Matricule",
+      "password": "Tenimiafina",
+      "passwordPlaceholder": "Tenimiafina",
+      "passwordAriaLabel": "Tenimiafina",
+      "forgotPassword": "Hadino ny tenimiafina?",
+      "submit": "Hiditra",
+      "submitting": "Miditra…",
+      "errorCredentials": "Diso ny fampahalalana. Amarino ny login sy ny tenimiafina.",
+      "errorLoginDisabled": "Voahidy ny kaontinao. Mifandraisa amin'ny mpitantana."
+    },
+    "forgotPassword": {
+      "title": "Hadino ny tenimiafina?",
+      "description": "Ny kaonty amin'ny sehatra BSCVA dia forohin'ny mpitantana. Mifandraisa aminy raha te hanova tenimiafina.",
+      "backToLogin": "Miverina amin'ny fidirana"
+    }
+  },
+  "nav": {
+    "appSubtitle": "Plateforme BSCVA",
+    "mainNav": "Navigation principale",
+    "mainMenu": "Menu principal",
+    "dashboard": "Tabilao fitantanana",
+    "vehicules": "Fiara",
+    "dossiers": "Rakitsoratra",
+    "processusMetier": "Processus métier",
+    "recensement": "Recensement",
+    "constatationTechnique": "Constatation technique",
+    "visaBonCommande": "Visa bon de commande",
+    "receptionTechnique": "Réception technique",
+    "receptionVaNeuf": "Réception VA neuf",
+    "arretageLivret": "Arrêtage livret",
+    "aptitudeLocation": "Aptitude / Location",
+    "attestationCaracteristiques": "Attestation caractéristiques",
+    "expertise": "Expertise / Contre-expertise",
+    "condamnation": "Évaluation / Condamnation",
+    "testChauffeur": "Test chauffeur",
+    "suivi": "Fanaraha-maso",
+    "traitementDossier": "Rechercher",
+    "mesTaches": "Ny asako",
+    "documents": "Antontan-taratasy",
+    "reporting": "Tatitra",
+    "administration": "Fitantanana",
+    "utilisateurs": "Mpampiasa",
+    "roles": "Andraikitra",
+    "referentiels": "Fitsipi-pototra",
+    "audit": "Journal d'audit"
+  },
+  "navbar": {
+    "openMenu": "Ouvrir le menu",
+    "notifications": "Notifications",
+    "notificationsUnread": "{count} notification(s) non lue(s)",
+    "notificationsTitle": "Mes tâches en attente",
+    "notificationsEmpty": "Aucune notification pour le moment.",
+    "notificationsViewAll": "Voir toutes les tâches ({count})",
+    "userMenu": "Menu utilisateur",
+    "userFallback": "Utilisateur",
+    "administration": "Administration",
+    "profile": "Mombamomba",
+    "contact": "Contact",
+    "settings": "Fandrindrana",
+    "logout": "Hivoaka",
+    "search": "Rechercher ou créer un dossier"
+  },
+
+  "commandPalette": {
+    "placeholder": "Rechercher un dossier, créer un dossier…",
+    "createGroup": "Créer un dossier",
+    "searchGroup": "Rechercher un dossier",
+    "empty": "Aucun résultat."
+  },
+  "sidebar": {
+    "expand": "Déplier la sidebar",
+    "collapse": "Replier la sidebar"
+  },
+  "layout": {
+    "skipToContent": "Aller au contenu principal",
+    "footer": "© {year} BSCVA — Sehatra fitantanana ny fiara any amin'ny fanjakana"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "subtitle": "Vue d'ensemble du parc automobile et des dossiers en cours",
+    "newDossierSectionTitle": "Créer un nouveau dossier",
+    "newDossierSectionSubtitle": "Choisissez un processus métier pour démarrer un dossier",
+    "listeDossiersSectionTitle": "Liste des dossiers",
+    "listeDossiersSectionSubtitle": "Choisissez un processus pour consulter la liste de ses dossiers",
+    "newDossierSectionUnavailable": "Votre rôle ne permet pas de créer un nouveau dossier — consultez vos tâches en attente ou les dossiers existants.",
+    "kpiVehicules": "Véhicules enregistrés",
+    "kpiDossiersEnCours": "Dossiers en cours",
+    "kpiDossiersTraites": "Dossiers traités",
+    "kpiTachesEnAttente": "Tâches en attente",
+    "kpiDocumentsGeneres": "Documents générés",
+    "chartDossiersParProcessus": "Dossiers par processus",
+    "chartDossiersParStatut": "Dossiers par statut",
+    "chartEvolutionMensuelle": "Évolution mensuelle des dossiers",
+    "tachesRecentesTitle": "Tâches récentes",
+    "voirTout": "Voir tout"
+  },
+  "vehicules": {
+    "title": "Véhicules administratifs",
+    "subtitle": "Parc automobile de l'État",
+    "newTitle": "Nouveau véhicule",
+    "editTitle": "Modifier le véhicule",
+    "detailTitle": "Fiche véhicule",
+    "columns": {
+      "immatriculation": "Immatriculation",
+      "marque": "Marque",
+      "genre": "Genre",
+      "categorie": "Catégorie",
+      "energie": "Énergie",
+      "etat": "État",
+      "detenteur": "Détenteur effectif",
+      "region": "Région",
+      "structure": "STRUCTURE",
+      "anneeRecensement": "Année de recensement"
+    },
+    "fields": {
+      "immatriculation": "Immatriculation",
+      "marque": "Marque",
+      "serie": "Série",
+      "genre": "Genre",
+      "carrosserie": "Carrosserie",
+      "categorie": "Catégorie",
+      "energie": "Source d'énergie",
+      "etat": "État du véhicule",
+      "numeroMoteur": "Numéro moteur",
+      "vin": "Numéro de châssis (VIN)",
+      "puissanceAdministrative": "Puissance administrative",
+      "pls": "Places assises (PLS)",
+      "pv": "Poids à vide (PV)",
+      "cu": "Charge utile (CU)",
+      "pt": "Poids total (PT)",
+      "valeurEstimative": "Valeur estimative (Ar)",
+      "datePremierMiseCirculation": "Date de première mise en circulation",
+      "carteGrise": "Carte grise disponible",
+      "livretsDisponibles": "Livrets disponibles",
+      "detenteurEffectif": "Détenteur effectif",
+      "region": "Région",
+      "district": "District",
+      "commune": "Commune",
+      "ministere": "Ministère",
+      "soaDepositaire": "SOA dépositaire"
+    },
+    "sections": {
+      "identification": "Identification",
+      "caracteristiques": "Caractéristiques techniques",
+      "localisation": "Localisation et détention",
+      "documents": "Documents"
+    },
+    "tabs": {
+      "informations": "Informations",
+      "historique": "Historique",
+      "dossiers": "Dossiers liés"
+    },
+    "historique": {
+      "types": {
+        "AFFECTATION": "Affectation",
+        "TRANSFERT": "Transfert",
+        "CHANGEMENT_DETENTEUR": "Changement de détenteur",
+        "CHANGEMENT_ETAT": "Changement d'état",
+        "REFORME": "Réforme",
+        "RECENSEMENT": "Recensement",
+        "CONDAMNATION": "Condamnation"
+      }
+    },
+    "actions": {
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    },
+    "filters": {
+      "etat": "État",
+      "categorie": "Catégorie",
+      "structure": "STRUCTURE",
+      "anneeRecensement": "Année de recensement"
+    },
+    "deleteConfirmTitle": "Supprimer ce véhicule ?",
+    "deleteConfirmDescription": "Cette action retire le véhicule de la liste active. Un motif est requis et l'historique est conservé.",
+    "deleteMotifLabel": "Motif de suppression",
+    "deleteMotifPlaceholder": "Indiquez le motif de la suppression…",
+    "emptyHistorique": "Aucun mouvement enregistré pour ce véhicule.",
+    "emptyDossiers": "Aucun dossier lié à ce véhicule."
+  },
+  "dossiers": {
+    "title": "Dossiers",
+    "subtitle": "Misafidiana processus iray hamoronana taratasy vaovao",
+    "newDossier": "Nouveau dossier",
+    "detailTitle": "Dossier {reference}",
+    "liste": { "title": "Liste des dossiers", "description": "Consultation seule : ouvrez un dossier pour le lire (informations, pièces, historique, documents) sans le traiter.", "retour": "Tableau de bord", "processusInconnu": "Processus inconnu." },
+    "consultation": { "bandeau": "Mode consultation — lecture seule : ce dossier ne peut pas être traité depuis cet écran." },
+    "columns": {
+      "reference": "Référence",
+      "processus": "Processus",
+      "dateDepot": "Date de dépôt",
+      "statut": "Statut",
+      "ministere": "Ministère"
+    },
+    "fields": {
+      "reference": "Référence acte",
+      "processus": "Processus",
+      "dateDepot": "Date de dépôt",
+      "motif": "Motif",
+      "ministere": "Ministère"
+    },
+    "search": {
+      "toggleButton": "Recherche avancée",
+      "title": "Recherche avancée",
+      "dateFrom": "Du",
+      "dateTo": "Au",
+      "submit": "Rechercher",
+      "reset": "Réinitialiser"
+    },
+    "tabs": {
+      "informations": "Informations",
+      "pieces": "Pièces jointes",
+      "historique": "Historique",
+      "documents": "Documents",
+      "vehicules": "Véhicules recensés",
+      "constatation": "Constatation technique",
+      "visaBc": "Visa bon de commande",
+      "receptionTechnique": "Réception technique",
+      "receptionVaNeuf": "Réception VA neuf",
+      "arretageLivret": "Arrêtage livret",
+      "aptitudeLocation": "Aptitude / Location",
+      "attestationCaracteristiques": "Attestation de caractéristiques",
+      "expertise": "Expertise / Contre-expertise",
+      "condamnation": "Évaluation / Condamnation"
+    },
+    "statuts": {
+      "BROUILLON": "Brouillon",
+      "DEPOSE": "Déposé",
+      "EN_CONTROLE": "En contrôle",
+      "A_COMPLETER": "À compléter",
+      "EN_TRAITEMENT_TECHNIQUE": "En traitement technique",
+      "EN_VALIDATION": "En validation",
+      "VALIDE": "Validé",
+      "REFUSE": "Refusé",
+      "LIVRABLE_GENERE": "Livrable généré",
+      "CLOTURE": "Clôturé"
+    },
+    "etapes": {
+      "DEPOT_DOSSIER": "Dépôt du dossier",
+      "CONTROLE_PIECES": "Contrôle des pièces",
+      "TRAITEMENT_TECHNIQUE": "Traitement technique",
+      "VISA_VALIDATION": "Visa / Validation",
+      "EDITION_LIVRABLE": "Édition du livrable",
+      "ARCHIVAGE": "Archivage",
+      "CIRCUIT_TERMINE": "Circuit terminé"
+    },
+    "workflow": {
+      "title": "Suivi du workflow",
+      "enCours": "eo am-panaovana"
+    },
+    "processusFilter": {
+      "tous": "Tous"
+    },
+    "actions": {
+      "validerControle": "Valider le contrôle",
+      "retournerComplement": "Retourner pour complément",
+      "resoumettre": "Resoumettre",
+      "terminerTraitement": "Terminer le traitement technique",
+      "viser": "Viser",
+      "refuser": "Refuser",
+      "genererLivrable": "Générer le livrable",
+      "cloturerDossier": "Clôturer le dossier",
+      "referenceSortie": "Numéro de sortie",
+      "dateSortie": "Date de sortie",
+      "closedRefused": "Ce dossier a été refusé.",
+      "closedCloture": "Ce dossier est clôturé.",
+      "motifRetourLabel": "Motif du retour",
+      "motifRetourPlaceholder": "Précisez les pièces ou éléments manquants…",
+      "motifRefusLabel": "Motif du refus",
+      "motifRefusPlaceholder": "Précisez le motif du refus…",
+      "motifRejetLabel": "Motif du refus",
+      "confirmRetourTitle": "Retourner le dossier pour complément",
+      "confirmRefusTitle": "Refuser le dossier",
+      "etapeReserved": "Cette étape est réservée aux rôles : {roles}",
+      "livrableIndisponible": "Le livrable ne peut être généré qu'après avoir atteint l'étape « Génération du livrable » du workflow.",
+      "consultationSeule": "Consultation seule : ce dossier ne peut pas être traité depuis cet écran."
+    },
+    "piecesStatuts": {
+      "ATTENDUE": "Attendue",
+      "RECUE": "Reçue",
+      "ABSENTE": "Absente",
+      "NON_CONFORME": "Non conforme",
+      "REMPLACEE": "Remplacée",
+      "VALIDEE": "Validée"
+    },
+    "pieces": {
+      "libelle": "Libellé",
+      "libellePlaceholder": "Ex. Photo de la carte grise",
+      "fichier": "Fichier",
+      "ajouter": "Ajouter",
+      "joindre": "Joindre un fichier",
+      "remplacer": "Remplacer le fichier",
+      "dossierClosed": "Le dossier est clôturé : il n'est plus possible d'ajouter de pièce.",
+      "recue": "Reçue",
+      "observationPlaceholder": "Observation (ex. remise en main propre le 12/03)",
+      "supprimerFichier": "Fafao ny rakitra",
+      "supprimerFichierConfirmTitle": "Hofafana ve ity rakitra ity ?",
+      "supprimerFichierConfirmDescription": "Ho fafana tsy azo averina ny rakitra. Mijanona ao amin'ny antontan-taratasy ilay singa ary afaka mandray rakitra vaovao."
+    }
+  },
+  "processus": {
+    "recensement": {
+      "title": "Recensement",
+      "subtitle": "Recensement annuel du parc de véhicules administratifs",
+      "newTitle": "Nouveau recensement",
+      "columns": {
+        "reference": "Référence",
+        "ministere": "Ministère",
+        "soa": "SOA",
+        "dateSaisie": "Date de saisie",
+        "statut": "Statut"
+      },
+      "fields": {
+        "ministere": "Ministère",
+        "soa": "SOA",
+        "niveauType": "Niveau",
+        "niveauLibelle": "Catégorie de recensement",
+        "pointFocalNom": "Point focal — Nom",
+        "pointFocalFonction": "Point focal — Fonction",
+        "pointFocalTel": "Point focal — Téléphone",
+        "pointFocalEmail": "Point focal — Email",
+        "vehicule": "Véhicule",
+        "categorieUtilisation": "Catégorie d'utilisation",
+        "etatGeneral": "État général",
+        "carteGriseDispo": "Carte grise disponible",
+        "livretsDispo": "Livrets disponibles",
+        "type": "Type"
+      },
+      "niveauCentrale": "Centrale",
+      "niveauRegionale": "Régionale",
+      "niveauLibellePlaceholder": "Ex. District d'Antananarivo VI",
+      "ajouterSoa": "Ajouter un SOA",
+      "ajouterStd": "Ajouter un STD",
+      "ajouterCtd": "Ajouter un CTD",
+      "nouveauCode": "Code",
+      "nouveauLibelle": "Libellé",
+      "exporterPublipostage": "Exporter (publipostage)",
+      "lignesTitle": "Véhicules recensés",
+      "addLigne": "Ajouter un véhicule",
+      "vehiculeIntrouvable": "Véhicule introuvable ?",
+      "creerFicheVehicule": "Créer sa fiche véhicule",
+      "actualiserVehicules": "Actualiser",
+      "vehiculeQuickAdd": {
+        "title": "Ajouter un véhicule",
+        "titleEdit": "Modifier le véhicule",
+        "addButton": "Ajouter véhicule",
+        "immatriculation": "Immatriculation",
+        "marque": "Marque",
+        "genre": "Genre",
+        "carrosserie": "Carrosserie",
+        "puissanceAdministrative": "Puissance administrative",
+        "numeroMoteur": "N° moteur",
+        "sourceEnergie": "Source d'énergie",
+        "dateMiseCirculation": "Date de mise en circulation",
+        "soa": "STRUCTURE",
+        "stdCtd": "STD/CTD",
+        "detenteurEffectif": "Détenteur effectif",
+        "vehiculeExistant": "Véhicule existant — vérifiez/corrigez les champs ci-dessous.",
+        "nouveauVehicule": "Nouveau véhicule.",
+        "saveError": "Impossible d'enregistrer ce véhicule. Vérifiez les champs et réessayez.",
+        "doublonError": "Ce véhicule est déjà recensé cette année pour cette structure (SOA).",
+        "chargementEtat": "Recherche du dernier état connu de ce véhicule…"
+      },
+      "quitusTitle": "Quitus de recensement des véhicules administratifs",
+      "genererQuitus": "Hamorona ny quitus",
+      "revoirQuitus": "Jereo ny quitus"
+    },
+    "constatationTechnique": {
+      "title": "Constatation technique",
+      "subtitle": "Diagnostic technique préalable à une intervention",
+      "newTitle": "Nouvelle constatation technique",
+      "columns": {
+        "numeroConstat": "N° constat",
+        "vehicule": "Véhicule",
+        "dateConstat": "Date",
+        "lieu": "Lieu",
+        "statut": "Statut"
+      },
+      "fields": {
+        "vehicule": "Véhicule",
+        "numeroConstat": "Numéro de constat",
+        "dateConstat": "Date du constat",
+        "heureConstat": "Heure",
+        "lieu": "Lieu",
+        "expertNom": "Expert",
+        "soa": "STRUCTURE",
+        "equipementVerif": "Équipement de vérification",
+        "kilometrage": "Kilométrage",
+        "nomChauffeur": "Responsable",
+        "chauffeurContact": "Contact",
+        "detenteur": "Détenteur",
+        "etatGeneral": "État général",
+        "constats": "Observations",
+        "ordrePriorite": "Ordre de priorité"
+      },
+      "ficheVehicule": {
+        "title": "Fiche véhicule (dernier recensement)",
+        "structure": "STRUCTURE",
+        "detenteur": "Détenteur effectif",
+        "type": "Type",
+        "categorie": "Catégorie d'utilisation",
+        "etatGeneral": "État général",
+        "marque": "Marque",
+        "genre": "Genre",
+        "numeroMoteur": "N° moteur",
+        "energie": "Source d'énergie",
+        "chargement": "Recherche du dernier recensement de ce véhicule…",
+        "erreurNonRecense": "Ce véhicule n'a pas encore été recensé — la constatation ne peut pas être enregistrée.",
+        "erreurAnneeDifferente": "Ce véhicule n'a pas été recensé pour l'année {annee}.",
+        "erreurStructureDifferente": "La structure saisie ne correspond pas au SOA du dernier recensement de ce véhicule."
+      },
+      "elementsTitle": "Éléments contrôlés",
+      "piecesRemplacerTitle": "Pièces à remplacer",
+      "reparationsTitle": "Réparations à prévoir",
+      "conforme": "Conforme",
+      "nonConforme": "Non conforme",
+      "addPiece": "Ajouter une pièce",
+      "addReparation": "Ajouter une réparation",
+      "accessoiresTitle": "Accessoires indispensables",
+      "addAccessoire": "Ajouter un accessoire",
+      "pvTitle": "Procès-verbal de constatation technique",
+      "pvGenerer": "Générer le PV",
+      "exporterPublipostage": "Exporter (publipostage)"
+    },
+    "visaBonCommande": {
+      "title": "Visa bon de commande",
+      "subtitle": "Visa des bons de commande de réparation",
+      "newTitle": "Nouveau visa bon de commande",
+      "columns": {
+        "numeroBc": "N° BC",
+        "vehicule": "Véhicule",
+        "montant": "Montant",
+        "decision": "Décision",
+        "statut": "Statut"
+      },
+      "fields": {
+        "vehicule": "Véhicule",
+        "numeroBc": "Numéro de BC",
+        "dateBc": "Date du BC",
+        "fournisseur": "Fournisseur",
+        "adresseFournisseur": "Adresse fournisseur",
+        "nif": "NIF",
+        "stat": "STAT",
+        "anneeCarteFiscale": "Année carte fiscale",
+        "montant": "Montant",
+        "referencePvConstat": "Référence PV constatation",
+        "grandsTravaux": "Grands travaux",
+        "decision": "Décision",
+        "motifRefus": "Motif de refus",
+        "designation": "Désignation",
+        "quantite": "Quantité",
+        "prixUnitaire": "Prix unitaire",
+        "numeroVisa": "N° de visa",
+        "dateVisa": "Date de visa"
+      },
+      "piecesTitle": "Détail des pièces à commander",
+      "addPiece": "Ajouter une ligne",
+      "aucunePieceDisponible": "Aucune pièce disponible depuis la constatation liée.",
+      "carteFiscaleNonAJour": "Cette carte fiscale n'est pas à jour.",
+      "bcTitle": "Bon de commande",
+      "viserSansReserve": "Viser sans réserve",
+      "viserSousReserve": "Viser sous réserve de réception technique",
+      "refuser": "Refuser",
+      "motifRefusLabel": "Motif du refus",
+      "revoirDocument": "Revoir le document",
+      "selectionnerVehiculeDabord": "Sélectionnez d'abord un véhicule"
+    },
+    "receptionTechnique": {
+      "evaluationTitle": "Évaluation du véhicule",
+      "title": "Réception technique",
+      "subtitle": "Réception technique après réparation",
+      "newTitle": "Nouvelle réception technique",
+      "columns": {
+        "vehicule": "Véhicule",
+        "dateReception": "Date",
+        "avis": "Avis",
+        "statut": "Statut"
+      },
+      "fields": {
+        "vehicule": "Véhicule",
+        "visaBc": "Visa bon de commande lié",
+        "dateReception": "Date de réception",
+        "heureReception": "Heure",
+        "minSoa": "Ministère / SOA",
+        "serviceFaitGac": "Service fait constaté",
+        "expertNom": "Expert",
+        "avis": "Avis",
+        "libelle": "Constat"
+      },
+      "constatsTitle": "Constats de réception",
+      "addConstat": "Ajouter un constat",
+      "avisFavorable": "Avis favorable",
+      "avisDefavorable": "Avis défavorable",
+      "revoirDocument": "Revoir le document",
+      "ficheTitle": "Procès-verbal de réception technique"
+    },
+    "receptionVaNeuf": {
+      "title": "Réception VA neuf",
+      "subtitle": "Réception de véhicules administratifs neufs",
+      "newTitle": "Nouvelle réception VA neuf",
+      "columns": {
+        "reference": "Référence",
+        "fournisseur": "Fournisseur",
+        "datePv": "Date PV",
+        "statut": "Statut"
+      },
+      "fields": {
+        "nomFinancement": "Nom financement", "fournisseurAnneeCarteFiscale": "Année carte fiscale", "commissionMembresEntite": "Commission membre entité", "commissionMembresDpe": "Commission membre DPE", "commissionPlaceholder": "Une personne par ligne : nom, qualité", "soaCode": "Structure bénéficiaire", "heurePv": "Heure du PV", "kilometrage": "Kilométrage", "valeur": "Valeur (AR)", "observation": "Observation", "communePlaceholder": "Sélectionner une commune…", "communeRecherche": "Rechercher une commune…",
+        "budgetCode": "Code budgétaire",
+        "chapitre": "Chapitre",
+        "article": "Article",
+        "compte": "Compte",
+        "financement": "Financement",
+        "commune": "Commune",
+        "typeAcquisition": "Type d'acquisition",
+        "referenceMarche": "Référence marché",
+        "fournisseurNom": "Fournisseur",
+        "fournisseurAdresse": "Adresse du fournisseur",
+        "fournisseurStat": "STAT fournisseur",
+        "fournisseurNif": "NIF fournisseur",
+        "depositaireNom": "Dépositaire",
+        "datePv": "Date du PV",
+        "designation": "Désignation",
+        "immatriculation": "Immatriculation",
+        "genre": "Genre",
+        "typeVeh": "Type",
+        "marque": "Marque",
+        "numeroSerie": "Numéro de série",
+        "carrosserie": "Carrosserie",
+        "numeroMoteur": "Numéro moteur",
+        "puissance": "Puissance",
+        "sourceEnergie": "Source d'énergie",
+        "nombrePlace": "Nombre de places",
+        "datePremiereMise": "1ère mise en circulation",
+        "quantiteFacturee": "Quantité facturée",
+        "quantiteReconnue": "Quantité reconnue",
+        "decision": "Décision"
+      },
+      "typeAcquisitionOptions": {"DOTATION":"Dotation","TRANSFERT":"Transfert","ACHAT":"Achat"},
+      "financementOptions": {"CONVENTION":"Convention","MARCHE":"Marché"},
+      "decisionOptions": {
+        "SANS_CHANGEMENT": "Sans changement",
+        "REDUCTION": "Réduction",
+        "REBUTEE": "Rebutée"
+      },
+      "carteFiscaleNonAJour": "Cette carte fiscale n'est pas à jour.",
+      "evaluationTitle": "Évaluation des véhicules",
+      "evaluationAucunVehicule": "Ajoutez d'abord au moins un véhicule à l'étape précédente pour renseigner sa fiche d'évaluation.",
+      "evaluationHint": "Fiche d'évaluation de chaque véhicule (étape facultative : pourcentage par organe, observation).",
+      "lignesTitle": "Véhicules réceptionnés",
+      "addLigne": "Ajouter un véhicule",
+      "pvTitle": "Procès-verbal d'ordre de recette",
+      "pvGenerer": "Générer le PV"
+    },
+    "arretageLivret": {
+      "title": "Arrêtage livret",
+      "subtitle": "Visa d'arrêtage annuel des livrets de bord",
+      "newTitle": "Nouvel arrêtage livret",
+      "columns": {
+        "vehicule": "Véhicule",
+        "dateArretage": "Date",
+        "vehiculeFonction": "En fonction",
+        "statut": "Statut"
+      },
+      "fields": {
+        "vehicule": "Véhicule",
+        "dateArretage": "Date d'arrêtage",
+        "dernierBc": "Dernier BC",
+        "vehiculeFonction": "Véhicule en fonction",
+        "typeLivret": "Type de livret",
+        "rubrique": "Rubrique",
+        "valeurArretee": "Valeur arrêtée",
+        "observation": "Observation",
+        "numeroArretage": "N° d'arrêtage"
+      },
+      "typeLivretOptions": {
+        "SA": "Livret Service Automobile",
+        "GSS": "Livret Garage Station Service",
+        "PARCOURS": "Livret Parcours"
+      },
+      "feuilles": {"neant":"À l'état néant — aucune ligne (la feuille sera arrêtée « à l'état néant »)","carburants":"Carburants et lubrifiants — quantités délivrées","pneumatiques":"Pneumatiques et accessoires divers livrés","entretien":"Entretien courant","reparations":"Réparations","parcours":"Parcours (voiture de service)","typeCarburant":"Carburant","dotationMensuelle":"Dotation mensuelle (litres)","dotationExceptionnelle":"Dotation exceptionnelle (litres)","totalLitres":"Total carburant","totalPrix":"Total","totalDistance":"Total distance","apercuArretes":"Arrêtés qui seront imprimés sur le visa","colonnes":{"date":"Date","natureLivraisons":"Nature des livraisons","quantiteLitres":"Quantité (litres)","huile":"Huile","prix":"Prix","kilometrageCompteur":"Kilométrage au compteur","lavage":"Lavage","vidange":"Vidange","graissage":"Graissage et visite du véhicule","dateEntree":"Date d'entrée","dateSortie":"Date de sortie","natureReparations":"Nature des réparations","dateSortieParcours":"Date de sortie","dateRentree":"Date de rentrée","motifParcours":"Sorties faites : motifs des déplacements, localités visitées, noms et qualités des fonctionnaires transportés","distanceKm":"Distance (km)"}},
+      "consommation": {"titre":"Consommation de l'année (information)","totalCarburant":"Total carburant","totalKm":"Total kilométrage","litresAux100":"Consommation","kmParLitre":"Rendement","nonCalculable":"Non calculable : renseignez le carburant (feuille Carburants) et les distances (livret Parcours).","information":"Calcul donné à titre d'information : il n'est pas imprimé sur le visa."},
+      "detailsTitle": "Détail par livret",
+      "addDetail": "Ajouter une ligne",
+      "visaTitle": "Visa d'arrêtage livret",
+      "visaGenerer": "Générer le visa",
+      "selectionnerVehiculeDabord": "Sélectionnez d'abord un véhicule"
+    },
+    "aptitudeLocation": {
+      "title": "Aptitude / Location",
+      "subtitle": "Contrôle d'aptitude et autorisation de location",
+      "newTitle": "Nouveau contrôle d'aptitude",
+      "columns": {
+        "objetMission": "Objet de mission",
+        "dateDebut": "Début",
+        "dateFin": "Fin",
+        "avis": "Avis",
+        "statut": "Statut"
+      },
+      "fields": {
+        "vehicule": "Fiara",
+        "immatriculation": "Immatriculation",
+        "type": "Karazana",
+        "marque": "Marika",
+        "objetMission": "Objet de mission",
+        "itineraire": "Itinéraire",
+        "dateDebut": "Date de début",
+        "dateFin": "Date de fin",
+        "contratLocation": "Numéro de contrat de location",
+        "fournisseurNifStat": "NIF / STAT fournisseur",
+        "avisAptitude": "Avis d'aptitude",
+        "observation": "Observation",
+        "observationPlaceholder": "Précisez une observation (facultatif)…"
+      },
+      "avisFavorable": "Mahomby",
+      "avisDefavorable": "Tsy mahomby",
+      "attestationTitle": "Attestation d'aptitude",
+      "autorisationTitle": "Autorisation de location",
+      "genererAttestation": "Hamorona ny attestation",
+      "genererAutorisation": "Hamorona ny autorisation de location",
+      "revoirAttestation": "Jereo ny attestation",
+      "revoirAutorisation": "Jereo ny autorisation"
+    },
+    "attestationCaracteristiques": {
+      "title": "Attestation de caractéristiques",
+      "subtitle": "Attestation en cas de perte ou détérioration de carte grise",
+      "newTitle": "Nouvelle attestation de caractéristiques",
+      "columns": {
+        "vehicule": "Véhicule",
+        "motifPerte": "Motif",
+        "statut": "Statut"
+      },
+      "fields": {
+        "vehicule": "Véhicule",
+        "minCode": "Ministère",
+        "soaLibelle": "SOA",
+        "motifPerte": "Motif de perte / détérioration",
+        "observation": "Observation (non imprimée sur l'attestation)",
+        "marque": "Marque",
+        "genre": "Genre",
+        "carrosserie": "Carrosserie",
+        "numeroSerie": "N° dans la série de type",
+        "numeroMoteur": "N° moteur",
+        "nombrePlace": "Isan'ny toerana",
+        "sourceEnergie": "Loharanon-tsakafo",
+        "puissanceAdministrative": "Hery ara-panjakana",
+        "poidsVide": "Lanja tsy misy entana",
+        "chargeUtile": "Entana azo entina",
+        "poidsTotal": "Lanja fara-fahakeliny ekena",
+        "anneeMiseCirculation": "Taona nampiasana voalohany"
+      },
+      "attestationTitle": "Attestation des caractéristiques",
+      "genererAttestation": "Hamorona ny attestation",
+      "revoirAttestation": "Jereo ny attestation"
+    },
+    "expertise": {
+      "title": "Expertise / Contre-expertise",
+      "subtitle": "Expertise après accident",
+      "newTitle": "Nouvelle expertise",
+      "columns": {
+        "vehicule": "Véhicule",
+        "typeExpertise": "Type",
+        "dateAccident": "Date accident",
+        "statut": "Statut"
+      },
+      "fields": {
+        "vehicule": "Véhicule",
+        "typeExpertise": "Type d'expertise",
+        "dateAccident": "Date de l'accident",
+        "lieuAccident": "Lieu de l'accident",
+        "vehiculePriveImmat": "Immatriculation véhicule tiers",
+        "rapport": "Rapport",
+        "montantEstime": "Montant estimé"
+      },
+      "typeExpertiseOptions": { "EXP": "Expertise", "CONTRE_EXP": "Contre-expertise" },
+      "dommagesTitle": "Dommages constatés",
+      "addDommage": "Ajouter un dommage",
+      "rapportTitle": "Rapport d'expertise",
+      "rapportContreExpertiseTitle": "Rapport de contre-expertise",
+      "genererRapport": "Hamorona ny rapport",
+      "revoirRapport": "Jereo ny rapport"
+    },
+    "condamnation": {
+      "evaluationTitle": "Évaluation du véhicule",
+      "typesMisePrix": { "VEHICULE": "Véhicule", "MOTOCYCLE": "Motocyclette" },
+      "etats": { "BON_ETAT": "Bon état", "MOYEN_ETAT": "Moyen état", "MAUVAIS_ETAT": "Mauvais état" },
+      "grille": { "title": "Mise à prix", "description": "Saisissez le prix de chaque composant : la valeur estimative est la somme des prix, la valeur en AR tient compte de la dépréciation.", "vide": "Aucune grille de mise à prix configurée pour ce type (Administration > Référentiels)." },
+      "misePrixTitle": "Mise à prix d'un véhicule / d'une motocyclette",
+      "genererMisePrix": "Générer la mise à prix",
+      "revoirMisePrix": "Revoir la mise à prix",
+      "title": "Évaluation / Condamnation",
+      "subtitle": "Évaluation en vue de condamnation d'un véhicule",
+      "newTitle": "Nouvelle évaluation",
+      "columns": {
+        "vehicule": "Véhicule",
+        "valeurEstimee": "Valeur estimée",
+        "miseAPrix": "Mise à prix",
+        "motifCondamnation": "Motif",
+        "statut": "Statut"
+      },
+      "fields": {
+        "typeMiseAPrix": "Type de mise à prix",
+        "typeVeh": "Type (ex. WP81JP)",
+        "etatActuel": "État actuel",
+        "depreciationPct": "Dépréciation (%)",
+        "valeurEnAr": "Valeur en AR (après dépréciation)",
+        "soaCode": "Structure bénéficiaire",
+        "ministereBeneficiaire": "Ministère de la structure",
+        "ministerePlaceholder": "Sélectionner un ministère",
+        "ministereRecherche": "Rechercher un ministère…",
+        "datePv": "Date du PV",
+        "heurePv": "Heure du PV",
+        "commissionMembresEntite": "Commission — membres de l'entité",
+        "commissionMembresDpe": "Commission — membres DPE",
+        "commissionPlaceholder": "Une personne par ligne (NOM Prénom, qualité)",
+        "vehicule": "Véhicule",
+        "valeurEstimee": "Valeur estimée",
+        "miseAPrix": "Mise à prix",
+        "ficheTechnique": "Fiche technique",
+        "motifCondamnation": "Motif de condamnation"
+      },
+      "pvTitle": "Procès-verbal d'évaluation et de mise à prix",
+      "genererPv": "Hamorona ny PV",
+      "revoirPv": "Jereo ny PV"
+    },
+    "testChauffeur": {
+      "title": "Test chauffeur",
+      "subtitle": "Résultats des tests de conduite des chauffeurs",
+      "newTitle": "Nouveau test chauffeur",
+      "columns": { "chauffeur": "Chauffeur", "dateTest": "Date du test", "resultat": "Résultat", "statut": "Statut" },
+      "fields": {
+        "chauffeur": "Chauffeur", "vehicule": "Véhicule utilisé", "dateTest": "Date du test",
+        "examinateurNom": "Examinateur", "observations": "Observations",
+        "observationPlaceholder": "Indiquez une observation…", "resultat": "Résultat",
+        "noteTheorique": "Note théorique (/20)", "notePratique": "Note pratique (/20)"
+      },
+      "resultatTitle": "Résultat de test chauffeur",
+      "resultatFavorable": "Apte",
+      "resultatDefavorable": "Non apte",
+      "genererResultat": "Générer le résultat",
+      "revoirResultat": "Revoir le résultat"
+    }
+  },
+  "chauffeurs": {
+    "title": "Chauffeurs",
+    "subtitle": "Registre des chauffeurs",
+    "newTitle": "Nouveau chauffeur",
+    "detailTitle": "Fiche chauffeur",
+    "columns": { "nom": "Nom", "matricule": "Matricule", "permis": "N° permis", "ministere": "Ministère" },
+    "fields": { "nom": "Nom", "matricule": "Matricule", "cin": "CIN", "permis": "Numéro de permis", "minCode": "Ministère", "soaCode": "SOA" },
+    "sections": { "identification": "Identification" },
+    "tabs": { "informations": "Informations", "tests": "Historique des tests" },
+    "emptyTests": "Aucun test enregistré pour ce chauffeur."
+  },
+  "workflow": {
+    "title": "Mes tâches",
+    "subtitle": "Tâches de workflow qui vous sont assignées",
+    "columns": {
+      "reference": "Référence",
+      "processus": "Processus",
+      "tache": "Tâche",
+      "dateDebut": "Depuis le"
+    },
+    "actions": {
+      "traiter": "Traiter",
+      "valider": "Valider",
+      "refuser": "Refuser"
+    },
+    "empty": "Aucune tâche en attente."
+  },
+  "traitementDossier": {
+    "title": "Rechercher un véhicule ou un dossier",
+    "subtitle": "Tapez une immatriculation ou une référence de dossier pour le consulter ou le faire avancer dans le circuit",
+    "searchLabel": "Recherche véhicule ou dossier",
+    "searchPlaceholder": "Immatriculation ou référence de dossier",
+    "searchButton": "Rechercher",
+    "resultsTitle": "Résultats de recherche",
+    "columns": {
+      "processus": "Processus",
+      "activite": "Activité",
+      "tache": "Tâche à faire",
+      "reference": "Référence acte",
+      "typeActe": "Type acte",
+      "action": "Action"
+    },
+    "activiteLabel": "Activité {processus}",
+    "traiter": "Traiter",
+    "notFound": "Aucun véhicule ni dossier trouvé pour cette recherche.",
+    "circuitTermine": "Ce dossier a terminé son circuit.",
+    "dossiersLies": "Dossiers liés à ce véhicule",
+    "aucunDossierLie": "Aucun dossier pour ce véhicule.",
+    "voirFiche": "Voir la fiche complète",
+    "listTitle": "Lisitry ny taratasy",
+    "listSubtitle": "Fanaraha-maso ny taratasy rehetra amin'ny sehatra BSCVA"
+  },
+  "documents": {
+    "title": "Documents générés",
+    "subtitle": "Actes et documents produits par la plateforme",
+    "columns": {
+      "numeroDocument": "N° document",
+      "modele": "Modèle",
+      "reference": "Dossier",
+      "genereLe": "Généré le",
+      "statut": "Statut"
+    },
+    "statuts": {
+      "BROUILLON": "Brouillon",
+      "VALIDE": "Validé",
+      "ANNULE": "Annulé",
+      "REMPLACE": "Remplacé"
+    },
+    "actions": {
+      "apercu": "Aperçu",
+      "telecharger": "Télécharger",
+      "valider": "Valider",
+      "annuler": "Annuler"
+    },
+    "filters": { "typeActe": "Type d'acte", "statut": "Statut", "dateFrom": "Du", "dateTo": "Au" },
+    "modeles": {
+      "QUITUS_RECENSEMENT": "Quitus de recensement",
+      "BC_VISE": "Bon de commande visé",
+      "PV_CONSTATATION": "PV de constatation technique",
+      "PV_ORDRE_RECETTE": "PV d'ordre de recette",
+      "PV_RECEPTION": "PV de réception technique",
+      "ATTESTATION_APTITUDE": "Attestation d'aptitude",
+      "AUTORISATION_LOCATION": "Autorisation de location",
+      "ATTESTATION_CARACTERISTIQUE": "Attestation de caractéristiques",
+      "RAPPORT_EXPERTISE": "Rapport d'expertise",
+      "PV_CONDAMNATION": "PV d'évaluation",
+      "MISE_A_PRIX": "Mise à prix",
+      "FICHE_EVALUATION": "Fiche d'évaluation du véhicule",
+      "RESULTAT_TEST_CHAUFFEUR": "Résultat de test chauffeur",
+      "VISA_ARRETAGE_LIVRET": "Visa d'arrêtage de livret"
+    },
+    "versions": {
+      "action": "Voir les versions",
+      "title": "Historique des versions",
+      "subtitle": "{count} versions de ce document",
+      "current": "Version actuelle",
+      "label": "Version {index}/{count}"
+    }
+  },
+  "reporting": {
+    "title": "Reporting",
+    "subtitle": "Statistiques et tableaux de bord",
+    "vehiculesParCategorie": "Véhicules par catégorie",
+    "vehiculesParEtat": "Véhicules par état",
+    "dossiersParProcessus": "Dossiers par processus",
+    "depensesTotales": "Dépenses totales",
+    "vehiculesAccidentes": "Véhicules accidentés",
+    "vehiculesACondamner": "Véhicules à condamner",
+    "depensesParVehicule": "Dépenses par véhicule",
+    "depensesParMinistere": "Dépenses par ministère",
+    "depensesParSoa": "Dépenses par SOA",
+    "frequenceReparations": "Fréquence des réparations par véhicule",
+    "columns": { "total": "Total", "vehicule": "Véhicule", "montant": "Montant", "ministere": "Ministère", "soa": "SOA" },
+    "exportExcel": "Exporter en Excel",
+    "exportPdf": "Exporter en PDF",
+    "onglets": {
+      "indicateurs": "Tondro",
+      "ia": "Vinavina IA"
+    },
+    "ia": {
+      "avertissement": "Valiny nokajian'ny modely fianarana milina (module ia-siigpe, averina ampianarina tanana). Ny vinavina momba ny fiara dia miankina amin'ny angona namboarina (2025-2026) : maneho ny fomba fiasa izy ireo fa tsy mbola ny fiara tena izy. Ny faharetan'ny fikarakarana kosa dia nianarana tamin'ny antontan-taratasy tena izy.",
+      "exportExcel": "Avoaka ny vinavina tetibola",
+      "vide": "Tsy misy vinavina : alefaso ny fampianarana (python modeles/entrainer_tout.py ao amin'ny ia-siigpe).",
+      "kpi": {
+        "budget": "Tetibola vinavinaina {annee}",
+        "budgetDescription": "Elanelana {bas} – {haut} · tena izy {anneePrecedente} : {reel}",
+        "aRisque": "Fiara mety hila fanamboarana lehibe",
+        "aRisqueDescription": "Mety ho ≥ {seuil} ny fanamboarana mihoatra ny 2 tapitrisa Ar",
+        "anomalies": "Tsy fetezana solika hojerena",
+        "anomaliesDescription": "Volana {total} voamarika raha atambatra",
+        "delai": "Faharetana vinavinaina (antontan-taratasy misokatra)",
+        "delaiDescription": "Antontan-taratasy misokatra {ouverts} · {retard} mihoatra ny elanelana"
+      },
+      "graphiqueBudget": "Tetibola vinavinaina {annee} isaky ny STRUCTURE",
+      "graphiqueBudgetSousTitre": "Fitambaran'ny vinavina ho an'ny fiaran'ny STRUCTURE tsirairay, ampitahaina amin'ny fandaniana tena izy {anneePrecedente}",
+      "prevu": "Vinavina {annee}",
+      "reel": "Tena izy {annee}",
+      "vehicules": {
+        "titre": "Vinavina isaky ny fiara ({annee})",
+        "description": "Fandaniana isan-taona vinavinaina (solika, menaka, fikojakojana, fanamboarana, kodiarana), elanelana 80 % ary mety hisian’ny fanamboarana lehibe."
+      },
+      "anomalies": {
+        "titre": "Tsy fetezana solika",
+        "description": "Volana tsy mitovy amin'ny fanjifana mahazatra ny fiara (Isolation Forest). Mariho « Voamarina » na « Voahamarina antony » ; tazonina ny sata rehefa averina ampianarina."
+      },
+      "delais": {
+        "titre": "Faharetana vinavinaina isaky ny dingana",
+        "description": "Salan'isa amin'ny antontan-taratasy misokatra ; « mihoatra ny elanelana » = efa antitra kokoa noho ny fetra ambony."
+      },
+      "colonnes": {
+        "immatriculation": "Laharana",
+        "marque": "Marika",
+        "structure": "STRUCTURE",
+        "depensePrevue": "Fandaniana vinavinaina",
+        "fourchette": "Elanelana",
+        "reelPrecedent": "Tena izy {annee}",
+        "probaGrosseReparation": "Risika fanamboarana lehibe",
+        "mois": "Volana",
+        "motif": "Antony",
+        "statut": "Sata",
+        "processus": "Dingana",
+        "dossiersOuverts": "Misokatra",
+        "delaiPrevu": "Faharetana vinavinaina",
+        "ageMoyen": "Taona salan'isa",
+        "enRetard": "Mihoatra ny elanelana"
+      },
+      "statuts": {
+        "NOUVELLE": "Hojerena",
+        "VERIFIEE": "Voamarina",
+        "JUSTIFIEE": "Voahamarina antony"
+      },
+      "actions": {
+        "verifiee": "Voamarina",
+        "justifiee": "Voahamarina antony"
+      },
+      "qualite": {
+        "titre": "Kalitaon'ny modely",
+        "description": "Ny modely tsirairay dia tombanana ivelan'ny angona fianarana ary ampitahaina amin'ny fanondroana tsotra : tsy mahasoa raha tsy mihoatra azy. Maitso matevina : ny sanda tsara indrindra. Antsipiriany ao amin'ny ia-siigpe/rapports/rapport_ia.md.",
+        "construites": "Angona namboarina",
+        "reelles": "Angona tena izy",
+        "batReference": "Mihoatra ny fanondroana",
+        "neBatPasReference": "Tsy mihoatra ny fanondroana",
+        "methode": "Fomba voafidy : {methode}",
+        "donnees": "Angona : {periode} (ohatra {n})",
+        "entraine": "nampianarina ny {date}",
+        "indicateur": "Tondro",
+        "modele": "Modely",
+        "modeles": {
+          "DEPENSE_VEHICULE": "Fandaniana isan-taona isaky ny fiara",
+          "GROSSE_REPARATION": "Fanamboarana lehibe amin’ny taona manaraka",
+          "ANOMALIE_CARBURANT": "Tsy fetezana solika",
+          "DELAI_DOSSIER": "Faharetan'ny fikarakarana antontan-taratasy"
+        },
+        "references": {
+          "DEPENSE_VEHICULE": "Fanondroana : N+1 = N",
+          "GROSSE_REPARATION": "Fanondroana : lehibe N ⇒ N+1",
+          "ANOMALIE_CARBURANT": "Fanondroana : fitsipika 1,3 ×",
+          "DELAI_DOSSIER": "Fanondroana : medianina isaky ny karazana"
+        },
+        "indicateurs": {
+          "maeTemporel": "Hadisoana salan’isa (taona manaraka)",
+          "maeAleatoire": "Hadisoana salan’isa (kisendrasendra)",
+          "maeVehicule": "Hadisoana isaky ny fiara (modely nianatra tsara indrindra)",
+          "mapeStructures": "Hadisoana isaky ny STRUCTURE (back-test)",
+          "auc": "AUC ROC",
+          "rappel": "Rappel",
+          "f1": "F1 (tsy fetezana nampidirina)",
+          "rappelKmGonfles": "Rappel « km nampitomboina »"
+        },
+        "lecture": {
+          "DEPENSE_VEHICULE": "Fanamarinana miverimberina (5 × 10). Raha tsy misy modely nianatra mihoatra ny N+1 = N, io no mamokatra ny vinavina : fohy loatra ny tantara (taona roa isaky ny fiara).",
+          "GROSSE_REPARATION": "Mety hihoatra ny 2 tapitrisa Ar ny fanamboarana amin’ny taona manaraka. Vitsy ny ohatra : AUC antonony.",
+          "ANOMALIE_CARBURANT": "Tombanana tamin'ny tsy fetezana nampidirina. Hitan'ny fianarana tsy misy mpanara-maso ny km nampitomboina.",
+          "DELAI_DOSSIER": "Nianarana tamin'ny antontan-taratasy tena izy. Tsara kokoa amin'ny fitsapana kisendrasendra, fa miova isan-taona : averina ampianarina matetika."
+        }
+      }
+    }
+  },
+  "administration": {
+    "title": "Administration",
+    "utilisateurs": {
+      "title": "Utilisateurs",
+      "subtitle": "Comptes de la plateforme BSCVA",
+      "newTitle": "Nouvel utilisateur",
+      "editTitle": "Modifier l'utilisateur",
+      "columns": {
+        "matricule": "Matricule",
+        "login": "Login",
+        "nom": "Nom",
+        "prenom": "Prénom",
+        "role": "Rôle",
+        "statut": "Statut"
+      },
+      "fields": {
+        "nom": "Nom", "prenom": "Prénom", "login": "Login (matricule)", "password": "Mot de passe",
+        "role": "Rôle", "sigle": "Sigle", "site": "Entité / Site"
+      },
+      "actions": { "modifier": "Modifier", "activer": "Activer", "desactiver": "Désactiver" },
+      "actif": "Actif",
+      "desactive": "Désactivé",
+      "activerConfirmTitle": "Activer ce compte utilisateur ?",
+      "desactiverConfirmTitle": "Désactiver ce compte utilisateur ?"
+    },
+    "roles": {
+      "title": "Rôles",
+      "subtitle": "Rôles et responsabilités du workflow BSCVA",
+      "permissionsTitle": "Permissions",
+      "etapesAutoriseesTitle": "Étapes de workflow autorisées",
+      "columns": {
+        "roleCode": "Code",
+        "roleLibelle": "Libellé"
+      }
+    },
+    "referentiels": {
+      "title": "Référentiels",
+      "subtitle": "Référentiels de base du domaine véhicule",
+      "categoriesVehicule": "Catégories de véhicule",
+      "energies": "Sources d'énergie",
+      "etatsVehicule": "États du véhicule",
+      "genres": "Genres",
+      "carrosseries": "Carrosseries",
+      "marques": "Marques"
+    },
+    "audit": {
+      "title": "Journal d'audit",
+      "subtitle": "Historique des actions effectuées sur la plateforme",
+      "columns": { "date": "Date", "utilisateur": "Utilisateur", "action": "Action", "reference": "Référence", "detail": "Détail" }
+    }
+  }
+}

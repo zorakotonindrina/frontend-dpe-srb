@@ -1,0 +1,246 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../styles/tokens.css";
+
+@custom-variant dark (&:is([data-theme="dark"] *));
+
+/* ============================================================
+   Mapping des variables shadcn/ui → tokens AUGURE
+   shadcn lit ses propres variables CSS ; on les pointe
+   vers notre source de vérité dans tokens.css.
+   ============================================================ */
+
+@theme inline {
+  /* Couleurs de base */
+  --color-background:        var(--background);
+  --color-foreground:        var(--foreground);
+  --color-card:              var(--card);
+  --color-card-foreground:   var(--card-foreground);
+  --color-popover:           var(--popover);
+  --color-popover-foreground:var(--popover-foreground);
+  --color-primary:           var(--primary);
+  --color-primary-foreground:var(--primary-foreground);
+  --color-secondary:         var(--secondary);
+  --color-secondary-foreground:var(--secondary-foreground);
+  --color-muted:             var(--muted);
+  --color-muted-foreground:  var(--muted-foreground);
+  --color-accent:            var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive:       var(--destructive);
+  --color-border:            var(--border);
+  --color-input:             var(--input);
+  --color-ring:              var(--ring);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar */
+  --color-sidebar:                    var(--sidebar);
+  --color-sidebar-foreground:         var(--sidebar-foreground);
+  --color-sidebar-primary:            var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:             var(--sidebar-accent);
+  --color-sidebar-accent-foreground:  var(--sidebar-accent-foreground);
+  --color-sidebar-border:             var(--sidebar-border);
+  --color-sidebar-ring:               var(--sidebar-ring);
+
+  /* Border radius */
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Typographie */
+  --font-sans:    var(--font-sans);
+  --font-mono:    var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+}
+
+/* ============================================================
+   Variables shadcn — Mode clair (mappées sur tokens AUGURE)
+   ============================================================ */
+:root {
+  --background:             var(--color-background);
+  --foreground:             var(--color-foreground);
+  --card:                   var(--color-surface);
+  --card-foreground:        var(--color-foreground);
+  --popover:                var(--color-surface);
+  --popover-foreground:     var(--color-foreground);
+  --primary:                var(--color-brand-500);
+  --primary-foreground:     #ffffff;
+  --secondary:              var(--color-brand-50);
+  --secondary-foreground:   var(--color-brand-700);
+  --muted:                  #f1f5f9;
+  --muted-foreground:       var(--color-foreground-muted);
+  --accent:                 var(--color-brand-50);
+  --accent-foreground:      var(--color-brand-700);
+  --destructive:            var(--color-error);
+  --border:                 var(--color-border);
+  --input:                  var(--color-border);
+  --ring:                   var(--color-brand-300);
+
+  /* Charts — tokens AUGURE */
+  --chart-1: var(--color-chart-1);
+  --chart-2: var(--color-chart-2);
+  --chart-3: var(--color-chart-3);
+  --chart-4: var(--color-chart-4);
+  --chart-5: var(--color-chart-5);
+
+  /* Border radius */
+  --radius: 0.5rem;
+
+  /* Sidebar — surface légèrement distincte */
+  --sidebar:                    #f8f9fc;
+  --sidebar-foreground:         var(--color-foreground);
+  --sidebar-primary:            var(--color-brand-500);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent:             var(--color-brand-50);
+  --sidebar-accent-foreground:  var(--color-brand-700);
+  --sidebar-border:             var(--color-border);
+  --sidebar-ring:               var(--color-brand-300);
+}
+
+/* ============================================================
+   Variables shadcn — Mode sombre
+   ============================================================ */
+[data-theme="dark"] {
+  --background:             var(--color-background);
+  --foreground:             var(--color-foreground);
+  --card:                   var(--color-surface);
+  --card-foreground:        var(--color-foreground);
+  --popover:                var(--color-surface);
+  --popover-foreground:     var(--color-foreground);
+  --primary:                var(--color-brand-400);
+  --primary-foreground:     #ffffff;
+  --secondary:              var(--color-surface-raised);
+  --secondary-foreground:   var(--color-foreground);
+  --muted:                  var(--color-surface-raised);
+  --muted-foreground:       var(--color-foreground-muted);
+  --accent:                 var(--color-surface-raised);
+  --accent-foreground:      var(--color-foreground);
+  --destructive:            #f87171;
+  --border:                 var(--color-border);
+  --input:                  var(--color-border);
+  --ring:                   var(--color-brand-500);
+
+  --chart-1: var(--color-chart-1);
+  --chart-2: var(--color-chart-2);
+  --chart-3: var(--color-chart-3);
+  --chart-4: var(--color-chart-4);
+  --chart-5: var(--color-chart-5);
+
+  --sidebar:                    var(--color-surface);
+  --sidebar-foreground:         var(--color-foreground);
+  --sidebar-primary:            var(--color-brand-400);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent:             var(--color-surface-raised);
+  --sidebar-accent-foreground:  var(--color-foreground);
+  --sidebar-border:             var(--color-border);
+  --sidebar-ring:               var(--color-brand-500);
+}
+
+/* ============================================================
+   Base styles
+   ============================================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  a[href] {
+    cursor: pointer;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes password-strength-pulse {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  65% {
+    opacity: 1;
+    transform: scaleX(var(--bounce-overshoot, 1.0));
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.35s ease-in-out infinite;
+}
+
+.password-strength-pulse {
+  animation: password-strength-pulse 350ms linear;
+  transform-origin: left center;
+}
+
+.auth-input-no-autofill:-webkit-autofill,
+.auth-input-no-autofill:-webkit-autofill:hover,
+.auth-input-no-autofill:-webkit-autofill:focus,
+.auth-input-no-autofill:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #111827 !important;
+  caret-color: #111827;
+  transition: background-color 9999s ease-out;
+}
+
+/* ============================================================
+   Global fetch progress bar
+   ============================================================ */
+@keyframes fetch-progress {
+  0%   { left: -45%; }
+  100% { left: 100%; }
+}
+
+.fetch-progress-bar {
+  animation: fetch-progress 1.2s ease-in-out infinite;
+}
+
+/* ============================================================
+   Organigramme React Flow — visibilité des arêtes
+   ============================================================ */
+.react-flow__edges {
+  overflow: visible;
+}
+
+.react-flow__edge-path {
+  stroke: #64748b;
+  stroke-width: 1.5px;
+}
