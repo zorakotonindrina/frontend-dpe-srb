@@ -52,17 +52,29 @@ function indicateursDe(code: CodeModeleIa, m: Obj): IndicateurQualite[] {
         ...indicateur('maeAleatoire', m.aleatoire_mae_jours, m.aleatoire_reference_mae_jours, 'jours', true),
       ];
     case 'DEPENSE_VEHICULE': {
+      // Le meilleur modèle APPRIS face à la meilleure méthode SANS apprentissage (N+1 = N, tendance, moyenne historique).
+      const nomAppris = String(m.meilleur_modele_appris ?? '');
       const comparaison = obj(m.comparaison);
-      const appris = obj(comparaison[String(m.meilleur_modele_appris ?? '')]);
+      const appris = obj(comparaison[nomAppris]);
+      const meilleureRef = obj(comparaison[String(m.meilleure_reference ?? '')]);
+      const temporel = obj(m.comparaison_temporelle);
+      const meilleureRefTemporelle = obj(temporel[String(m.meilleure_reference_temporelle ?? '')]);
       const backtest = obj(m.backtest_structures);
       return [
-        ...indicateur('maeVehicule', appris.mae, appris.ref_mae, 'ariary', true),
+        ...indicateur('maeVehicule', appris.mae, meilleureRef.mae ?? appris.ref_mae, 'ariary', true),
+        ...indicateur('maeBacktest', obj(temporel[nomAppris]).mae, meilleureRefTemporelle.mae, 'ariary', true),
         ...indicateur('mapeStructures', backtest.mape_structures, backtest.ref_mape_structures, 'pct', true),
       ];
     }
     case 'GROSSE_REPARATION': {
-      const retenu = obj(obj(m.comparaison)[String(m.modele_retenu ?? '')]);
-      return [...indicateur('auc', retenu.auc, retenu.ref_auc, 'score', false), ...indicateur('rappel', retenu.rappel, retenu.ref_rappel, 'pct', false)];
+      const nom = String(m.modele_retenu ?? '');
+      const retenu = obj(obj(m.comparaison)[nom]);
+      const temporel = obj(obj(m.comparaison_temporelle)[nom]);
+      return [
+        ...indicateur('auc', retenu.auc, retenu.ref_auc, 'score', false),
+        ...indicateur('aucBacktest', temporel.auc, temporel.ref_auc, 'score', false),
+        ...indicateur('rappel', retenu.rappel, retenu.ref_rappel, 'pct', false),
+      ];
     }
     case 'ANOMALIE_CARBURANT': {
       const kmGonfles = obj(obj(m.par_type).KM_GONFLES);
@@ -83,9 +95,9 @@ export function qualiteModeles(modeles: ModeleIa[]): QualiteModele[] {
     .sort((a, b) => ORDRE.indexOf(a.code) - ORDRE.indexOf(b.code))
     .map((mo) => {
       const indicateurs = indicateursDe(mo.code, mo.metriques);
-      const batReference = mo.code === 'DEPENSE_VEHICULE' && typeof mo.metriques.ml_bat_reference === 'boolean'
-        ? mo.metriques.ml_bat_reference
-        : indicateurs.length > 0 && estMeilleur(indicateurs[0]);
+      // Verdict calculé par ia-siigpe quand il existe (il combine les deux évaluations), sinon l'indicateur principal.
+      const verdict = mo.metriques.ml_bat_reference ?? mo.metriques.clf_bat_reference;
+      const batReference = typeof verdict === 'boolean' ? verdict : indicateurs.length > 0 && estMeilleur(indicateurs[0]);
       return {
         code: mo.code, methodeRetenue: mo.algorithme, dateEntrainement: mo.dateEntrainement, periodeDonnees: mo.periodeDonnees,
         nbExemples: mo.nbExemples, donneesConstruites: mo.code !== 'DELAI_DOSSIER', indicateurs, batReference,

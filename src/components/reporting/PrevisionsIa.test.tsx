@@ -23,9 +23,20 @@ const modeles: ModeleIa[] = [
     modeleId: '1', code: 'DEPENSE_VEHICULE', version: '3', algorithme: 'Référence : dépense N+1 = dépense N', dateEntrainement: '2026-09-24 10:00',
     periodeDonnees: '2025 → 2026', nbExemples: 100, commentaire: null,
     metriques: {
-      ml_bat_reference: false, meilleur_modele_appris: 'Hybride — Ridge',
-      comparaison: { 'Hybride — Ridge': { mae: 3_178_225, ref_mae: 3_050_444 } },
-      backtest_structures: { mape_structures: 0.097, ref_mape_structures: 0.097 },
+      ml_bat_reference: true, meilleur_modele_appris: 'Hybride — Gradient boosting',
+      meilleure_reference: 'Moyenne historique', meilleure_reference_temporelle: 'Moyenne historique',
+      comparaison: { 'Hybride — Gradient boosting': { mae: 2_776_390, ref_mae: 3_319_064 }, 'Moyenne historique': { mae: 2_889_755 } },
+      comparaison_temporelle: { 'Hybride — Gradient boosting': { mae: 2_823_213 }, 'Moyenne historique': { mae: 3_119_249 } },
+      backtest_structures: { mape_structures: 0.087, ref_mape_structures: 0.094 },
+    },
+  },
+  {
+    modeleId: '3', code: 'GROSSE_REPARATION', version: '3', algorithme: 'Forêt aléatoire', dateEntrainement: '2026-09-24 10:00',
+    periodeDonnees: '2021 → 2026', nbExemples: 476, commentaire: null,
+    metriques: {
+      clf_bat_reference: false, modele_retenu: 'Forêt aléatoire',
+      comparaison: { 'Forêt aléatoire': { auc: 0.79, ref_auc: 0.64, rappel: 0.5, ref_rappel: 0.43 } },
+      comparaison_temporelle: { 'Forêt aléatoire': { auc: 0.70, ref_auc: 0.74 } },
     },
   },
   {
@@ -73,7 +84,7 @@ describe('PrevisionsIa', () => {
     expect(screen.getByText('1 / 2')).toBeInTheDocument();
     expect(screen.getByText('1234 TBA')).toBeInTheDocument();
     expect(screen.getByText('72 %')).toBeInTheDocument();
-    expect(screen.getByTestId('reporting-ia-avertissement')).toHaveTextContent('jeu de données construit');
+    expect(screen.getByTestId('reporting-ia-avertissement')).toHaveTextContent('DONNÉES FICTIVES');
   });
 
   it('classe les STRUCTURES par budget prévu avec leur libellé complet, les montants et l’écart au réel', () => {
@@ -103,8 +114,15 @@ describe('PrevisionsIa', () => {
   it('présente honnêtement la qualité des modèles face à la référence', () => {
     renderWithProviders(<PrevisionsIa />);
     const depense = within(screen.getByTestId('qualite-DEPENSE_VEHICULE'));
-    expect(depense.getByText('Ne bat pas la référence')).toBeInTheDocument();
-    expect(depense.getByText('Données construites')).toBeInTheDocument();
+    expect(depense.getByText('Bat la référence')).toBeInTheDocument();
+    expect(depense.getByText('Données fictives (démonstration)')).toBeInTheDocument();
+    expect(depense.getByText('Meilleure méthode sans apprentissage')).toBeInTheDocument();
+    expect(depense.getByText('2 889 755 Ar')).toBeInTheDocument();
+    expect(depense.getByText('Erreur moyenne par véhicule (back-test dernière année)')).toBeInTheDocument();
+    // Le verdict calculé par ia-siigpe (les deux évaluations) prime sur la seule validation croisée
+    const grosse = within(screen.getByTestId('qualite-GROSSE_REPARATION'));
+    expect(grosse.getByText('Ne bat pas la référence')).toBeInTheDocument();
+    expect(grosse.getByText('AUC ROC (back-test dernière année)')).toBeInTheDocument();
     const anomaliesCarte = within(screen.getByTestId('qualite-ANOMALIE_CARBURANT'));
     expect(anomaliesCarte.getByText('Rappel « km gonflés »')).toBeInTheDocument();
     expect(anomaliesCarte.getByText('56,5 %')).toBeInTheDocument();

@@ -748,7 +748,7 @@
       "ia": "Prévisions IA"
     },
     "ia": {
-      "avertissement": "Résultats calculés par les modèles d'apprentissage automatique (module ia-siigpe, réentraînement manuel). SIIGPE est encore en phase de test : les utilisateurs ne l'exploiteront en production qu'à partir de l'exercice 2027. Aucune donnée réelle d'exploitation des véhicules n'existe donc encore ; les prévisions véhicules reposent sur un jeu de données construit (2025-2026) qui valide la chaîne complète, et les modèles seront réentraînés sur les données réellement saisies à partir de 2027. Le délai de traitement est, lui, appris sur les dossiers réels.",
+      "avertissement": "Résultats calculés par les modèles d'apprentissage automatique (module ia-siigpe, réentraînement manuel). SIIGPE est encore en phase de test : les utilisateurs ne l'exploiteront en production qu'à partir de l'exercice 2027. Les prévisions véhicules reposent donc sur des DONNÉES FICTIVES (100 véhicules suivis de 2021 à 2026), construites uniquement pour la démonstration : elles montrent que la méthode fonctionne dès que chaque véhicule a plusieurs années d'historique, pas les montants du parc réel. Les modèles seront réentraînés sur les données saisies à partir de 2027. Le délai de traitement est, lui, appris sur les dossiers réels.",
       "exportExcel": "Exporter la prévision budgétaire",
       "vide": "Aucune prévision disponible : lancez l'entraînement (python modeles/entrainer_tout.py dans ia-siigpe).",
       "kpi": {
@@ -811,7 +811,7 @@
       "qualite": {
         "titre": "Qualité des modèles",
         "description": "Chaque modèle est évalué hors échantillon et comparé à une référence naïve : il n’a d’intérêt que s’il fait mieux qu’elle. En gras vert : la meilleure valeur. Détail complet dans ia-siigpe/rapports/rapport_ia.md.",
-        "construites": "Données construites",
+        "construites": "Données fictives (démonstration)",
         "reelles": "Données réelles",
         "batReference": "Bat la référence",
         "neBatPasReference": "Ne bat pas la référence",
@@ -827,7 +827,7 @@
           "DELAI_DOSSIER": "Délai de traitement des dossiers"
         },
         "references": {
-          "DEPENSE_VEHICULE": "Référence : N+1 = N",
+          "DEPENSE_VEHICULE": "Meilleure méthode sans apprentissage",
           "GROSSE_REPARATION": "Référence : grosse en N ⇒ en N+1",
           "ANOMALIE_CARBURANT": "Référence : règle 1,3 × habitude",
           "DELAI_DOSSIER": "Référence : médiane par type d’acte"
@@ -835,17 +835,19 @@
         "indicateurs": {
           "maeTemporel": "Erreur moyenne (test sur l’année suivante)",
           "maeAleatoire": "Erreur moyenne (test aléatoire)",
-          "maeVehicule": "Erreur moyenne par véhicule (meilleur modèle appris)",
-          "mapeStructures": "Erreur relative par STRUCTURE (back-test)",
+          "maeVehicule": "Erreur moyenne par véhicule (validation groupée)",
+          "mapeStructures": "Erreur relative par STRUCTURE (back-test, réf. N+1 = N)",
           "auc": "AUC ROC",
           "rappel": "Rappel",
           "f1": "F1 (anomalies injectées)",
-          "rappelKmGonfles": "Rappel « km gonflés »"
+          "rappelKmGonfles": "Rappel « km gonflés »",
+          "maeBacktest": "Erreur moyenne par véhicule (back-test dernière année)",
+          "aucBacktest": "AUC ROC (back-test dernière année)"
         },
         "lecture": {
-          "DEPENSE_VEHICULE": "Validation croisée répétée (5 plis × 10). Si aucun modèle appris ne bat la reconduction N+1 = N, c’est elle qui produit les prévisions : une seule paire d’années par véhicule ne suffit pas à apprendre la « fragilité » propre à chaque véhicule. Le modèle sera réévalué sur les données de production saisies à partir de 2027.",
-          "GROSSE_REPARATION": "Probabilité qu’une réparation dépasse 2 M Ar l’année suivante. Peu d’exemples positifs : l’AUC reste modeste ; à réévaluer sur les données de production (à partir de 2027).",
-          "ANOMALIE_CARBURANT": "Évalué sur les anomalies injectées dans le jeu construit. L’apprentissage non supervisé détecte les kilomètres gonflés, invisibles pour la règle simple.",
+          "DEPENSE_VEHICULE": "Validation croisée groupée par véhicule (5 × 10) et back-test sur la dernière année : le modèle appris est comparé à la meilleure des méthodes sans apprentissage (N+1 = N, tendance, moyenne historique du véhicule). Il n’est retenu que s’il fait mieux ; il exploite l’historique du véhicule (« fragilité »). Données fictives : preuve de méthode, à réévaluer sur les données de production (2027).",
+          "GROSSE_REPARATION": "Probabilité qu’une réparation dépasse 2 M Ar l’année suivante, apprise à partir de l’historique des réparations du véhicule. Données fictives : à réévaluer sur les données de production (à partir de 2027).",
+          "ANOMALIE_CARBURANT": "Évalué sur les anomalies injectées dans le jeu fictif. L’apprentissage non supervisé détecte les kilomètres gonflés, invisibles pour la règle simple.",
           "DELAI_DOSSIER": "Appris sur les dossiers clos réels. Mieux que la référence sur un test aléatoire, mais les délais dérivent d’une année à l’autre : réentraîner régulièrement."
         }
       }

@@ -741,7 +741,7 @@
       "ia": "AI forecasts"
     },
     "ia": {
-      "avertissement": "Results computed by the machine-learning models (ia-siigpe module, manual retraining). SIIGPE is still in its test phase: users will only run it in production from the 2027 financial year. No real vehicle operating data exists yet; vehicle forecasts therefore rely on a constructed dataset (2025-2026) that validates the whole pipeline, and the models will be retrained on the data actually entered from 2027. Processing time, on the other hand, is learned from real files.",
+      "avertissement": "Results computed by the machine-learning models (ia-siigpe module, manual retraining). SIIGPE is still in its test phase: users will only run it in production from the 2027 financial year. Vehicle forecasts therefore rely on FICTITIOUS DATA (100 vehicles followed from 2021 to 2026), built only for this demonstration: they show that the method works as soon as each vehicle has several years of history, not the amounts of the real fleet. The models will be retrained on the data entered from 2027. Processing time, on the other hand, is learned from real files.",
       "exportExcel": "Export budget forecast",
       "vide": "No forecast available: run the training (python modeles/entrainer_tout.py in ia-siigpe).",
       "kpi": {
@@ -804,7 +804,7 @@
       "qualite": {
         "titre": "Model quality",
         "description": "Each model is evaluated out of sample and compared with a naive baseline: it is only useful if it beats it. Bold green: best value. Full details in ia-siigpe/rapports/rapport_ia.md.",
-        "construites": "Constructed data",
+        "construites": "Fictitious data (demo)",
         "reelles": "Real data",
         "batReference": "Beats the baseline",
         "neBatPasReference": "Does not beat the baseline",
@@ -820,7 +820,7 @@
           "DELAI_DOSSIER": "File processing time"
         },
         "references": {
-          "DEPENSE_VEHICULE": "Baseline: N+1 = N",
+          "DEPENSE_VEHICULE": "Best method without learning",
           "GROSSE_REPARATION": "Baseline: major in N ⇒ in N+1",
           "ANOMALIE_CARBURANT": "Baseline: rule 1.3 × usual",
           "DELAI_DOSSIER": "Baseline: median per act type"
@@ -828,17 +828,19 @@
         "indicateurs": {
           "maeTemporel": "Mean error (test on the next year)",
           "maeAleatoire": "Mean error (random test)",
-          "maeVehicule": "Mean error per vehicle (best learned model)",
-          "mapeStructures": "Relative error per STRUCTURE (back-test)",
+          "maeVehicule": "Mean error per vehicle (grouped validation)",
+          "mapeStructures": "Relative error per STRUCTURE (back-test, baseline N+1 = N)",
           "auc": "ROC AUC",
           "rappel": "Recall",
           "f1": "F1 (injected anomalies)",
-          "rappelKmGonfles": "Recall “inflated km”"
+          "rappelKmGonfles": "Recall “inflated km”",
+          "maeBacktest": "Mean error per vehicle (last-year back-test)",
+          "aucBacktest": "ROC AUC (last-year back-test)"
         },
         "lecture": {
-          "DEPENSE_VEHICULE": "Repeated cross-validation (5 folds × 10). If no learned model beats carrying N forward, the baseline produces the forecasts: a single pair of years per vehicle is not enough to learn each vehicle’s own “fragility”. The model will be re-evaluated on the production data entered from 2027.",
-          "GROSSE_REPARATION": "Probability that a repair exceeds 2 M Ar next year. Few positive examples: the AUC stays modest; to be re-evaluated on production data (from 2027).",
-          "ANOMALIE_CARBURANT": "Evaluated on anomalies injected into the constructed dataset. Unsupervised learning detects inflated mileage, invisible to the simple rule.",
+          "DEPENSE_VEHICULE": "Cross-validation grouped by vehicle (5 × 10) and back-test on the last year: the learned model is compared with the best method without learning (N+1 = N, trend, vehicle historical mean). It is only kept if it does better; it uses the vehicle’s history (“fragility”). Fictitious data: proof of method, to be re-evaluated on production data (2027).",
+          "GROSSE_REPARATION": "Probability that a repair exceeds 2 M Ar next year, learned from the vehicle’s repair history. Fictitious data: to be re-evaluated on production data (from 2027).",
+          "ANOMALIE_CARBURANT": "Evaluated on anomalies injected into the fictitious dataset. Unsupervised learning detects inflated mileage, invisible to the simple rule.",
           "DELAI_DOSSIER": "Learned from real closed files. Better than the baseline on a random test, but times drift from one year to the next: retrain regularly."
         }
       }
