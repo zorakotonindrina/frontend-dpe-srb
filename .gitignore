@@ -22,3 +22,12 @@ yarn-error.log*
 # OS
 .DS_Store
 Thumbs.db
+
+
+node_modules/
+.next/
+out/
+dist/
+.env
+.env.*
+!.env.example
