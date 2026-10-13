@@ -52,7 +52,8 @@
       "submit": "Hiditra",
       "submitting": "Miditra…",
       "errorCredentials": "Diso ny fampahalalana. Amarino ny login sy ny tenimiafina.",
-      "errorLoginDisabled": "Voahidy ny kaontinao. Mifandraisa amin'ny mpitantana."
+      "errorLoginDisabled": "Voahidy ny kaontinao. Mifandraisa amin'ny mpitantana.",
+      "sessionExpired": "Lany ny fotoana fidirana. Midira indray azafady."
     },
     "forgotPassword": {
       "title": "Hadino ny tenimiafina?",

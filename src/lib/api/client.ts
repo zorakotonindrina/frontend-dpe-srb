@@ -15,6 +15,22 @@ function authToken(): string | null {
   }
 }
 
+/** Jeton refusé (401 : expiré ou invalide) alors qu'une session existait : la session locale est
+ *  effacée et l'utilisateur renvoyé vers la connexion. Seulement quand un jeton avait été envoyé —
+ *  un échec de connexion (identifiants faux) ne passe donc jamais par ici. */
+function terminerSessionExpiree(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.removeItem(AUTH_STORAGE_KEY);
+  } catch {
+    // stockage indisponible : la redirection suffit
+  }
+  if (!window.location.pathname.startsWith('/login')) {
+    const retour = encodeURIComponent(window.location.pathname + window.location.search);
+    window.location.assign(`/login?expire=1&callbackUrl=${retour}`);
+  }
+}
+
 // ------------------------------------------------------------------
 // Erreur API typée
 // ------------------------------------------------------------------
@@ -51,6 +67,7 @@ async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   });
 
   if (!res.ok) {
+    if (res.status === 401 && token) terminerSessionExpiree();
     const error = await res.json().catch(() => ({ message: res.statusText }));
     throw new ApiError(
       res.status,
@@ -87,6 +104,7 @@ export async function getBlob(path: string): Promise<Blob> {
     headers: token ? { Authorization: `Bearer ${token}` } : {},
   });
   if (!res.ok) {
+    if (res.status === 401 && token) terminerSessionExpiree();
     throw new ApiError(res.status, res.statusText);
   }
   return res.blob();

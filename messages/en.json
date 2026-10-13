@@ -50,7 +50,8 @@
       "submit": "Sign in",
       "submitting": "Signing in…",
       "errorCredentials": "Invalid credentials. Please check your login and password.",
-      "errorLoginDisabled": "Your account is disabled. Please contact your administrator."
+      "errorLoginDisabled": "Your account is disabled. Please contact your administrator.",
+      "sessionExpired": "Your session has expired. Please sign in again."
     },
     "forgotPassword": {
       "title": "Forgot password?",

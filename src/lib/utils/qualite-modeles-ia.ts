@@ -1,14 +1,14 @@
 import type { CodeModeleIa, ModeleIa } from '@/lib/api/reportingIa';
 
 /**
- * Lit les métriques jsonb de `ia.modele` (structure propre à chaque modèle, écrite par `ia-siigpe/modeles/*.py`) et en extrait les
+ * Lit les métriques jsonb de `prevision_siigpe.modele` (structure propre à chaque modèle, écrite par `ia-siigpe/modeles/*.py`) et en extrait les
  * indicateurs clés, **toujours comparés à la référence naïve** : un modèle n'a d'intérêt que s'il fait mieux qu'elle.
  */
 
 export type FormatIndicateur = 'jours' | 'ariary' | 'pct' | 'score';
 
 export interface IndicateurQualite {
-  /** Clé i18n sous `reporting.ia.qualite.indicateurs`. */
+  /** Clé i18n sous `reporting.prevision_siigpe.qualite.indicateurs`. */
   cle: string;
   modele: number;
   reference: number;

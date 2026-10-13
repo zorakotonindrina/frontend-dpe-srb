@@ -35,6 +35,8 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = safeCallbackUrl(searchParams.get('callbackUrl'));
+  // Renvoyé ici par le client API après un 401 (jeton expiré ou invalide).
+  const sessionExpiree = searchParams.get('expire') === '1';
 
   const loginSchema = useMemo(() => createLoginSchema(tValidation), [tValidation]);
   const auth = useAuthContext();
@@ -98,6 +100,13 @@ function LoginForm() {
               className="mt-2 max-w-sm text-xs leading-relaxed text-[#8a8f98] xl:text-sm"
             />
           </div>
+
+          {sessionExpiree && (
+            <p role="status" data-testid="login-session-expiree"
+               className="mt-5 rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-center text-xs text-amber-800">
+              {t('sessionExpired')}
+            </p>
+          )}
 
           <FormProvider {...form}>
             <form

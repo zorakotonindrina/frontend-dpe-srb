@@ -45,11 +45,11 @@ Workflow interne existant (workflow.wf_activite / wf_tache_role_entite)
         ↓
 Contrôle / validation / visa / refus
         ↓
-Génération automatique du livrable (document.document_genere)
+Génération automatique du livrable (document_siigpe.document_genere)
         ↓
 Archivage numérique
         ↓
-Audit et traçabilité (audit.audit_log)
+Audit et traçabilité (workflow.audit_log)
 ```
 
 Cette chaîne, purement conceptuelle en v1, est maintenant adossée à des tables réelles (entre parenthèses ci-dessus), ce qui confirme que la conception fonctionnelle initiale a été correctement traduite en base physique.
@@ -132,7 +132,7 @@ Tous les `CREATE TABLE` du script utilisent `IF NOT EXISTS`, toutes les insertio
 | Véhicule | Bien patrimonial suivi par l'État | `traitement_siigpe.entite_vehicule` |
 | Dossier | Demande administrative ouverte sur un ou plusieurs véhicules | `workflow.wf_dossier` (identifié par `reference_acte`) |
 | Pièce justificative | Document fourni pour compléter le dossier | `bscva.piece_dossier` (référentiel) + `bscva.dossier_piece` (pièces reçues) |
-| Acte / livrable | Document officiel généré par le système | `document.document_genere` |
+| Acte / livrable | Document officiel généré par le système | `document_siigpe.document_genere` |
 
 Cette séparation, déjà actée en v1, est confirmée physiquement : `entite_vehicule` (patrimoine permanent) n'est jamais mélangée avec `wf_dossier` (opération ponctuelle), et le lien entre les deux passe par une table de rattachement dédiée (`bscva.dossier_vehicule_ligne`, voir §12.8).
 
@@ -157,9 +157,9 @@ Le système doit afficher : taux de complétude du dossier, pièces manquantes, 
 
 ## 3.5. Générer automatiquement les livrables
 
-Les modèles contenus dans le fichier Excel des imprimés servent de base aux documents générés automatiquement. Le script SQL a déjà créé et peuplé le référentiel des modèles (`document.modele_document`, 10 lignes seed — voir §12.7) ainsi que la table de génération (`document.document_genere`) et l'historique d'impression (`document.document_impression`).
+Les modèles contenus dans le fichier Excel des imprimés servent de base aux documents générés automatiquement. Le script SQL a déjà créé et peuplé le référentiel des modèles (`document_siigpe.modele_document`, 10 lignes seed — voir §12.7) ainsi que la table de génération (`document_siigpe.document_genere`) et l'historique d'impression (`document_siigpe.document_impression`).
 
-Chaque livrable est généré à partir : des données du dossier, des données du véhicule, des pièces validées, de l'état du workflow, des signataires, des règles métier du processus. Les documents générés sont numérotés, archivés, versionnés (`document_genere.version`) et traçables (`document.document_impression`).
+Chaque livrable est généré à partir : des données du dossier, des données du véhicule, des pièces validées, de l'état du workflow, des signataires, des règles métier du processus. Les documents générés sont numérotés, archivés, versionnés (`document_genere.version`) et traçables (`document_siigpe.document_impression`).
 
 ---
 
@@ -247,7 +247,7 @@ Fonctionnalités : création et mise à jour des fiches véhicules (immatriculat
 
 C'est le module central du système, porté par `workflow.wf_dossier`. Clé métier : `reference_acte` (varchar 19), utilisée comme clé étrangère textuelle dans **toutes** les tables `bscva.*` — c'est le fil rouge qui relie référentiel de pièces, processus métier et documents générés, sans dupliquer la logique de workflow.
 
-Chaque dossier contient : référence unique (`reference_acte`), type de processus (`type_acte`, `processus_code`), date de dépôt/saisie, ministère demandeur (`ministere_code`), entité (`entite_code`), un ou plusieurs véhicules (via `bscva.dossier_vehicule_ligne`), pièces attendues/reçues (`bscva.piece_dossier` / `bscva.dossier_piece`), statut fonctionnel et étape workflow, observations, décisions (`motif_rejet`), livrables générés (`document.document_genere`), historique complet.
+Chaque dossier contient : référence unique (`reference_acte`), type de processus (`type_acte`, `processus_code`), date de dépôt/saisie, ministère demandeur (`ministere_code`), entité (`entite_code`), un ou plusieurs véhicules (via `bscva.dossier_vehicule_ligne`), pièces attendues/reçues (`bscva.piece_dossier` / `bscva.dossier_piece`), statut fonctionnel et étape workflow, observations, décisions (`motif_rejet`), livrables générés (`document_siigpe.document_genere`), historique complet.
 
 Types de dossiers principaux : les 11 `type_code` du tableau §6 (`REC`, `CST`, `VBC`, `RCT`, `RNE`, `ARL`, `LOC`, `CAR`, `EXP`, `CDN`, `TCH`).
 
@@ -367,7 +367,7 @@ Chaque processus ci-dessous reprend la structure de la v1 (objectif, pièces, do
 
 **Livrables générés :** canevas de recensement, quitus de recensement.
 
-**Tables associées :** `workflow.wf_dossier` (type `REC`) · `bscva.recensement` (en-tête) · `bscva.recensement_ligne` (une ligne par véhicule, avec `carte_grise_dispo`, `livrets_dispo`, `etat_general`, `categorie_utilisation`) · `traitement_siigpe.quitus_vehicule` (quitus final, table déjà existante réutilisée) · `document.modele_document` code `QUITUS_RECENSEMENT`.
+**Tables associées :** `workflow.wf_dossier` (type `REC`) · `bscva.recensement` (en-tête) · `bscva.recensement_ligne` (une ligne par véhicule, avec `carte_grise_dispo`, `livrets_dispo`, `etat_general`, `categorie_utilisation`) · `traitement_siigpe.quitus_vehicule` (quitus final, table déjà existante réutilisée) · `document_siigpe.modele_document` code `QUITUS_RECENSEMENT`.
 
 ## 8.2. Processus II — Constatation technique avant réparation
 
@@ -377,7 +377,7 @@ Chaque processus ci-dessous reprend la structure de la v1 (objectif, pièces, do
 
 **Livrables générés :** fiche de diagnostic technique, procès-verbal de constatation technique.
 
-**Tables associées :** `workflow.wf_dossier` (type `CST`) · `bscva.constatation_technique` · `bscva.constatation_element` (+ référentiel `bscva.section_constatation` / `element_constatation`) · `bscva.constatation_piece_remplacer` · `bscva.constatation_reparation` · `document.modele_document` codes `FICHE_CONSTATATION` et `PV_CONSTATATION`.
+**Tables associées :** `workflow.wf_dossier` (type `CST`) · `bscva.constatation_technique` · `bscva.constatation_element` (+ référentiel `bscva.section_constatation` / `element_constatation`) · `bscva.constatation_piece_remplacer` · `bscva.constatation_reparation` · `document_siigpe.modele_document` codes `FICHE_CONSTATATION` et `PV_CONSTATATION`.
 
 ## 8.3. Processus III — Visa du bon de commande
 
@@ -387,7 +387,7 @@ Chaque processus ci-dessous reprend la structure de la v1 (objectif, pièces, do
 
 **Livrables générés :** bon de commande visé, bon de commande refusé, visa avec mention « sous réserve de réception technique ».
 
-**Tables associées :** `workflow.wf_dossier` (type `VBC`) · `bscva.visa_bon_commande` (relié à `traitement_siigpe.entretien_reparation_vehicule` via `numero_bc`) · `bscva.visa_bc_piece` · `document.modele_document` code `BC_VISE`.
+**Tables associées :** `workflow.wf_dossier` (type `VBC`) · `bscva.visa_bon_commande` (relié à `traitement_siigpe.entretien_reparation_vehicule` via `numero_bc`) · `bscva.visa_bc_piece` · `document_siigpe.modele_document` code `BC_VISE`.
 
 ## 8.4. Processus IV — Réception technique après travaux
 
@@ -397,7 +397,7 @@ Chaque processus ci-dessous reprend la structure de la v1 (objectif, pièces, do
 
 **Livrables générés :** fiche de réception technique, procès-verbal de réception technique.
 
-**Tables associées :** `workflow.wf_dossier` (type `RCT`) · `bscva.reception_technique` (FK `visa_bc_id` → `bscva.visa_bon_commande`) · `bscva.reception_constat` · `document.modele_document` code `PV_RECEPTION`.
+**Tables associées :** `workflow.wf_dossier` (type `RCT`) · `bscva.reception_technique` (FK `visa_bc_id` → `bscva.visa_bon_commande`) · `bscva.reception_constat` · `document_siigpe.modele_document` code `PV_RECEPTION`.
 
 ## 8.5. Processus V — Réception technique véhicule nouvellement acquis
 
@@ -407,7 +407,7 @@ Chaque processus ci-dessous reprend la structure de la v1 (objectif, pièces, do
 
 **Livrable généré :** procès-verbal de réception / ordre de recette.
 
-**Tables associées :** `workflow.wf_dossier` (type `RNE`) · `bscva.reception_va_neuf` (en-tête budgétaire) · `bscva.reception_neuf_ligne` (FK `vehicule_id` → `traitement_siigpe.entite_vehicule`) · `document.modele_document` code `PV_ORDRE_RECETTE`.
+**Tables associées :** `workflow.wf_dossier` (type `RNE`) · `bscva.reception_va_neuf` (en-tête budgétaire) · `bscva.reception_neuf_ligne` (FK `vehicule_id` → `traitement_siigpe.entite_vehicule`) · `document_siigpe.modele_document` code `PV_ORDRE_RECETTE`.
 
 ## 8.6. Processus VI — Visa arrêtage livret
 
@@ -415,7 +415,7 @@ Chaque processus ci-dessous reprend la structure de la v1 (objectif, pièces, do
 
 **Livrables générés :** visa arrêtage livret SA, GSS, Parcours.
 
-**Tables associées :** `workflow.wf_dossier` (type `ARL`) · `bscva.arretage_livret` · `bscva.arretage_livret_detail` (FK `type_livret_code` → `bscva.type_livret`) · `document.modele_document` code `VISA_ARRETAGE_LIVRET`.
+**Tables associées :** `workflow.wf_dossier` (type `ARL`) · `bscva.arretage_livret` · `bscva.arretage_livret_detail` (FK `type_livret_code` → `bscva.type_livret`) · `document_siigpe.modele_document` code `VISA_ARRETAGE_LIVRET`.
 
 ## 8.7. Processus VII — Attestation d'aptitude et autorisation de location
 
@@ -425,13 +425,13 @@ Chaque processus ci-dessous reprend la structure de la v1 (objectif, pièces, do
 
 **Livrables générés :** attestation d'aptitude, autorisation de location.
 
-**Tables associées :** `workflow.wf_dossier` (type `LOC`) · `bscva.controle_aptitude` (à corriger, voir §7.11 et §20) · `document.modele_document` codes `ATTESTATION_APTITUDE` et `AUTORISATION_LOCATION`.
+**Tables associées :** `workflow.wf_dossier` (type `LOC`) · `bscva.controle_aptitude` (à corriger, voir §7.11 et §20) · `document_siigpe.modele_document` codes `ATTESTATION_APTITUDE` et `AUTORISATION_LOCATION`.
 
 ## 8.8. Processus VIII — Attestation de caractéristiques
 
 **Objectif :** délivrer une attestation de caractéristiques, notamment pour permettre l'obtention d'une nouvelle carte grise en cas de perte ou détérioration.
 
-**Tables associées :** `workflow.wf_dossier` (type `CAR`) · `bscva.attestation_caracteristique` · `document.modele_document` code `ATTESTATION_CARACTERISTIQUE`.
+**Tables associées :** `workflow.wf_dossier` (type `CAR`) · `bscva.attestation_caracteristique` · `document_siigpe.modele_document` code `ATTESTATION_CARACTERISTIQUE`.
 
 ---
 
@@ -456,26 +456,26 @@ Chaque processus ci-dessous reprend la structure de la v1 (objectif, pièces, do
 ```text
 Validation workflow
         ↓
-Sélection du modèle selon le type de processus (document.modele_document, filtré par type_acte)
+Sélection du modèle selon le type de processus (document_siigpe.modele_document, filtré par type_acte)
         ↓
 Chargement des données dossier + véhicule + pièces + signataires
         ↓
-Génération du document (document.document_genere, statut='BROUILLON')
+Génération du document (document_siigpe.document_genere, statut='BROUILLON')
         ↓
-Attribution du numéro officiel (document.sequence_document)
+Attribution du numéro officiel (document_siigpe.sequence_document)
         ↓
 Archivage dans le dossier (document_genere.statut='VALIDE')
         ↓
-Journalisation de l'action (audit.audit_log)
+Journalisation de l'action (workflow.audit_log)
 ```
 
 ## 10.2. Technologie recommandée
 
-**JasperReports**, cohérente avec `document.modele_document.format_modele = 'JASPER'` et la convention de chemin `jasper/<nom>.jrxml` déjà utilisée dans les 10 lignes seedées de `document.modele_document`.
+**JasperReports**, cohérente avec `document_siigpe.modele_document.format_modele = 'JASPER'` et la convention de chemin `jasper/<nom>.jrxml` déjà utilisée dans les 10 lignes seedées de `document_siigpe.modele_document`.
 
 ## 10.3. Numérotation
 
-Portée par `document.sequence_document` (clé `type_acte`, compteur `dernier_numero`). Règle proposée, à confirmer avec le métier :
+Portée par `document_siigpe.sequence_document` (clé `type_acte`, compteur `dernier_numero`). Règle proposée, à confirmer avec le métier :
 
 ```text
 Numéro séquentiel par type d'acte et par exercice
@@ -484,7 +484,7 @@ Exemple : 0001-2026/MEF/SG/DGBF/DB/SRB Anala/DRPE/BSCVA
 
 ## 10.4. Gestion des versions et statuts
 
-`document.document_genere.statut` est désormais contraint en base :
+`document_siigpe.document_genere.statut` est désormais contraint en base :
 
 ```sql
 CHECK (statut IN ('BROUILLON','VALIDE','ANNULE','REMPLACE'))
@@ -497,7 +497,7 @@ CHECK (statut IN ('BROUILLON','VALIDE','ANNULE','REMPLACE'))
 | `ANNULE` | Document invalidé |
 | `REMPLACE` | Document remplacé par une nouvelle version |
 
-Une réimpression d'un document validé conserve le même numéro mais est tracée dans `document.document_impression` (`imprime_par`, `date_impression`, `motif`, `adresse_ip`).
+Une réimpression d'un document validé conserve le même numéro mais est tracée dans `document_siigpe.document_impression` (`imprime_par`, `date_impression`, `motif`, `adresse_ip`).
 
 ## 10.5. Formats de sortie
 
@@ -507,7 +507,7 @@ PDF pour les actes officiels, Excel pour les canevas et exports, archive ZIP pou
 
 # 11. Spécification synthétique des livrables
 
-*(Contenu inchangé par rapport à la v1 — reportez-vous à la version précédente pour le détail champ par champ de chaque livrable : quitus de recensement, fiche de diagnostic, PV de constatation, BC visé/refusé, PV de réception, PV d'ordre de recette, visa arrêtage livret, attestation d'aptitude, autorisation de location, attestation de caractéristiques. Chaque livrable correspond désormais à une ligne de `document.modele_document` listée en §10.2 et au §20.9 du script SQL.)*
+*(Contenu inchangé par rapport à la v1 — reportez-vous à la version précédente pour le détail champ par champ de chaque livrable : quitus de recensement, fiche de diagnostic, PV de constatation, BC visé/refusé, PV de réception, PV d'ordre de recette, visa arrêtage livret, attestation d'aptitude, autorisation de location, attestation de caractéristiques. Chaque livrable correspond désormais à une ligne de `document_siigpe.modele_document` listée en §10.2 et au §20.9 du script SQL.)*
 
 ---
 
@@ -565,7 +565,7 @@ entite_vehicule
 
 Tables satellites : `information_utilisation_vehicule` / `entite_utilisation_vehicule` (usage et affectation), `vehicule_detenteur` (détenteur effectif dans le temps), `quitus_vehicule` (quitus annuel — réutilisé par le processus Recensement), `entretien_reparation_vehicule` / `reparation_effectue_vehicule` (historique BC — réutilisé par Visa BC), `historique_vehicule` (journal `jsonb` avant/après).
 
-Le script ajoute à `entite_vehicule` les colonnes d'audit standard : `is_deleted`, `deleted_at`, `deleted_by`, `created_at`, `created_by`, `updated_at`, `updated_by` — pattern de suppression logique appliqué de façon cohérente sur les tables les plus sensibles (`entite_vehicule`, `bscva.dossier_piece`, `document.document_genere`).
+Le script ajoute à `entite_vehicule` les colonnes d'audit standard : `is_deleted`, `deleted_at`, `deleted_by`, `created_at`, `created_by`, `updated_at`, `updated_by` — pattern de suppression logique appliqué de façon cohérente sur les tables les plus sensibles (`entite_vehicule`, `bscva.dossier_piece`, `document_siigpe.document_genere`).
 
 ## 12.4. Schéma `document` — génération et archivage
 
@@ -583,7 +583,7 @@ sequence_document (type_acte PK, dernier_numero)
 
 ## 12.5. Schéma `audit` — traçabilité globale
 
-Table unique `audit.audit_log` : `utilisateur_id`, `action`, `schema_nom`, `table_nom`, `entite_id`, `reference_acte`, `ancienne_valeur`/`nouvelle_valeur` (`jsonb`), `date_action`, `adresse_ip`, `user_agent`. Générique par construction (colonnes `schema_nom`/`table_nom`) : peut journaliser n'importe quelle table du système sans modification de structure, y compris les futures tables `bscva`.
+Table unique `workflow.audit_log` : `utilisateur_id`, `action`, `schema_nom`, `table_nom`, `entite_id`, `reference_acte`, `ancienne_valeur`/`nouvelle_valeur` (`jsonb`), `date_action`, `adresse_ip`, `user_agent`. Générique par construction (colonnes `schema_nom`/`table_nom`) : peut journaliser n'importe quelle table du système sans modification de structure, y compris les futures tables `bscva`.
 
 ## 12.6. Schéma `bscva` — cœur métier nouveau
 
@@ -630,9 +630,9 @@ C'est le schéma central de ce projet. Il regroupe :
                                      │
         ┌────────────────┬──────────┼───────────┬──────────────────┐
         │                │          │           │                  │
-bscva.dossier_piece  bscva.dossier_vehicule_ligne │     document.document_genere
+bscva.dossier_piece  bscva.dossier_vehicule_ligne │     document_siigpe.document_genere
         │                │          │           │                  │
-bscva.piece_dossier   traitement_siigpe   bscva.recensement   document.modele_document
+bscva.piece_dossier   traitement_siigpe   bscva.recensement   document_siigpe.modele_document
                        .entite_vehicule    bscva.constatation_technique
                             │              bscva.visa_bon_commande
                             │              bscva.reception_technique
@@ -644,7 +644,7 @@ bscva.piece_dossier   traitement_siigpe   bscva.recensement   document.modele_do
                                                               bscva.evaluation_condamnation
 ```
 
-## 12.9. Modèles de documents déjà seedés (`document.modele_document`)
+## 12.9. Modèles de documents déjà seedés (`document_siigpe.modele_document`)
 
 | Code | Libellé | `type_acte` | Fichier Jasper |
 |---|---|---|---|
@@ -745,7 +745,7 @@ mg.gov.srb.vehicules
  │    └── piecejointe/     # piece_dossier / dossier_piece, transverse à tous les processus
  ├── document/             # modele_document, document_genere, sequence_document, jasper
  ├── reporting/            # vues bscva.v_va_*, exports PDF/Excel
- └── audit/                # audit.audit_log, aspect AOP transverse
+ └── audit/                # workflow.audit_log, aspect AOP transverse
  
 src/main/resources/
  ├── db/migration/         # scripts Flyway, cf. §14.3
@@ -940,7 +940,7 @@ POST   /api/documents/{documentId}/annuler
 POST   /api/documents/{documentId}/reimprimer
 ```
 
-`{modeleCode}` correspond aux codes de `document.modele_document` listés en §12.9 (ex. `QUITUS_RECENSEMENT`, `BC_VISE`…).
+`{modeleCode}` correspond aux codes de `document_siigpe.modele_document` listés en §12.9 (ex. `QUITUS_RECENSEMENT`, `BC_VISE`…).
 
 ## 15.5. Workflow
 
@@ -992,7 +992,7 @@ Ces endpoints s'appuient sur les vues `bscva.v_va_*` à créer (§14.7, point 3)
 - protection des documents archivés et contrôle des fichiers uploadés (`dossier_piece.mime_type`, `taille_octets`, `hash_fichier`) ;
 - sauvegardes automatiques ;
 - séparation développement / test / production (§14.6) ;
-- traçabilité des validations et signatures (`audit.audit_log`) ;
+- traçabilité des validations et signatures (`workflow.audit_log`) ;
 - protection contre les accès non autorisés et l'injection SQL (paramétrage systématique côté ORM/JPA, jamais de concaténation SQL).
 
 ---
@@ -1059,15 +1059,15 @@ Expertise/contre-expertise, condamnation/mise à prix, tests chauffeurs, tableau
 12. Le visa arrêtage livret concerne les trois livrets SA, GSS et Parcours.
 13. Tous les actes générés doivent être archivés.
 14. Toutes les validations, refus et signatures doivent être tracés.
-15. Les documents générés doivent avoir une référence unique (`document.sequence_document`).
+15. Les documents générés doivent avoir une référence unique (`document_siigpe.sequence_document`).
 16. Un dossier peut concerner un ou plusieurs véhicules (`bscva.dossier_vehicule_ligne`).
 17. Un véhicule peut apparaître dans plusieurs dossiers au cours de son cycle de vie.
 18. Les données financières doivent être suivies par véhicule, période, ministère et SOA.
 19. Les documents doivent pouvoir être exportés en PDF et Excel.
-20. Les actions sensibles doivent être visibles dans le journal d'audit (`audit.audit_log`).
+20. Les actions sensibles doivent être visibles dans le journal d'audit (`workflow.audit_log`).
 21. Une date de clôture proposée doit être gérée pour chaque dossier.
 22. Un refus doit toujours avoir un motif (`motif_refus`, `motif_rejet`).
-23. Une réimpression doit être tracée (`document.document_impression`).
+23. Une réimpression doit être tracée (`document_siigpe.document_impression`).
 24. Un document validé ne doit pas être modifié directement : il doit être remplacé par une nouvelle version (`statut = 'REMPLACE'`).
 25. **(nouveau)** Les statuts métier critiques sont désormais garantis par des contraintes `CHECK` en base (§10.4, §7.4, §7.7, §7.8, §7.11) — l'application ne doit donc jamais s'appuyer sur des chaînes libres non validées pour ces champs.
 26. **(nouveau)** Le script SQL est idempotent et non destructif (§3.2, §12.7) : toute évolution future du schéma doit continuer à suivre ce même principe (`IF NOT EXISTS`, `ADD COLUMN`, jamais de `DROP`/`RENAME` sans migration de compatibilité explicite).
@@ -1094,7 +1094,7 @@ Expertise/contre-expertise, condamnation/mise à prix, tests chauffeurs, tableau
 11. **`bscva.controle_aptitude`** porte une contrainte `FOREIGN KEY (vehicule_id) …` sans que la colonne `vehicule_id` soit déclarée dans la table — à corriger par une migration `V6` avant toute mise en production (cf. §7.11, §14.3).
 12. **Les 8 vues `bscva.v_va_*`** référencées par `workflow.wf_referentiel_etat.etat_view` (recensement, constatation, visa BC, réception, réception neuf, arrêtage livret, aptitude/location, attestation caractéristiques) ne sont pas créées dans le script fourni — à écrire en `V5` (cf. §12.9, §14.3, §14.7).
 13. **Table des résultats de test chauffeur** — `bscva.chauffeur_test` a été ajoutée en migration additive le 2026-08-04 (Script.sql, section 17 ; voir §22.1), avec un résultat `APTE`/`NON_APTE` conforme au cahier des charges. Reste à valider côté backend avant application en production.
-14. **Fichiers `.jrxml`** listés dans `document.modele_document` (10 modèles) n'existent pas encore physiquement — livrable de conception UI/Jasper à produire pendant la phase « Conception UI/UX » du planning (§14.9).
+14. **Fichiers `.jrxml`** listés dans `document_siigpe.modele_document` (10 modèles) n'existent pas encore physiquement — livrable de conception UI/Jasper à produire pendant la phase « Conception UI/UX » du planning (§14.9).
 15. Deux conventions de génération d'UUID coexistent (`gen_random_uuid()` vs `uuid_in(md5(random()::text)::cstring)`) selon l'ancienneté de la table (§12.7) — à documenter clairement pour l'équipe afin d'éviter toute tentative d'harmonisation destructive sur les tables historiques.
 
 ---

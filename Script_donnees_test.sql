@@ -240,7 +240,7 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_reparation_effectue_vehicu
 /* =====================================================================
    5) DOSSIERS PAR PROCESSUS — workflow.wf_dossier / wf_processus_activite_tache
    + table(s) tsi_<processus> + referentiel_siigpe.rsi_<processus> (dossier archivé
-   uniquement) + document.document_genere (dossier archivé uniquement)
+   uniquement) + document_siigpe.document_genere (dossier archivé uniquement)
    =====================================================================
    3 dossiers par processus (33 au total) : #1 CONTROLE_PIECES (juste déposé),
    #2 étape intermédiaire variable (couverture de TRAITEMENT_TECHNIQUE/VISA_VALIDATION/
@@ -305,9 +305,9 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_recensement_ligne WHERE re
 INSERT INTO referentiel_siigpe.rsi_recensement (reference_acte, min_code, soa_code, niveau, valide_par, statut)
 SELECT 'REC0620260003', '21', 'SRB-ANA', 'Régional', '900007', 'V'
 WHERE NOT EXISTS (SELECT 1 FROM referentiel_siigpe.rsi_recensement WHERE reference_acte = 'REC0620260003');
-INSERT INTO document.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
-SELECT gen_random_uuid(), 'REC0620260003', (SELECT modele_id FROM document.modele_document WHERE code = 'QUITUS_RECENSEMENT'), 'QUITUS_RECENSEMENT-2026-0001', 1, 'VALIDE', '900001', '2026-06-20 11:00:00'
-WHERE NOT EXISTS (SELECT 1 FROM document.document_genere WHERE reference_acte = 'REC0620260003' AND modele_id = (SELECT modele_id FROM document.modele_document WHERE code = 'QUITUS_RECENSEMENT'));
+INSERT INTO document_siigpe.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
+SELECT gen_random_uuid(), 'REC0620260003', (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'QUITUS_RECENSEMENT'), 'QUITUS_RECENSEMENT-2026-0001', 1, 'VALIDE', '900001', '2026-06-20 11:00:00'
+WHERE NOT EXISTS (SELECT 1 FROM document_siigpe.document_genere WHERE reference_acte = 'REC0620260003' AND modele_id = (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'QUITUS_RECENSEMENT'));
 
 -- --- II. CONSTATATION TECHNIQUE (VA_CONSTAT / CST, juin 2026) ---
 INSERT INTO traitement_siigpe.tsi_sequence_dossier (type_acte, annee, mois, dernier_numero) VALUES ('CST', 2026, 6, 3)
@@ -366,9 +366,9 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_constatation_reparation WH
 INSERT INTO referentiel_siigpe.rsi_constatation_technique (reference_acte, vehicule_id, numero_constat, date_constat, etat_general, valide_par, statut)
 SELECT 'CST0620260003', 'a0000000-0000-0000-0000-000000000001', 'CST-2026-003', '2026-06-25', '2', '900007', 'V'
 WHERE NOT EXISTS (SELECT 1 FROM referentiel_siigpe.rsi_constatation_technique WHERE reference_acte = 'CST0620260003');
-INSERT INTO document.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
-SELECT gen_random_uuid(), 'CST0620260003', (SELECT modele_id FROM document.modele_document WHERE code = 'PV_CONSTATATION'), 'PV_CONSTATATION-2026-0001', 1, 'VALIDE', '900001', '2026-06-27 10:00:00'
-WHERE NOT EXISTS (SELECT 1 FROM document.document_genere WHERE reference_acte = 'CST0620260003' AND modele_id = (SELECT modele_id FROM document.modele_document WHERE code = 'PV_CONSTATATION'));
+INSERT INTO document_siigpe.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
+SELECT gen_random_uuid(), 'CST0620260003', (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'PV_CONSTATATION'), 'PV_CONSTATATION-2026-0001', 1, 'VALIDE', '900001', '2026-06-27 10:00:00'
+WHERE NOT EXISTS (SELECT 1 FROM document_siigpe.document_genere WHERE reference_acte = 'CST0620260003' AND modele_id = (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'PV_CONSTATATION'));
 
 -- --- III. VISA BON DE COMMANDE (VA_VISA_BC / VBC, juillet 2026) ---
 INSERT INTO traitement_siigpe.tsi_sequence_dossier (type_acte, annee, mois, dernier_numero) VALUES ('VBC', 2026, 7, 3)
@@ -419,9 +419,9 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_visa_bc_piece WHERE id = '
 INSERT INTO referentiel_siigpe.rsi_visa_bon_commande (reference_acte, vehicule_id, numero_bc, date_bc, montant, numero_visa, date_visa, sens_visa, decision, valide_par, statut)
 SELECT 'VBC0720260003', 'a0000000-0000-0000-0000-000000000001', 'BC-2026-0045', '2026-07-05', 1850000, 'VISA-2026-0012', '2026-07-10', 'V', 'VISA', '900007', 'V'
 WHERE NOT EXISTS (SELECT 1 FROM referentiel_siigpe.rsi_visa_bon_commande WHERE reference_acte = 'VBC0720260003');
-INSERT INTO document.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
-SELECT gen_random_uuid(), 'VBC0720260003', (SELECT modele_id FROM document.modele_document WHERE code = 'BC_VISE'), 'BC_VISE-2026-0001', 1, 'VALIDE', '900001', '2026-07-11 09:00:00'
-WHERE NOT EXISTS (SELECT 1 FROM document.document_genere WHERE reference_acte = 'VBC0720260003' AND modele_id = (SELECT modele_id FROM document.modele_document WHERE code = 'BC_VISE'));
+INSERT INTO document_siigpe.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
+SELECT gen_random_uuid(), 'VBC0720260003', (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'BC_VISE'), 'BC_VISE-2026-0001', 1, 'VALIDE', '900001', '2026-07-11 09:00:00'
+WHERE NOT EXISTS (SELECT 1 FROM document_siigpe.document_genere WHERE reference_acte = 'VBC0720260003' AND modele_id = (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'BC_VISE'));
 
 -- --- IV. RÉCEPTION TECHNIQUE (VA_RECEPT / RCT, juillet 2026) ---
 INSERT INTO traitement_siigpe.tsi_sequence_dossier (type_acte, annee, mois, dernier_numero) VALUES ('RCT', 2026, 7, 3)
@@ -472,9 +472,9 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_reception_constat WHERE id
 INSERT INTO referentiel_siigpe.rsi_reception_technique (reference_acte, vehicule_id, date_reception, service_fait_gac, avis, valide_par, statut)
 SELECT 'RCT0720260003', 'a0000000-0000-0000-0000-000000000001', '2026-07-20', 1, 'FAVORABLE', '900007', 'V'
 WHERE NOT EXISTS (SELECT 1 FROM referentiel_siigpe.rsi_reception_technique WHERE reference_acte = 'RCT0720260003');
-INSERT INTO document.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
-SELECT gen_random_uuid(), 'RCT0720260003', (SELECT modele_id FROM document.modele_document WHERE code = 'PV_RECEPTION'), 'PV_RECEPTION-2026-0001', 1, 'VALIDE', '900001', '2026-07-22 09:00:00'
-WHERE NOT EXISTS (SELECT 1 FROM document.document_genere WHERE reference_acte = 'RCT0720260003' AND modele_id = (SELECT modele_id FROM document.modele_document WHERE code = 'PV_RECEPTION'));
+INSERT INTO document_siigpe.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
+SELECT gen_random_uuid(), 'RCT0720260003', (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'PV_RECEPTION'), 'PV_RECEPTION-2026-0001', 1, 'VALIDE', '900001', '2026-07-22 09:00:00'
+WHERE NOT EXISTS (SELECT 1 FROM document_siigpe.document_genere WHERE reference_acte = 'RCT0720260003' AND modele_id = (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'PV_RECEPTION'));
 
 -- --- V. RÉCEPTION VA NEUF (VA_RECEPT_NEUF / RNE, mai 2026) ---
 INSERT INTO traitement_siigpe.tsi_sequence_dossier (type_acte, annee, mois, dernier_numero) VALUES ('RNE', 2026, 5, 3)
@@ -522,9 +522,9 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_reception_neuf_ligne WHERE
 INSERT INTO referentiel_siigpe.rsi_reception_va_neuf (reference_acte, budget_code, type_acquisition, reference_marche, fournisseur_nom, date_pv, valide_par, statut)
 SELECT 'RNE0520260003', 'BUD-2026-EF-01', 'MARCHE', 'MARCHE-2026-0034', 'CFAO Motors Madagascar', '2026-05-15', '900007', 'V'
 WHERE NOT EXISTS (SELECT 1 FROM referentiel_siigpe.rsi_reception_va_neuf WHERE reference_acte = 'RNE0520260003');
-INSERT INTO document.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
-SELECT gen_random_uuid(), 'RNE0520260003', (SELECT modele_id FROM document.modele_document WHERE code = 'PV_ORDRE_RECETTE'), 'PV_ORDRE_RECETTE-2026-0001', 1, 'VALIDE', '900001', '2026-05-15 14:00:00'
-WHERE NOT EXISTS (SELECT 1 FROM document.document_genere WHERE reference_acte = 'RNE0520260003' AND modele_id = (SELECT modele_id FROM document.modele_document WHERE code = 'PV_ORDRE_RECETTE'));
+INSERT INTO document_siigpe.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
+SELECT gen_random_uuid(), 'RNE0520260003', (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'PV_ORDRE_RECETTE'), 'PV_ORDRE_RECETTE-2026-0001', 1, 'VALIDE', '900001', '2026-05-15 14:00:00'
+WHERE NOT EXISTS (SELECT 1 FROM document_siigpe.document_genere WHERE reference_acte = 'RNE0520260003' AND modele_id = (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'PV_ORDRE_RECETTE'));
 
 -- --- VI. ARRÊTAGE LIVRET (VA_ARRET_LIV / ARL, mai 2026) ---
 INSERT INTO traitement_siigpe.tsi_sequence_dossier (type_acte, annee, mois, dernier_numero) VALUES ('ARL', 2026, 5, 3)
@@ -574,9 +574,9 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_arretage_livret_detail WHE
 INSERT INTO referentiel_siigpe.rsi_arretage_livret (reference_acte, vehicule_id, date_arretage, dernier_bc, valide_par, statut)
 SELECT 'ARL0520260003', 'a0000000-0000-0000-0000-000000000006', '2025-12-31', 'BC-2025-0198', '900007', 'V'
 WHERE NOT EXISTS (SELECT 1 FROM referentiel_siigpe.rsi_arretage_livret WHERE reference_acte = 'ARL0520260003');
-INSERT INTO document.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
-SELECT gen_random_uuid(), 'ARL0520260003', (SELECT modele_id FROM document.modele_document WHERE code = 'VISA_ARRETAGE_LIVRET'), 'VISA_ARRETAGE_LIVRET-2026-0001', 1, 'VALIDE', '900001', '2026-05-05 16:00:00'
-WHERE NOT EXISTS (SELECT 1 FROM document.document_genere WHERE reference_acte = 'ARL0520260003' AND modele_id = (SELECT modele_id FROM document.modele_document WHERE code = 'VISA_ARRETAGE_LIVRET'));
+INSERT INTO document_siigpe.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
+SELECT gen_random_uuid(), 'ARL0520260003', (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'VISA_ARRETAGE_LIVRET'), 'VISA_ARRETAGE_LIVRET-2026-0001', 1, 'VALIDE', '900001', '2026-05-05 16:00:00'
+WHERE NOT EXISTS (SELECT 1 FROM document_siigpe.document_genere WHERE reference_acte = 'ARL0520260003' AND modele_id = (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'VISA_ARRETAGE_LIVRET'));
 
 -- --- VII. CONTRÔLE D'APTITUDE / LOCATION (VA_LOCATION / LOC, août 2026) ---
 INSERT INTO traitement_siigpe.tsi_sequence_dossier (type_acte, annee, mois, dernier_numero) VALUES ('LOC', 2026, 8, 3)
@@ -620,9 +620,9 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_controle_aptitude WHERE ap
 INSERT INTO referentiel_siigpe.rsi_controle_aptitude (reference_acte, vehicule_id, date_debut, date_fin, apte, avis_aptitude, valide_par, statut)
 SELECT 'LOC0820260003', 'a0000000-0000-0000-0000-000000000009', '2026-08-05', '2026-08-07', 1, 'APTE', '900007', 'V'
 WHERE NOT EXISTS (SELECT 1 FROM referentiel_siigpe.rsi_controle_aptitude WHERE reference_acte = 'LOC0820260003');
-INSERT INTO document.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
-SELECT gen_random_uuid(), 'LOC0820260003', (SELECT modele_id FROM document.modele_document WHERE code = 'AUTORISATION_LOCATION'), 'AUTORISATION_LOCATION-2026-0001', 1, 'VALIDE', '900001', '2026-08-04 11:00:00'
-WHERE NOT EXISTS (SELECT 1 FROM document.document_genere WHERE reference_acte = 'LOC0820260003' AND modele_id = (SELECT modele_id FROM document.modele_document WHERE code = 'AUTORISATION_LOCATION'));
+INSERT INTO document_siigpe.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
+SELECT gen_random_uuid(), 'LOC0820260003', (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'AUTORISATION_LOCATION'), 'AUTORISATION_LOCATION-2026-0001', 1, 'VALIDE', '900001', '2026-08-04 11:00:00'
+WHERE NOT EXISTS (SELECT 1 FROM document_siigpe.document_genere WHERE reference_acte = 'LOC0820260003' AND modele_id = (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'AUTORISATION_LOCATION'));
 
 -- --- VIII. ATTESTATION DE CARACTÉRISTIQUES (VA_ATT_CARAC / CAR, août 2026) ---
 INSERT INTO traitement_siigpe.tsi_sequence_dossier (type_acte, annee, mois, dernier_numero) VALUES ('CAR', 2026, 8, 3)
@@ -666,9 +666,9 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_attestation_caracteristiqu
 INSERT INTO referentiel_siigpe.rsi_attestation_caracteristique (reference_acte, vehicule_id, immatriculation, marque, genre, valide_par, statut)
 SELECT 'CAR0820260003', 'a0000000-0000-0000-0000-000000000008', '3333 TBH', 'Toyota', 'VP', '900007', 'V'
 WHERE NOT EXISTS (SELECT 1 FROM referentiel_siigpe.rsi_attestation_caracteristique WHERE reference_acte = 'CAR0820260003');
-INSERT INTO document.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
-SELECT gen_random_uuid(), 'CAR0820260003', (SELECT modele_id FROM document.modele_document WHERE code = 'ATTESTATION_CARACTERISTIQUE'), 'ATTESTATION_CARACTERISTIQUE-2026-0001', 1, 'VALIDE', '900001', '2026-08-12 10:00:00'
-WHERE NOT EXISTS (SELECT 1 FROM document.document_genere WHERE reference_acte = 'CAR0820260003' AND modele_id = (SELECT modele_id FROM document.modele_document WHERE code = 'ATTESTATION_CARACTERISTIQUE'));
+INSERT INTO document_siigpe.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
+SELECT gen_random_uuid(), 'CAR0820260003', (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'ATTESTATION_CARACTERISTIQUE'), 'ATTESTATION_CARACTERISTIQUE-2026-0001', 1, 'VALIDE', '900001', '2026-08-12 10:00:00'
+WHERE NOT EXISTS (SELECT 1 FROM document_siigpe.document_genere WHERE reference_acte = 'CAR0820260003' AND modele_id = (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'ATTESTATION_CARACTERISTIQUE'));
 
 -- --- IX. EXPERTISE ACCIDENT (VA_EXPERTISE / EXP, juillet 2026) ---
 -- Alimente GET /api/reporting/vehicules-accidentes (3 lignes tsi_expertise_accident, tous statuts).
@@ -726,9 +726,9 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_expertise_dommage WHERE id
 INSERT INTO referentiel_siigpe.rsi_expertise_accident (reference_acte, vehicule_id, type_expertise, date_accident, montant_estime, valide_par, statut)
 SELECT 'EXP0720260003', 'a0000000-0000-0000-0000-000000000002', 'EXP', '2026-07-12', 3200000, '900007', 'V'
 WHERE NOT EXISTS (SELECT 1 FROM referentiel_siigpe.rsi_expertise_accident WHERE reference_acte = 'EXP0720260003');
-INSERT INTO document.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
-SELECT gen_random_uuid(), 'EXP0720260003', (SELECT modele_id FROM document.modele_document WHERE code = 'RAPPORT_EXPERTISE'), 'RAPPORT_EXPERTISE-2026-0001', 1, 'VALIDE', '900001', '2026-07-16 10:00:00'
-WHERE NOT EXISTS (SELECT 1 FROM document.document_genere WHERE reference_acte = 'EXP0720260003' AND modele_id = (SELECT modele_id FROM document.modele_document WHERE code = 'RAPPORT_EXPERTISE'));
+INSERT INTO document_siigpe.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
+SELECT gen_random_uuid(), 'EXP0720260003', (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'RAPPORT_EXPERTISE'), 'RAPPORT_EXPERTISE-2026-0001', 1, 'VALIDE', '900001', '2026-07-16 10:00:00'
+WHERE NOT EXISTS (SELECT 1 FROM document_siigpe.document_genere WHERE reference_acte = 'EXP0720260003' AND modele_id = (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'RAPPORT_EXPERTISE'));
 
 -- --- X. ÉVALUATION / CONDAMNATION (VA_CONDAMN / CDN, juin 2026) ---
 -- Alimente GET /api/reporting/vehicules-a-condamner (dossier #2, statut NULL = en attente).
@@ -776,9 +776,9 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_evaluation_condamnation WH
 INSERT INTO referentiel_siigpe.rsi_evaluation_condamnation (reference_acte, vehicule_id, valeur_estimee, mise_a_prix, motif_condamnation, valide_par, statut)
 SELECT 'CDN0620260003', 'a0000000-0000-0000-0000-00000000000a', 8000000, 3000000, 'Usure avancée et coût de réparation prohibitif', '900007', 'V'
 WHERE NOT EXISTS (SELECT 1 FROM referentiel_siigpe.rsi_evaluation_condamnation WHERE reference_acte = 'CDN0620260003');
-INSERT INTO document.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
-SELECT gen_random_uuid(), 'CDN0620260003', (SELECT modele_id FROM document.modele_document WHERE code = 'PV_CONDAMNATION'), 'PV_CONDAMNATION-2026-0001', 1, 'VALIDE', '900001', '2026-06-15 15:00:00'
-WHERE NOT EXISTS (SELECT 1 FROM document.document_genere WHERE reference_acte = 'CDN0620260003' AND modele_id = (SELECT modele_id FROM document.modele_document WHERE code = 'PV_CONDAMNATION'));
+INSERT INTO document_siigpe.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
+SELECT gen_random_uuid(), 'CDN0620260003', (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'PV_CONDAMNATION'), 'PV_CONDAMNATION-2026-0001', 1, 'VALIDE', '900001', '2026-06-15 15:00:00'
+WHERE NOT EXISTS (SELECT 1 FROM document_siigpe.document_genere WHERE reference_acte = 'CDN0620260003' AND modele_id = (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'PV_CONDAMNATION'));
 -- V10 (5555 TBJ) était déjà seedé à l'état HS en §2 (cohérent avec cette condamnation validée) — pas
 -- de mise à jour supplémentaire nécessaire.
 
@@ -842,9 +842,9 @@ WHERE NOT EXISTS (SELECT 1 FROM traitement_siigpe.tsi_chauffeur_test WHERE test_
 INSERT INTO referentiel_siigpe.rsi_chauffeur_test (reference_acte, chauffeur_id, vehicule_id, date_test, resultat, valide_par, statut)
 SELECT 'TCH0820260003', '14000000-0000-0000-0000-000000000003', 'a0000000-0000-0000-0000-000000000006', '2026-08-05', 'APTE', '900007', 'V'
 WHERE NOT EXISTS (SELECT 1 FROM referentiel_siigpe.rsi_chauffeur_test WHERE reference_acte = 'TCH0820260003');
-INSERT INTO document.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
-SELECT gen_random_uuid(), 'TCH0820260003', (SELECT modele_id FROM document.modele_document WHERE code = 'RESULTAT_TEST_CHAUFFEUR'), 'RESULTAT_TEST_CHAUFFEUR-2026-0001', 1, 'VALIDE', '900001', '2026-08-06 09:00:00'
-WHERE NOT EXISTS (SELECT 1 FROM document.document_genere WHERE reference_acte = 'TCH0820260003' AND modele_id = (SELECT modele_id FROM document.modele_document WHERE code = 'RESULTAT_TEST_CHAUFFEUR'));
+INSERT INTO document_siigpe.document_genere (document_id, reference_acte, modele_id, numero_document, version, statut, genere_par, genere_le)
+SELECT gen_random_uuid(), 'TCH0820260003', (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'RESULTAT_TEST_CHAUFFEUR'), 'RESULTAT_TEST_CHAUFFEUR-2026-0001', 1, 'VALIDE', '900001', '2026-08-06 09:00:00'
+WHERE NOT EXISTS (SELECT 1 FROM document_siigpe.document_genere WHERE reference_acte = 'TCH0820260003' AND modele_id = (SELECT modele_id FROM document_siigpe.modele_document WHERE code = 'RESULTAT_TEST_CHAUFFEUR'));
 
 -- 2 tests supplémentaires hors dossier (retest dans le temps) — enrichit l'écran "fiche chauffeur +
 -- historique des tests" (déjà branché côté frontend sur GET /api-testchauffeur/.../tests-chauffeurs).

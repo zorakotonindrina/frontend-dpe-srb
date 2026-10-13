@@ -1,4 +1,4 @@
-/** document.document_genere (Script.sql) */
+/** document_siigpe.document_genere (Script.sql) */
 export type DocumentStatut = 'BROUILLON' | 'VALIDE' | 'ANNULE' | 'REMPLACE';
 
 export interface DocumentGenere {

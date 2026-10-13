@@ -50,7 +50,8 @@
       "submit": "Se connecter",
       "submitting": "Connexion en cours…",
       "errorCredentials": "Identifiants incorrects. Veuillez vérifier votre login et mot de passe.",
-      "errorLoginDisabled": "Votre compte est désactivé. Contactez votre administrateur."
+      "errorLoginDisabled": "Votre compte est désactivé. Contactez votre administrateur.",
+      "sessionExpired": "Votre session a expiré. Veuillez vous reconnecter."
     },
     "forgotPassword": {
       "title": "Mot de passe oublié ?",

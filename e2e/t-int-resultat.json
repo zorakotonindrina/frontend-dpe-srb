@@ -1,0 +1,317 @@
+{
+  "config": {
+    "configFile": "D:\\ASA\\AUGURE_FINANCIERE\\frontend-dpe-srb\\e2e\\t-int.config.ts",
+    "rootDir": "D:/ASA/AUGURE_FINANCIERE/frontend-dpe-srb/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/ASA/AUGURE_FINANCIERE/frontend-dpe-srb/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "D:/ASA/AUGURE_FINANCIERE/frontend-dpe-srb/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/t-int-0[23]-.*\\.spec\\.ts/"
+        ],
+        "timeout": 240000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "t-int-resultat.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "t-int-02-ecriture.spec.ts",
+      "file": "t-int-02-ecriture.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "T-INT-02 : recensement créé, validé et quitus généré de bout en bout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [
+                {
+                  "type": "referenceActe",
+                  "description": "REC1020260002"
+                },
+                {
+                  "type": "etape",
+                  "description": "validation 1"
+                },
+                {
+                  "type": "etape",
+                  "description": "validation 2"
+                },
+                {
+                  "type": "etape",
+                  "description": "validation 3"
+                },
+                {
+                  "type": "generation_quitus",
+                  "description": "HTTP 200 en 981 ms"
+                },
+                {
+                  "type": "dossier",
+                  "description": "{\"entiteCode\":\"BSCVA\",\"ministereCode\":\"92\",\"regionCreation\":null,\"activiteCode\":null,\"nombreProjet\":null,\"processusCode\":\"VA_RECENS\",\"referenceSortie\":\"E2E/001\",\"dateSortie\":\"2026-10-08\",\"idDossier\":\"c1e3a871-dc64-4276-a96e-5a7222eae4da\",\"typeGuichet\":null,\"referenceActe\":\"REC1020260002\",\"dossierDateDepot\":\"2026-10-08\",\"dossierDateSaisie\":\"2026-10-08\",\"referenceMinistere\":null,\"typeActe\":\"REC\",\"do"
+                },
+                {
+                  "type": "documents",
+                  "description": "[{\"hashFichier\":null,\"deletedBy\":null,\"createdAt\":\"2026-10-08T08:08:29.604+00:00\",\"modeleLibelle\":\"Quitus de recensement\",\"fichierPdf\":\"\\\\document_genere\\\\REC1020260002\\\\6e1072e6-c0a3-4fcb-8c15-466936beb228.pdf\",\"documentId\":\"6e1072e6-c0a3-4fcb-8c15-466936beb228\",\"genereLe\":\"2026-10-08T08:08:29.604+00:00\",\"generePar\":\"900001\",\"fichierSource\":null,\"isDeleted\":false,\"valideLe\":null,\"updatedAt\":null,"
+                },
+                {
+                  "type": "mouvements",
+                  "description": "[{\"mouvementId\":\"8a9dd91f-3ea6-4075-8559-4ca0247d5335\",\"dateMouvement\":\"2026-10-08\",\"typeMouvement\":\"RECENSEMENT\",\"exercice\":\"2026\",\"structureCode\":\"00-62-0-J20-00000\",\"structureLibelle\":\" Direction de la Promotion des Logements (DPL)\",\"detenteur\":\"Parc de service — test\",\"etatGeneral\":\"1\",\"categorieUtilisation\":\"1\",\"referenceActe\":\"REC1020260002\",\"auteur\":\"900001\"}]"
+                },
+                {
+                  "type": "vehicule",
+                  "description": "E2E-892168 e3a48f34-002f-4904-b23b-aa9698e4ce49"
+                },
+                {
+                  "type": "duree_ms",
+                  "description": "21053"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 21294,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T08:08:12.179Z",
+                  "annotations": [
+                    {
+                      "type": "referenceActe",
+                      "description": "REC1020260002"
+                    },
+                    {
+                      "type": "etape",
+                      "description": "validation 1"
+                    },
+                    {
+                      "type": "etape",
+                      "description": "validation 2"
+                    },
+                    {
+                      "type": "etape",
+                      "description": "validation 3"
+                    },
+                    {
+                      "type": "generation_quitus",
+                      "description": "HTTP 200 en 981 ms"
+                    },
+                    {
+                      "type": "dossier",
+                      "description": "{\"entiteCode\":\"BSCVA\",\"ministereCode\":\"92\",\"regionCreation\":null,\"activiteCode\":null,\"nombreProjet\":null,\"processusCode\":\"VA_RECENS\",\"referenceSortie\":\"E2E/001\",\"dateSortie\":\"2026-10-08\",\"idDossier\":\"c1e3a871-dc64-4276-a96e-5a7222eae4da\",\"typeGuichet\":null,\"referenceActe\":\"REC1020260002\",\"dossierDateDepot\":\"2026-10-08\",\"dossierDateSaisie\":\"2026-10-08\",\"referenceMinistere\":null,\"typeActe\":\"REC\",\"do"
+                    },
+                    {
+                      "type": "documents",
+                      "description": "[{\"hashFichier\":null,\"deletedBy\":null,\"createdAt\":\"2026-10-08T08:08:29.604+00:00\",\"modeleLibelle\":\"Quitus de recensement\",\"fichierPdf\":\"\\\\document_genere\\\\REC1020260002\\\\6e1072e6-c0a3-4fcb-8c15-466936beb228.pdf\",\"documentId\":\"6e1072e6-c0a3-4fcb-8c15-466936beb228\",\"genereLe\":\"2026-10-08T08:08:29.604+00:00\",\"generePar\":\"900001\",\"fichierSource\":null,\"isDeleted\":false,\"valideLe\":null,\"updatedAt\":null,"
+                    },
+                    {
+                      "type": "mouvements",
+                      "description": "[{\"mouvementId\":\"8a9dd91f-3ea6-4075-8559-4ca0247d5335\",\"dateMouvement\":\"2026-10-08\",\"typeMouvement\":\"RECENSEMENT\",\"exercice\":\"2026\",\"structureCode\":\"00-62-0-J20-00000\",\"structureLibelle\":\" Direction de la Promotion des Logements (DPL)\",\"detenteur\":\"Parc de service — test\",\"etatGeneral\":\"1\",\"categorieUtilisation\":\"1\",\"referenceActe\":\"REC1020260002\",\"auteur\":\"900001\"}]"
+                    },
+                    {
+                      "type": "vehicule",
+                      "description": "E2E-892168 e3a48f34-002f-4904-b23b-aa9698e4ce49"
+                    },
+                    {
+                      "type": "duree_ms",
+                      "description": "21053"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\ASA\\AUGURE_FINANCIERE\\frontend-dpe-srb\\test-results\\t-int-02-ecriture-T-INT-02-21c9f-itus-généré-de-bout-en-bout\\test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4dee2a883aaf9af49069-cd8e9f8fe386ba26e22f",
+          "file": "t-int-02-ecriture.spec.ts",
+          "line": 20,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "t-int-03-chaine.spec.ts",
+      "file": "t-int-03-chaine.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "T-INT-03 : constatation → visa du BC → réception technique, rôles et refus contrôlés",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [
+                {
+                  "type": "securite",
+                  "description": "generateToken via passerelle : 403 ; jeton invalide : 401"
+                },
+                {
+                  "type": "vehicule",
+                  "description": "E2E-892168 e3a48f34-002f-4904-b23b-aa9698e4ce49 — SOA 00-62-0-J20-00000"
+                },
+                {
+                  "type": "doublon",
+                  "description": "HTTP 409 ; dossiers avant/après : 1326/1326"
+                },
+                {
+                  "type": "constatation",
+                  "description": "CST1020260031 (structure différente : HTTP 409)"
+                },
+                {
+                  "type": "workflow_constatation",
+                  "description": "CONSULT : 403 ; contrôle, expert, chef : 200"
+                },
+                {
+                  "type": "visa_bc",
+                  "description": "VBC1020260052 — montant serveur 230000 Ar, décision VISA"
+                },
+                {
+                  "type": "reception",
+                  "description": "RCT1020260002 — avis FAVORABLE, PV_RECEPTION généré"
+                },
+                {
+                  "type": "references",
+                  "description": "{\"refCst\":\"CST1020260031\",\"refVisa\":\"VBC1020260052\",\"refRct\":\"RCT1020260002\"}"
+                },
+                {
+                  "type": "duree_ms",
+                  "description": "6671"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6679,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T08:08:33.645Z",
+                  "annotations": [
+                    {
+                      "type": "securite",
+                      "description": "generateToken via passerelle : 403 ; jeton invalide : 401"
+                    },
+                    {
+                      "type": "vehicule",
+                      "description": "E2E-892168 e3a48f34-002f-4904-b23b-aa9698e4ce49 — SOA 00-62-0-J20-00000"
+                    },
+                    {
+                      "type": "doublon",
+                      "description": "HTTP 409 ; dossiers avant/après : 1326/1326"
+                    },
+                    {
+                      "type": "constatation",
+                      "description": "CST1020260031 (structure différente : HTTP 409)"
+                    },
+                    {
+                      "type": "workflow_constatation",
+                      "description": "CONSULT : 403 ; contrôle, expert, chef : 200"
+                    },
+                    {
+                      "type": "visa_bc",
+                      "description": "VBC1020260052 — montant serveur 230000 Ar, décision VISA"
+                    },
+                    {
+                      "type": "reception",
+                      "description": "RCT1020260002 — avis FAVORABLE, PV_RECEPTION généré"
+                    },
+                    {
+                      "type": "references",
+                      "description": "{\"refCst\":\"CST1020260031\",\"refVisa\":\"VBC1020260052\",\"refRct\":\"RCT1020260002\"}"
+                    },
+                    {
+                      "type": "duree_ms",
+                      "description": "6671"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9a099b91724f80cb65d0-1b3f85de610b6d339f30",
+          "file": "t-int-03-chaine.spec.ts",
+          "line": 34,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-08T08:08:11.636Z",
+    "duration": 29972.15,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

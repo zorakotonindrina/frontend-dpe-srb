@@ -2,8 +2,8 @@ import type { DocumentGenere, DocumentStatut } from '@/lib/fixtures/documents.fi
 import { auditApi } from './audit';
 import { api, getBlob } from './client';
 
-/** document.document_genere, tel que renvoyé par le hub (camelCase des colonnes réelles) —
- *  modeleCode/modeleLibelle viennent d'une jointure sur document.modele_document côté requête
+/** document_siigpe.document_genere, tel que renvoyé par le hub (camelCase des colonnes réelles) —
+ *  modeleCode/modeleLibelle viennent d'une jointure sur document_siigpe.modele_document côté requête
  *  (document_genere n'a qu'un modele_id, pas de code en clair). */
 interface RawDocumentGenere {
   documentId: string;
@@ -32,7 +32,7 @@ export const documentsApi = {
 
   /** Rendu réel (POST /api/dossiers/{ref}/documents/generer/{modeleCode}) — les 12 modeleCode ont
    *  désormais un vrai gabarit Jasper (DemoReportBuilder/JasperController). Crée directement la
-   *  ligne document.document_genere réelle côté serveur (statut BROUILLON) — c'est la seule source
+   *  ligne document_siigpe.document_genere réelle côté serveur (statut BROUILLON) — c'est la seule source
    *  de vérité désormais, `documentsApi.create` (mock) a été retiré. */
   genererReel: (referenceActe: string, modeleCode: string) =>
     api.post<{ documentId: string; numeroDocument: string; statut: string }>(

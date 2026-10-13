@@ -7,19 +7,42 @@
    - referentiel
    - workflow interne
    - noyau véhicule SIIGPE conservé utile
-   - document
-   - audit
+   - document_siigpe (actes générés)
+   - prevision_siigpe (brique IA) ; journal d'audit : workflow.audit_log
    ===================================================================== */
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+/* ---------------------------------------------------------------------
+   0. Renommage des schémas (13/10/2026) — à exécuter AVANT les CREATE SCHEMA.
+   ia → prevision_siigpe, document → document_siigpe ; la seule table du
+   schéma audit (audit_log) rejoint workflow, puis le schéma audit est
+   supprimé. ALTER SCHEMA / SET SCHEMA conservent lignes, index, clés,
+   vues et séquences. Idempotent : sans effet sur une base déjà migrée ou neuve.
+   --------------------------------------------------------------------- */
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'ia')
+       AND NOT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'prevision_siigpe') THEN
+        ALTER SCHEMA ia RENAME TO prevision_siigpe;
+    END IF;
+    IF EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'document')
+       AND NOT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'document_siigpe') THEN
+        ALTER SCHEMA document RENAME TO document_siigpe;
+    END IF;
+    IF to_regclass('audit.audit_log') IS NOT NULL AND to_regclass('workflow.audit_log') IS NULL THEN
+        CREATE SCHEMA IF NOT EXISTS workflow;
+        ALTER TABLE audit.audit_log SET SCHEMA workflow;
+    END IF;
+END $$;
+DROP SCHEMA IF EXISTS audit;   -- RESTRICT : échoue si le schéma contient encore un objet
 
 CREATE SCHEMA IF NOT EXISTS workflow;
 CREATE SCHEMA IF NOT EXISTS referentiel_national;
 CREATE SCHEMA IF NOT EXISTS referentiel_rh;
 CREATE SCHEMA IF NOT EXISTS referentiel_siigpe;
 CREATE SCHEMA IF NOT EXISTS traitement_siigpe;
-CREATE SCHEMA IF NOT EXISTS document;
-CREATE SCHEMA IF NOT EXISTS audit;
+CREATE SCHEMA IF NOT EXISTS document_siigpe;
 
 /* =====================================================================
    0. RENOMMAGE DES TABLES traitement_siigpe (préfixe tsi_) ET
@@ -709,7 +732,7 @@ CREATE TABLE IF NOT EXISTS traitement_siigpe.tsi_historique_vehicule (
    5. DOCUMENTS GÉNÉRÉS ET ARCHIVES
    ===================================================================== */
 
-CREATE TABLE IF NOT EXISTS document.modele_document (
+CREATE TABLE IF NOT EXISTS document_siigpe.modele_document (
     modele_id            uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     code                 varchar(50) NOT NULL UNIQUE,
     libelle              varchar(250) NOT NULL,
@@ -720,10 +743,10 @@ CREATE TABLE IF NOT EXISTS document.modele_document (
     created_at           timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS document.document_genere (
+CREATE TABLE IF NOT EXISTS document_siigpe.document_genere (
     document_id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     reference_acte       varchar(19),
-    modele_id            uuid REFERENCES document.modele_document(modele_id),
+    modele_id            uuid REFERENCES document_siigpe.modele_document(modele_id),
     numero_document      varchar(50),
     version              numeric DEFAULT 1,
     statut               varchar(20) DEFAULT 'BROUILLON',
@@ -738,7 +761,7 @@ CREATE TABLE IF NOT EXISTS document.document_genere (
     motif_annulation     text
 );
 
-CREATE TABLE IF NOT EXISTS document.sequence_document (
+CREATE TABLE IF NOT EXISTS document_siigpe.sequence_document (
     type_acte            varchar(30) NOT NULL REFERENCES workflow.wf_type_acte(type_code),
     dernier_numero       numeric NOT NULL DEFAULT 0,
     PRIMARY KEY (type_acte)
@@ -748,7 +771,7 @@ CREATE TABLE IF NOT EXISTS document.sequence_document (
    6. AUDIT GLOBAL
    ===================================================================== */
 
-CREATE TABLE IF NOT EXISTS audit.audit_log (
+CREATE TABLE IF NOT EXISTS workflow.audit_log (
     audit_id             uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     utilisateur_id       varchar(6),
     action               varchar(100) NOT NULL,
@@ -776,9 +799,9 @@ CREATE INDEX IF NOT EXISTS idx_utilisation_vehicule ON traitement_siigpe.tsi_inf
 CREATE INDEX IF NOT EXISTS idx_quitus_vehicule_periode ON traitement_siigpe.tsi_quitus_vehicule(id_vehicule);
 CREATE INDEX IF NOT EXISTS idx_entretien_vehicule ON traitement_siigpe.tsi_entretien_reparation_vehicule(vehicule_id);
 
-CREATE INDEX IF NOT EXISTS idx_document_reference ON document.document_genere(reference_acte);
-CREATE INDEX IF NOT EXISTS idx_audit_reference ON audit.audit_log(reference_acte);
-CREATE INDEX IF NOT EXISTS idx_audit_table ON audit.audit_log(schema_nom, table_nom, entite_id);
+CREATE INDEX IF NOT EXISTS idx_document_reference ON document_siigpe.document_genere(reference_acte);
+CREATE INDEX IF NOT EXISTS idx_audit_reference ON workflow.audit_log(reference_acte);
+CREATE INDEX IF NOT EXISTS idx_audit_table ON workflow.audit_log(schema_nom, table_nom, entite_id);
 
 
 
@@ -2049,15 +2072,15 @@ ON CONFLICT (section_id, element_libelle) DO NOTHING;
    16.3. Complément des documents générés
    --------------------------------------------------------------------- */
 
-ALTER TABLE document.document_genere
+ALTER TABLE document_siigpe.document_genere
 ADD COLUMN IF NOT EXISTS chemin_fichier_source text,
 ADD COLUMN IF NOT EXISTS hash_fichier varchar(255),
 ADD COLUMN IF NOT EXISTS qr_code varchar(255);
 
-ALTER TABLE document.document_genere
+ALTER TABLE document_siigpe.document_genere
 DROP CONSTRAINT IF EXISTS document_genere_statut_chk;
 
-ALTER TABLE document.document_genere
+ALTER TABLE document_siigpe.document_genere
 ADD CONSTRAINT document_genere_statut_chk
 CHECK (statut IN (
     'BROUILLON',
@@ -2071,7 +2094,7 @@ CHECK (statut IN (
    16.4. Historique des impressions et réimpressions
    --------------------------------------------------------------------- */
 
-CREATE TABLE IF NOT EXISTS document.document_impression (
+CREATE TABLE IF NOT EXISTS document_siigpe.document_impression (
     document_impression_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     document_id            uuid NOT NULL,
     imprime_par            varchar(6),
@@ -2081,7 +2104,7 @@ CREATE TABLE IF NOT EXISTS document.document_impression (
 
     CONSTRAINT document_impression_document_fk
         FOREIGN KEY (document_id)
-        REFERENCES document.document_genere(document_id)
+        REFERENCES document_siigpe.document_genere(document_id)
 );
 
 
@@ -2107,7 +2130,7 @@ ADD COLUMN IF NOT EXISTS created_by varchar(6),
 ADD COLUMN IF NOT EXISTS updated_at timestamp,
 ADD COLUMN IF NOT EXISTS updated_by varchar(6);
 
-ALTER TABLE document.document_genere
+ALTER TABLE document_siigpe.document_genere
 ADD COLUMN IF NOT EXISTS is_deleted boolean DEFAULT false,
 ADD COLUMN IF NOT EXISTS deleted_at timestamp,
 ADD COLUMN IF NOT EXISTS deleted_by varchar(6),
@@ -2146,22 +2169,22 @@ CREATE INDEX IF NOT EXISTS idx_entite_vehicule_statut
 ON traitement_siigpe.tsi_entite_vehicule(statut);
 
 CREATE INDEX IF NOT EXISTS idx_document_genere_reference
-ON document.document_genere(reference_acte);
+ON document_siigpe.document_genere(reference_acte);
 
 CREATE INDEX IF NOT EXISTS idx_document_genere_numero
-ON document.document_genere(numero_document);
+ON document_siigpe.document_genere(numero_document);
 
 CREATE INDEX IF NOT EXISTS idx_document_genere_statut
-ON document.document_genere(statut);
+ON document_siigpe.document_genere(statut);
 
 CREATE INDEX IF NOT EXISTS idx_document_impression_document
-ON document.document_impression(document_id);
+ON document_siigpe.document_impression(document_id);
 
 /* ---------------------------------------------------------------------
    16.9. Modèles de documents principaux
    --------------------------------------------------------------------- */
 
-INSERT INTO document.modele_document (
+INSERT INTO document_siigpe.modele_document (
     code,
     libelle,
     type_acte,
@@ -2191,7 +2214,7 @@ ON CONFLICT (code) DO NOTHING;
        document reste ici tel quel)
    ===================================================================== */
 
-INSERT INTO document.modele_document (code, libelle, type_acte, fichier_modele, format_modele, actif)
+INSERT INTO document_siigpe.modele_document (code, libelle, type_acte, fichier_modele, format_modele, actif)
 VALUES ('RESULTAT_TEST_CHAUFFEUR', 'Résultat de test chauffeur', 'TCH', 'jasper/resultat_test_chauffeur.jrxml', 'JASPER', 1)
 ON CONFLICT (code) DO NOTHING;
 
@@ -2698,7 +2721,7 @@ FROM (VALUES
 JOIN referentiel_siigpe.rsi_section_evaluation s ON s.section_code = v.section_code
 ON CONFLICT (section_evaluation_id, element_libelle) DO NOTHING;
 
-INSERT INTO document.modele_document (code, libelle, type_acte, fichier_modele, format_modele, actif)
+INSERT INTO document_siigpe.modele_document (code, libelle, type_acte, fichier_modele, format_modele, actif)
 VALUES ('FICHE_EVALUATION', 'Fiche d''évaluation du véhicule', 'CDN', 'jasper/fiche_evaluation.jrxml', 'JASPER', 1)
 ON CONFLICT (code) DO NOTHING;
 
@@ -2901,7 +2924,7 @@ FROM (VALUES
 JOIN referentiel_siigpe.rsi_section_mise_prix s ON s.categorie = v.categorie AND s.section_code = v.section_code
 ON CONFLICT (section_id, element_libelle) DO NOTHING;
 
-INSERT INTO document.modele_document (code, libelle, type_acte, fichier_modele, format_modele, actif)
+INSERT INTO document_siigpe.modele_document (code, libelle, type_acte, fichier_modele, format_modele, actif)
 VALUES ('MISE_A_PRIX', 'Mise à prix d''un véhicule / d''une motocyclette', 'CDN', 'jasper/mise_a_prix.jrxml', 'JASPER', 1)
 ON CONFLICT (code) DO NOTHING;
 
@@ -2917,7 +2940,7 @@ ALTER TABLE referentiel_siigpe.rsi_attestation_caracteristique ADD COLUMN IF NOT
    18.21. Brique IA / ML — socle de données (phase 1).
    - Référentiel annuel des tarifs (carburant, huile, entretien) : l'entretien
      courant du livret ne porte que des dates, le carburant que des litres.
-   - Schéma `ia` : registre des modèles et tables de résultats (prévisions de
+   - Schéma `prevision_siigpe` (ex-`ia`) : registre des modèles et tables de résultats (prévisions de
      dépense par véhicule et par STRUCTURE, anomalies de carburant, délai
      prévu des dossiers), séparés des données métier.
    - Vues d'extraction lues par le service Python (entraînement / évaluation).
@@ -2954,9 +2977,9 @@ INSERT INTO referentiel_siigpe.rsi_tarif_depense (annee, code, libelle, unite, p
 (2026, 'GRAISSAGE',         'Graissage', 'OPERATION', 15000)
 ON CONFLICT (annee, code) DO NOTHING;
 
-CREATE SCHEMA IF NOT EXISTS ia;
+CREATE SCHEMA IF NOT EXISTS prevision_siigpe;
 
-CREATE TABLE IF NOT EXISTS ia.modele (
+CREATE TABLE IF NOT EXISTS prevision_siigpe.modele (
     modele_id          uuid NOT NULL DEFAULT gen_random_uuid(),
     code               varchar(40) NOT NULL,      -- DELAI_DOSSIER | DEPENSE_VEHICULE | GROSSE_REPARATION | ANOMALIE_CARBURANT
     version            varchar(20) NOT NULL,
@@ -2972,9 +2995,9 @@ CREATE TABLE IF NOT EXISTS ia.modele (
     CONSTRAINT modele_uk UNIQUE (code, version)
 );
 
-CREATE TABLE IF NOT EXISTS ia.prevision_vehicule (
+CREATE TABLE IF NOT EXISTS prevision_siigpe.prevision_vehicule (
     id                        uuid NOT NULL DEFAULT gen_random_uuid(),
-    modele_id                 uuid NOT NULL REFERENCES ia.modele(modele_id),
+    modele_id                 uuid NOT NULL REFERENCES prevision_siigpe.modele(modele_id),
     vehicule_id               uuid NOT NULL REFERENCES traitement_siigpe.tsi_entite_vehicule(vehicule_id),
     annee_cible               integer NOT NULL,
     depense_prevue            numeric NULL,
@@ -2986,11 +3009,11 @@ CREATE TABLE IF NOT EXISTS ia.prevision_vehicule (
     CONSTRAINT prevision_vehicule_pk PRIMARY KEY (id),
     CONSTRAINT prevision_vehicule_uk UNIQUE (modele_id, vehicule_id, annee_cible)
 );
-CREATE INDEX IF NOT EXISTS idx_prevision_vehicule_vehicule ON ia.prevision_vehicule(vehicule_id, annee_cible);
+CREATE INDEX IF NOT EXISTS idx_prevision_vehicule_vehicule ON prevision_siigpe.prevision_vehicule(vehicule_id, annee_cible);
 
-CREATE TABLE IF NOT EXISTS ia.prevision_structure (
+CREATE TABLE IF NOT EXISTS prevision_siigpe.prevision_structure (
     id              uuid NOT NULL DEFAULT gen_random_uuid(),
-    modele_id       uuid NOT NULL REFERENCES ia.modele(modele_id),
+    modele_id       uuid NOT NULL REFERENCES prevision_siigpe.modele(modele_id),
     soa_code        varchar(20) NOT NULL,
     annee_cible     integer NOT NULL,
     nb_vehicules    integer NULL,
@@ -3003,9 +3026,9 @@ CREATE TABLE IF NOT EXISTS ia.prevision_structure (
     CONSTRAINT prevision_structure_uk UNIQUE (modele_id, soa_code, annee_cible)
 );
 
-CREATE TABLE IF NOT EXISTS ia.anomalie_carburant (
+CREATE TABLE IF NOT EXISTS prevision_siigpe.anomalie_carburant (
     id                 uuid NOT NULL DEFAULT gen_random_uuid(),
-    modele_id          uuid NOT NULL REFERENCES ia.modele(modele_id),
+    modele_id          uuid NOT NULL REFERENCES prevision_siigpe.modele(modele_id),
     vehicule_id        uuid NOT NULL REFERENCES traitement_siigpe.tsi_entite_vehicule(vehicule_id),
     mois               date NOT NULL,              -- 1er jour du mois
     litres             numeric NULL,
@@ -3021,9 +3044,9 @@ CREATE TABLE IF NOT EXISTS ia.anomalie_carburant (
     CONSTRAINT anomalie_carburant_statut_chk CHECK (statut IN ('NOUVELLE','VERIFIEE','JUSTIFIEE'))
 );
 
-CREATE TABLE IF NOT EXISTS ia.prevision_delai_dossier (
+CREATE TABLE IF NOT EXISTS prevision_siigpe.prevision_delai_dossier (
     id               uuid NOT NULL DEFAULT gen_random_uuid(),
-    modele_id        uuid NOT NULL REFERENCES ia.modele(modele_id),
+    modele_id        uuid NOT NULL REFERENCES prevision_siigpe.modele(modele_id),
     reference_acte   varchar(19) NOT NULL,
     delai_prevu_jours numeric NULL,
     borne_basse      numeric NULL,
@@ -3034,13 +3057,13 @@ CREATE TABLE IF NOT EXISTS ia.prevision_delai_dossier (
 );
 
 -- Vues d'extraction (recréées à chaque rejeu : DROP puis CREATE, dans l'ordre des dépendances)
-DROP VIEW IF EXISTS ia.v_vehicule_annuel;
-DROP VIEW IF EXISTS ia.v_depense_vehicule_annuelle;
-DROP VIEW IF EXISTS ia.v_carburant_mensuel;
-DROP VIEW IF EXISTS ia.v_delai_dossier;
+DROP VIEW IF EXISTS prevision_siigpe.v_vehicule_annuel;
+DROP VIEW IF EXISTS prevision_siigpe.v_depense_vehicule_annuelle;
+DROP VIEW IF EXISTS prevision_siigpe.v_carburant_mensuel;
+DROP VIEW IF EXISTS prevision_siigpe.v_delai_dossier;
 
 /* Dépense annuelle par véhicule × année d'arrêtage (livrets validés). */
-CREATE VIEW ia.v_depense_vehicule_annuelle AS
+CREATE VIEW prevision_siigpe.v_depense_vehicule_annuelle AS
 WITH a AS (
     SELECT l.arretage_id, l.vehicule_id, l.annee_arretage AS annee,
            CASE
@@ -3095,7 +3118,7 @@ LEFT JOIN referentiel_siigpe.rsi_tarif_depense tv ON tv.annee = g.annee AND tv.c
 LEFT JOIN referentiel_siigpe.rsi_tarif_depense tg ON tg.annee = g.annee AND tg.code = 'GRAISSAGE';
 
 /* Carburant et kilomètres par véhicule × mois (livrets validés) — base de la détection d'anomalies. */
-CREATE VIEW ia.v_carburant_mensuel AS
+CREATE VIEW prevision_siigpe.v_carburant_mensuel AS
 WITH carb AS (
     SELECT l.vehicule_id, date_trunc('month', c.date_operation)::date AS mois,
            sum(c.quantite_litres) AS litres, sum(c.huile_litres) AS huile_litres, count(*) AS nb_pleins
@@ -3123,9 +3146,9 @@ FULL OUTER JOIN parc ON parc.vehicule_id = carb.vehicule_id AND parc.mois = carb
 
 /* Variables par véhicule × année (une ligne par année de dépense connue ou de recensement) : caractéristiques
    permanentes, recensement de l'année (le plus récent si plusieurs), constatations, BC visés, dépense de l'année. */
-CREATE VIEW ia.v_vehicule_annuel AS
+CREATE VIEW prevision_siigpe.v_vehicule_annuel AS
 WITH annees AS (
-    SELECT vehicule_id, annee FROM ia.v_depense_vehicule_annuelle
+    SELECT vehicule_id, annee FROM prevision_siigpe.v_depense_vehicule_annuelle
     UNION
     SELECT vehicule_id, exercice::integer FROM referentiel_siigpe.rsi_vehicule_etat WHERE exercice ~ '^[0-9]{4}$'
 ),
@@ -3170,11 +3193,11 @@ JOIN traitement_siigpe.tsi_entite_vehicule ev ON ev.vehicule_id = an.vehicule_id
 LEFT JOIN recens r ON r.vehicule_id = an.vehicule_id AND r.annee = an.annee
 LEFT JOIN constat c ON c.vehicule_id = an.vehicule_id AND c.annee = an.annee
 LEFT JOIN bc b ON b.vehicule_id = an.vehicule_id AND b.annee = an.annee
-LEFT JOIN ia.v_depense_vehicule_annuelle d ON d.vehicule_id = an.vehicule_id AND d.annee = an.annee;
+LEFT JOIN prevision_siigpe.v_depense_vehicule_annuelle d ON d.vehicule_id = an.vehicule_id AND d.annee = an.annee;
 
 /* Dossiers clos du workflow et leur délai de traitement (dépôt → dernière tâche terminée, ou date de sortie).
    Clos = aucune tâche ouverte. Dates aberrantes exclues (hors 2015 → aujourd'hui, fin avant dépôt). */
-CREATE VIEW ia.v_delai_dossier AS
+CREATE VIEW prevision_siigpe.v_delai_dossier AS
 WITH t AS (
     SELECT reference_acte,
            count(*) AS nb_taches,
@@ -3205,11 +3228,11 @@ WHERE t.nb_taches_ouvertes = 0
    18.22. Brique IA — traçabilité des jeux de données construits (phase 2).
    Aucune donnée réelle du BSCVA n'étant disponible, le jeu d'entraînement
    véhicules 2025-2026 est CONSTRUIT par ia-siigpe/donnees/generer_jeu.py.
-   Chaque ligne créée est enregistrée dans ia.lot_objet (suppression propre
+   Chaque ligne créée est enregistrée dans prevision_siigpe.lot_objet (suppression propre
    et complète par supprimer_jeu.py) ; les anomalies de carburant injectées
    sont consignées (vérité terrain pour évaluer le détecteur).
    --------------------------------------------------------------------- */
-CREATE TABLE IF NOT EXISTS ia.lot_donnees (
+CREATE TABLE IF NOT EXISTS prevision_siigpe.lot_donnees (
     lot_code       varchar(40) NOT NULL,
     description    text NULL,
     origine        varchar(20) NOT NULL DEFAULT 'CONSTRUIT',   -- CONSTRUIT | REEL
@@ -3220,20 +3243,20 @@ CREATE TABLE IF NOT EXISTS ia.lot_donnees (
     CONSTRAINT lot_donnees_origine_chk CHECK (origine IN ('CONSTRUIT','REEL'))
 );
 
-CREATE TABLE IF NOT EXISTS ia.lot_objet (
+CREATE TABLE IF NOT EXISTS prevision_siigpe.lot_objet (
     id          bigserial NOT NULL,
-    lot_code    varchar(40) NOT NULL REFERENCES ia.lot_donnees(lot_code),
+    lot_code    varchar(40) NOT NULL REFERENCES prevision_siigpe.lot_donnees(lot_code),
     nom_table   varchar(120) NOT NULL,     -- schéma.table
     nom_cle     varchar(60) NOT NULL,      -- colonne clé
     valeur_cle  varchar(80) NOT NULL,
     ordre       integer NOT NULL,          -- ordre d'insertion (suppression dans l'ordre inverse)
     CONSTRAINT lot_objet_pk PRIMARY KEY (id)
 );
-CREATE INDEX IF NOT EXISTS idx_lot_objet_lot ON ia.lot_objet(lot_code, ordre);
+CREATE INDEX IF NOT EXISTS idx_lot_objet_lot ON prevision_siigpe.lot_objet(lot_code, ordre);
 
-CREATE TABLE IF NOT EXISTS ia.lot_anomalie_injectee (
+CREATE TABLE IF NOT EXISTS prevision_siigpe.lot_anomalie_injectee (
     id           bigserial NOT NULL,
-    lot_code     varchar(40) NOT NULL REFERENCES ia.lot_donnees(lot_code),
+    lot_code     varchar(40) NOT NULL REFERENCES prevision_siigpe.lot_donnees(lot_code),
     vehicule_id  uuid NOT NULL,
     mois         date NOT NULL,
     type_anomalie varchar(40) NOT NULL,     -- ex. SURCONSOMMATION

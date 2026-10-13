@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages } from 'next-intl/server';
+import { getLocale } from 'next-intl/server';
+import { LocaleProvider } from '@/providers/LocaleProvider';
 import { Providers } from '@/providers';
 import { Toaster } from 'sonner';
 import { IMAGE_ICONS } from '@/lib/constants/images';
@@ -27,8 +27,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const locale   = await getLocale();
-  const messages = await getMessages();
+  const locale = await getLocale();
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -41,12 +40,12 @@ export default async function RootLayout({
           Aller au contenu principal
         </a>
 
-        <NextIntlClientProvider messages={messages}>
+        <LocaleProvider>
           <Providers>
             {children}
             <Toaster position="top-right" richColors closeButton />
           </Providers>
-        </NextIntlClientProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

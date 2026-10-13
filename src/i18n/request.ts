@@ -1,16 +1,13 @@
 import { getRequestConfig } from 'next-intl/server';
 
-/** Locales supportées */
-export const LOCALES = ['fr', 'en', 'mg'] as const;
-export type Locale = (typeof LOCALES)[number];
+import { DEFAULT_LOCALE } from './locales';
 
-export const DEFAULT_LOCALE: Locale = 'fr';
+export { LOCALES, DEFAULT_LOCALE, type Locale } from './locales';
 
 /**
- * Locale fixe (export statique — pas de serveur pour lire un cookie par
- * requête). Aucun sélecteur de langue n'existe dans l'UI à ce jour, donc
- * l'app tournait déjà toujours en `fr` en pratique : aucun changement de
- * comportement observable.
+ * Locale du rendu statique (export statique — pas de serveur pour lire un
+ * cookie par requête) : le HTML est généré en `fr`, puis le choix de
+ * l'utilisateur (fr / en / mg) est appliqué côté client par LocaleProvider.
  */
 export default getRequestConfig(async () => ({
   locale: DEFAULT_LOCALE,

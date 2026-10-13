@@ -15,6 +15,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { UserBadgeDropdown } from './UserBadgeDropdown';
+import { LanguageSwitcher } from './LanguageSwitcher';
 import { NotificationsDropdown } from './NotificationsDropdown';
 import { GlobalCommandPalette } from '@/components/workflow/GlobalCommandPalette';
 import { useAuth } from '@/hooks/useAuth';
@@ -132,6 +133,9 @@ export function Navbar({
 
       {/* Palette de commande globale (création + recherche de dossier) */}
       <GlobalCommandPalette />
+
+      {/* Langue de l'interface (fr / en / mg) */}
+      <LanguageSwitcher />
 
       {/* Notifications */}
       <NotificationsDropdown taches={taches} isLoading={tachesLoading} />

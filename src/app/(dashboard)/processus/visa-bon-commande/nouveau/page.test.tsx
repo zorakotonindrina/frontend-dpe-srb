@@ -61,9 +61,11 @@ async function ajouterLigne(user: ReturnType<typeof userEvent.setup>, libelle: s
   await user.click(screen.getByTestId('visa-bc-add-piece-button'));
 }
 
-describe('NouveauVisaBcPage — lignes du BC issues de la constatation liée', () => {
+// Saisie sans délai entre les frappes et marge de 15 s : chaque test remplit cinq champs, ce qui
+// dépassait la limite par défaut de 5 s quand toute la suite tournait en parallèle (test instable).
+describe('NouveauVisaBcPage — lignes du BC issues de la constatation liée', { timeout: 15_000 }, () => {
   it('propose en liste déroulante les pièces et réparations de la constatation choisie', async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithProviders(<NouveauVisaBcPage />);
 
     await remplirEtape1(user);
@@ -74,7 +76,7 @@ describe('NouveauVisaBcPage — lignes du BC issues de la constatation liée', (
   });
 
   it('ajoute la ligne choisie avec quantité 1 et prix unitaire 0, puis ne la propose plus', async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithProviders(<NouveauVisaBcPage />);
 
     await remplirEtape1(user);
@@ -90,7 +92,7 @@ describe('NouveauVisaBcPage — lignes du BC issues de la constatation liée', (
   });
 
   it('recalcule le montant total quand on saisit le prix unitaire dans le tableau', async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithProviders(<NouveauVisaBcPage />);
 
     await remplirEtape1(user);
@@ -104,7 +106,7 @@ describe('NouveauVisaBcPage — lignes du BC issues de la constatation liée', (
   });
 
   it('désactive la liste tant qu’aucune constatation n’est liée', async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithProviders(<NouveauVisaBcPage />);
 
     await remplirEtape1(user, false);

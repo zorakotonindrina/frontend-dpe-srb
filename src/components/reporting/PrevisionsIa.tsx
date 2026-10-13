@@ -33,7 +33,7 @@ const STATUT_VARIANT: Record<StatutAnomalie, 'destructive' | 'secondary' | 'outl
 };
 
 /**
- * Onglet « Prévisions IA » du Reporting : résultats des modèles entraînés hors ligne par `ia-siigpe` (schéma `ia`) — prévision
+ * Onglet « Prévisions IA » du Reporting : résultats des modèles entraînés hors ligne par `ia-siigpe` (schéma `prevision_siigpe`) — prévision
  * budgétaire par STRUCTURE et par véhicule, risque de grosse réparation, anomalies de carburant (traitables), délais prévus des dossiers
  * ouverts, et qualité des modèles comparée à la référence naïve.
  */

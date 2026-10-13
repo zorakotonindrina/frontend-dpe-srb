@@ -1,7 +1,7 @@
 import { api, buildQS, getBlob } from './client';
 
 /**
- * Résultats de la brique IA (schéma `ia`, écrits par `ia-siigpe/modeles/entrainer_tout.py`) exposés par le hub
+ * Résultats de la brique IA (schéma `prevision_siigpe`, écrits par `ia-siigpe/modeles/entrainer_tout.py`) exposés par le hub
  * (`ReportingController`, `/api/reporting/ia/**`). Seul le modèle actif de chaque code est renvoyé.
  */
 
